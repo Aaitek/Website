@@ -378,45 +378,6 @@
     </section>
     <!-- services slider img end -->
 
-     <!-- Our Customers -->
-     <section class="mt-lg-5 mt-3">
-        <div class="container">
-            <div class="text-center">
-                <h3 class="font-fmaily mb-3 h1-font-media">Our Customers</h3>
-                <!-- Swiper -->
-                <div class="swiper mySwiperclinet ">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <img src="img/canwb.png" alt="" width="100%">
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="img/bmw.png" alt="" width="100%">
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="img/congstar.png" alt="" width="100%">
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="img/jumbo.png" alt="" width="100%">
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="img/microsoft.png" alt="" width="100%">
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="img/t.png" alt="" width="100%">
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="img/vgz.png" alt="" width="100%">
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="img/visma.png" alt="" width="100%">
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Our Customers end -->
 
         <!-- service and about section -->
         <section class="mt-lg-5 mt-3">
