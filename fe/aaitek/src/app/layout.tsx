@@ -1,5 +1,7 @@
+import './styles/globals.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Navigation from './components/Navigation';
 
 export default function RootLayout({
   children,
@@ -8,8 +10,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <Header />
+      <body className="bg-white text-gray-900 font-sans">
+        {/* <Header /> */}
+        <Navigation/>
         {children}
         <Footer />
       </body>
