@@ -1,7 +1,14 @@
 import './styles/globals.css';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Navigation from './components/Navigation';
+import { Navbar } from './components/layout/Navbar';
+import Footer  from './components/layout/Footer';
+
+export const metadata = {
+  title: "Aaitek",
+  description: "Aaitek Technology Specialists",
+  icons: {
+    icon: "/img/favicon.png", // ✅ path inside public/img/
+  },
+};
 
 export default function RootLayout({
   children,
@@ -11,8 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-white text-gray-900 font-sans">
-        {/* <Header /> */}
-        <Navigation/>
+        <Navbar />
         {children}
         <Footer />
       </body>
