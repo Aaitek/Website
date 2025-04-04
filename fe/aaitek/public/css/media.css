@@ -1,0 +1,696 @@
+/* Media Query for Mobile Devices */
+@media (max-width: 480px) {
+  .h1-font-media {
+    font-size: 16px;
+  }
+  .p-font-media {
+    /* display: none; */
+    font-size: 10px;
+  }
+  .btn-font-media {
+    font-size: 10px;
+  }
+  .banner-possion {
+    position: absolute;
+    top: 50%;
+    left: 33%;
+    transform: translate(-50%, -50%);
+    text-align: justify;
+    z-index: 9999;
+  }
+  .services-section h3 {
+    font-size: 25px;
+  }
+
+  .Working {
+    width: 186px;
+  }
+  .h5-font-media {
+    font-size: 14px;
+  }
+  .slider-possion-card {
+    position: absolute;
+    top: 13px;
+    left: 13px;
+  }
+  .custom-card-body {
+    padding: 8px;
+  }
+
+  .swiper-card-news {
+    width: 185px;
+  }
+  /* .cutom-section {
+    margin-top: 28px;
+} */
+  .img-top {
+    margin-top: 0px;
+  }
+  .nva-logo {
+    width: 180px;
+  }
+  .up_space {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .service_about h2 {
+    color: #1c1c1c;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+  }
+  .news h2 {
+    font-size: 16px;
+  }
+  /* dixit code */
+  .banner-img .swiper-slide img {
+    height: 25vh;
+  }
+  .last_banner {
+    margin-left: 17px;
+  }
+  button.custom-btn {
+    padding: 6px;
+    width: 106px;
+    font-size: 9px;
+  }
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none !important;
+  }
+  .our_passion h6 {
+    font-size: 12px;
+  }
+  .our_passion .left_part h3 {
+    font-size: 14px;
+    max-width: 263px;
+  }
+  .our_passion .left_part p {
+    font-size: 12px;
+  }
+  .card_title {
+    font-size: 16px;
+  }
+  .card_text {
+    font-size: 15px;
+  }
+  .services-section .left_part h3 {
+    font-size: 16px;
+  }
+  .services-section .left_part p {
+    font-size: 14px;
+  }
+  .services-section button.btn-possion {
+    font-size: 9px;
+    padding: 6px 6px;
+  }
+  .services-section .right_part h5 {
+    font-size: 16px;
+  }
+  .services-section .right_part ul li {
+    font-size: 14px;
+    font-weight: 500;
+    border-bottom: none;
+  }
+  .mid_slider .left_space {
+    width: 100%;
+    right: 0%;
+    position: relative;
+  }
+  .mid_slider .Working h6 {
+    font-size: 6px;
+  }
+  .mid_slider .Working h5 {
+    font-size: 12px;
+    margin-bottom: 3px;
+  }
+  .mid_slider .Working p {
+    font-size: 6px;
+    margin-bottom: 7px;
+  }
+  .mid_slider .Working {
+    max-width: 153px;
+    padding: 7px 7px;
+  }
+  .mid_slider .slid_btn {
+    margin-top: 0px;
+    width: 70px;
+    font-size: 6px;
+    font-weight: 700;
+    padding: 4px 5px;
+  }
+  .Our_Customers h3 {
+    font-size: 16px;
+  }
+  .service_about p {
+    font-size: 12px;
+    font-weight: 300;
+  }
+  .service_about button.custom-btn {
+    padding: 8px 14px;
+    width: 110px;
+    font-size: 12px;
+    margin-top: 10px;
+  }
+  .mobile_view_up {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .news .left_part h6 {
+    font-size: 10px;
+  }
+  .news p {
+    font-size: 14px;
+  }
+  .news .news_btn {
+    width: 120px;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 8px 8px;
+    margin-top: 0px;
+  }
+  .news {
+    padding: 0px;
+  }
+  .news .right_part p {
+    font-size: 9px;
+    font-weight: 600;
+  }
+  .news .right_part h6 {
+    font-size: 9px;
+  }
+  .Working-two h6 {
+    font-size: 12px;
+  }
+  .Working-two h2 {
+    font-size: 16px;
+  }
+  .Working-two p {
+    font-size: 12px;
+  }
+  .Working-two .Working_btn {
+    width: 124px;
+    font-size: 9px;
+    padding: 9px 0px;
+    margin-top: 0px;
+  }
+  .Partnerships h2 {
+    font-size: 16px;
+    line-height: 19px;
+  }
+  .Partnerships p {
+    font-size: 12px;
+  }
+  .footer-bg img {
+    width: 118px;
+  }
+  .footer-bg .left_part p {
+    font-size: 14px;
+  }
+  .footer_end a i {
+    font-size: 9px;
+  }
+  .footer_end .font-fmaily-p {
+    font-size: 8px;
+  }
+  .footer-top .font-fmaily-p a {
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .services-banner button.custom-btn {
+    padding: 6px 6px;
+    width: 99px;
+    font-size: 9px;
+  }
+  .services-section-page h6 {
+    font-size: 10px;
+  }
+  .services-section-page h2 {
+    font-size: 16px;
+  }
+  .services-section-page p {
+    font-size: 12px;
+  }
+  .services-section-page .right_part h2 {
+    font-size: 30px;
+    line-height: 60.16px;
+  }
+  .services-section-page button.custom-btn {
+    padding: 10px 13px;
+    width: 110px;
+    font-size: 11px;
+    margin-top: 0px;
+  }
+  .services-section-page .right_part p {
+    font-size: 16px;
+    line-height: 28.8px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  .accordion-services .accordion-button {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 8px;
+  }
+  .accordion-services .list-group-item {
+    font-size: 10px;
+  }
+  .Empowering .about-card-box p,
+  .Empowering .about-card-box h6,
+  .Empowering .left_part h3 {
+    font-size: 12px;
+  }
+  .h5-about-section {
+    font-size: 12px;
+  }
+  .Empowering .about-card-box h2 {
+    font-size: 16px;
+  }
+  .about-card-box {
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+    padding: 20px 6px;
+  }
+  .custom-btn-about {
+    background: #fbd506;
+    padding: 6px 8px;
+    width: 103px;
+    font-size: 10px;
+    display: none;
+  }
+  .mobile-custom-btn-about {
+    background: #fbd506;
+    padding: 6px 8px;
+    width: 103px;
+    font-size: 10px;
+    border: 1px;
+  }
+  .Contact_us h2,
+  .map-section h2,
+  .services-section-page-two h2 {
+    font-size: 16px;
+  }
+  .services-section-page-two p {
+    font-size: 14px;
+  }
+  .services-section-page-two {
+    background-image: url(../img/mobile_about_page_sction.png);
+    background-size: cover;
+    /* background-attachment: fixed; */
+    color: #ffffff;
+  }
+  .layout_padding_about {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  .Contact_us h5 {
+    font-size: 14px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+  }
+  .Contact_us form label {
+    font-size: 10px;
+  }
+  .contact-customers h3 {
+    font-size: 16px;
+    margin-bottom: 28px;
+  }
+  .map-section h3 {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+  .challenge p,
+  .events p {
+    font-size: 12px;
+  }
+  .services_view h3,
+  .events h5 {
+    font-size: 14px;
+  }
+  .events .card_sdo {
+    padding: 15px 0px 0px 0px !important;
+  }
+  .challenge h6 {
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+  .challenge h2 {
+    font-size: 16px;
+    line-height: 14px;
+  }
+  .challenge button.custom-btn {
+    padding: 8px 8px;
+    width: 110px;
+    font-size: 12px;
+    margin-top: 0px;
+  }
+  .services_view h2,
+  .contact-details h4,
+  .event_view h2 {
+    font-size: 16px;
+  }
+  .services_view ul li,
+  .services_view p,
+  .event_view ul li,
+  .event_view p {
+    font-size: 12px;
+  }
+
+  .event_view .contact-details p {
+    font-size: 12px;
+    margin-top: 14px;
+  }
+  .services_view .contact-details button.custom-btn,
+  .event_view .contact-details button.custom-btn {
+    padding: 6px 6px;
+    width: 90px;
+    font-size: 10px;
+    margin-top: 18px;
+  }
+  .Partnerships .logos {
+    width: 70.009px;
+    height: 20.989px;
+  }
+  .events .card_h:hover .card_sdo{
+    background: #FFF;
+  box-shadow: none;
+  }
+  .card_slider .cards h3 {
+    font-size: 30px;
+}
+  
+}
+
+/* Media Query for low resolution  Tablets, Ipads */
+@media (min-width: 481px) and (max-width: 769px) {
+  .banner-possion {
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    font-size: 12px;
+    transform: translate(-50%, -50%);
+    text-align: justify;
+    z-index: 9999;
+  }
+  .swiper-card-news {
+    width: 180px;
+  }
+  /* .cutom-section {
+        margin-top: 28px;
+    } */
+  .img-top {
+    margin-top: 0px;
+  }
+  .service_about h2 {
+    font-size: 20px;
+    line-height: 28px;
+  }
+  .services-section h3 {
+    font-size: 35px;
+  }
+  .news h2 {
+    font-size: 25px;
+  }
+  .banner-img .swiper-slide img {
+    height: 36vh;
+  }
+  .tab_view_banner{
+    margin-left: 100px;
+  }
+  .last_banner {
+    margin-left: 20px;
+}
+.mid_slider .Working {
+  width: 300px;
+}
+.slider-possion-card {
+  top: 16px;
+  left: 16px;
+}
+.mid_slider .Working p,
+.mid_slider .Working h6 {
+  font-size: 12px;
+}
+.mid_slider .Working h5 {
+  font-size: 18px;
+}
+.mid_slider .slid_btn {
+  margin-top: 0px;
+  width: 105px;
+  font-size: 12px;
+  padding: 8px 12px;
+}
+.Our_Customers h3 {
+  font-size: 26px;
+}
+.Partnerships h2 {
+  font-size: 26px;
+  line-height: 30px;
+}
+.service_about button.custom-btn {
+  margin-top: 2px;
+}
+.p-font-media {
+  font-size: 14px;
+  }
+  .map-section h3,
+  .h1-font-media {
+    font-size: 30px;
+}
+.services-banner button.custom-btn {
+  padding: 7px 9px;
+  width: 156px;
+  font-size: 16px;
+  margin-top: 15px;
+}
+.mobile-custom-btn-about {
+  display: none;
+}
+.Contact_us h5 {
+  font-size: 30px;
+  margin-top: 0px;
+  margin-bottom: 16px;
+}
+.services_view h2,
+.event_view h2,
+.Contact_us h2 {
+  font-size: 35px;
+}
+
+}
+/* dixit code  */
+/* Media Query for Tablets Ipads portrait mode */
+@media (min-width: 769px) and (max-width: 1025px) {
+  .banner-possion {
+    position: absolute;
+    top: 50%;
+    left: 32%;
+    transform: translate(-50%, -50%);
+    text-align: justify;
+    z-index: 9999;
+  }
+  .passion-image {
+    background-image: url(../img/passion-banner.png);
+    height: 460px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+  .swiper-card-news {
+    width: 180px;
+  }
+  /* .cutom-section {
+        margin-top: 28px;
+    } */
+  .img-top {
+    margin-top: 0px;
+  }
+  .services-section-page h2 {
+    font-size: 35px;
+}
+.services-section-page .right_part h2 {
+  font-size: 40px;
+  line-height: 50.16px;
+}
+.services-section-page .right_part p {
+  font-size: 14px;
+  line-height: 20.8px;
+  margin-top: 5px;
+}
+.services_view h2,
+.challenge h2,
+.event_view h2,
+.Contact_us h2 ,
+.services-section-page-two h2,
+.h1-font-media {
+  font-size: 35px;
+}
+.p-font-media {
+  font-size: 16px;
+}
+
+.Empowering .about-card-box h2 {
+  font-size: 30px;
+}
+.mobile-custom-btn-about {
+  display: none;
+}
+.Contact_us h5 {
+  font-size: 30px;
+  margin-top: 0px;
+  margin-bottom: 16px;
+}
+.events h5,
+.contact-details h4 {
+  font-size: 20px;
+}
+.contact-details h6 {
+  font-size: 16px;
+  margin-top: 13px;
+  margin-bottom: 16px;
+}
+.services_view .contact-details button.custom-btn, .event_view .contact-details button.custom-btn {
+  padding: 7px 5px;
+  width: 133px;
+  font-size: 16px;
+  margin-top: 15px;
+}
+
+/* Dixit code -> Date : 5-6-2024 */
+
+.event_view .contact-details p {
+  font-size: 14px;
+  margin-top: 9px;
+}
+.our_passion .left_part h3 {
+  font-size: 22px;
+}
+.our_passion .left_part p {
+  font-size: 14px;
+}
+.services-section .left_part h3 {
+  font-size: 36px;
+}
+.services-section .right_part ul li {
+  font-size: 14px;
+}
+.services-section button.btn-possion {
+  font-size: 15px;
+  padding: 8px 8px;
+}
+.slider-possion-card {
+  top: 15px;
+  left: 15px;
+}
+.mid_slider .Working h5 {
+  font-size: 26px;
+}
+.mid_slider .slid_btn {
+  margin-top: 20px;
+  width: 141px;
+  font-size: 16px;
+  padding: 9px 13px;
+  text-align: center;
+}
+.mid_slider .Working {
+  width: 390px;
+  padding: 20px 25px;
+}
+.service_about h2 {
+  font-size: 26px;
+  line-height: 29px;
+}
+.service_about button.custom-btn {
+  padding: 7px;
+  width: 135px;
+  margin-top: 0px;
+}
+.up_space {
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+.news h2 {
+  font-size: 28px;
+}
+.news .news_btn {
+  width: 165px;
+  font-size: 16px;
+  padding: 8px 8px;
+  margin-top: 0px;
+}
+.news .right_part h6 {
+  font-size: 15px;
+}
+.Working-two h2 {
+  font-size: 30px;
+}
+.Partnerships h2 {
+  font-size: 27px;
+  line-height: 29px;
+}
+.card_slider .cards h3 {
+  font-size: 25px;
+}
+.footer-top .font-fmaily-p, .footer-top .font-fmaily-p a {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.card_text {
+  color: #1c1c1c;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: normal;
+}
+.card_title {
+  color: #1c1c1c;
+  font-size: 17px;
+  font-weight: 700;
+}
+.service_card .ser_card {
+  padding: 20px 21px;
+}
+.custom-card {
+  padding: 0px;
+}
+/* Dixit code End-> Date : 5-6-2024 */
+
+}
+
+/* Media Query for Laptops and Desktops */
+@media (min-width: 1026px) and (max-width: 1370px) {
+  .banner-possion {
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    text-align: justify;
+    z-index: 9999;
+  }
+  .mobile-custom-btn-about {
+    display: none;
+  }
+  .our_passion .left_part h3 {
+    color: #1c1c1c;
+    font-size: 36px;
+    font-weight: 700;
+}
+}
+
+/* Media Query for Large screens */
+@media (min-width: 1281px) {
+  .mobile-custom-btn-about {
+    display: none;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .passion-image {
+    background-image: url(../img/passion-banner.png);
+    height: 899px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+}
