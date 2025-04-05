@@ -43,16 +43,16 @@ export const HeroCarousel = () => {
                 alt={`Slide ${index + 1}`}
                 className="object-cover w-full h-full transform hover:scale-105 transition duration-700 ease-in-out"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-center items-start px-8 md:px-20 animate-fadeIn">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1C1C1C]/80 to-transparent flex flex-col justify-center items-start px-8 md:px-20 animate-fadeIn">
                 <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-xl">
                   {slide.heading}
                 </h1>
-                <p className="text-lg md:text-2xl text-gray-200 mb-8 max-w-2xl drop-shadow-lg">
+                <p className="text-lg md:text-2xl text-[#F4F4F4] mb-8 max-w-2xl drop-shadow-lg">
                   {slide.subheading}
                 </p>
                 <Button
                   variant="secondary"
-                  className="bg-indigo-600 hover:bg-indigo-700 text-white text-lg font-semibold px-6 py-3 rounded-full transition duration-300 ease-in-out shadow-lg"
+                  className="bg-[#FBD506] hover:bg-[#e2c700] text-[#1C1C1C] text-lg font-semibold px-6 py-3 rounded-full transition duration-300 ease-in-out shadow-lg"
                 >
                   {slide.cta}
                 </Button>

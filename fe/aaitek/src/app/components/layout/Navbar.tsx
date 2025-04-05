@@ -1,7 +1,17 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
+
+const navLinks = [
+  { name: "Home", href: "/" },
+  { name: "Services", href: "/services" },
+  { name: "About", href: "/about" },
+  { name: "Contact", href: "/contact" },
+  { name: "Events", href: "/events" },
+];
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,61 +19,64 @@ export const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "Services", href: "/services" },
-    { name: "About", href: "/about" },
-    { name: "Contact", href: "/contact" },
-    { name: "Events", href: "/events" },
-  ];
-
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 px-6 py-4 transition duration-300 ease-in-out ${
-        isScrolled ? "bg-white shadow-lg text-gray-800" : "bg-transparent text-white"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
+        isScrolled ? "shadow-md backdrop-blur-md" : ""
+      } bg-[#1C1C1C]`}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
-          <img src="/img/logo.png" alt="Aaitek Logo" className="h-12 w-auto" />
-          <span className="text-2xl font-bold">Aaitek</span>
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-3">
+          <Image
+            src="/img/logo.png"
+            alt="Aaitek Logo"
+            width={180}
+            height={50}
+            className="object-contain"
+          />
+          {/* <span className="text-3xl font-extrabold text-[#FBD506] tracking-tight">
+            Aaitek
+          </span> */}
         </Link>
 
-        <nav className="hidden md:flex space-x-8">
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex space-x-8 items-center">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className="font-medium hover:text-indigo-600 transition-colors duration-300"
+              className="text-base font-medium text-white hover:text-[#FBD506] transition-colors duration-300"
             >
               {link.name}
             </Link>
           ))}
         </nav>
 
+        {/* Mobile Menu Toggle */}
         <button
-          className="md:hidden text-2xl focus:outline-none"
+          className="md:hidden text-white"
           onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle Menu"
+          aria-label="Toggle Navigation"
         >
           {isOpen ? <X size={32} /> : <Menu size={32} />}
         </button>
       </div>
 
+      {/* Mobile Dropdown Menu */}
       {isOpen && (
-        <div className="md:hidden mt-3 bg-white text-gray-800 rounded-lg shadow-xl py-4">
+        <div className="md:hidden bg-[#1C1C1C] text-white rounded-b-xl shadow-xl px-6 py-4 space-y-3">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className="block px-6 py-2 font-semibold hover:bg-indigo-600 hover:text-white transition duration-300"
+              className="block font-semibold text-base hover:text-[#FBD506] transition duration-300"
               onClick={() => setIsOpen(false)}
             >
               {link.name}
