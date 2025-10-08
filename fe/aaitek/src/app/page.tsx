@@ -74,7 +74,7 @@ export default function HomePage() {
                 </div>
                 <h5 className="text-sm font-bold text-gray-600 mb-2">Services</h5>
                 <h4 className="text-lg font-bold text-gray-900 mb-3">Discover the True Potential of Kentico CMS</h4>
-                <p className="text-gray-600 text-sm mb-4">Effortlessly create, manage, and optimize digital content, websites, and user experiences with the Kentico headless CMS. Streamline operations, cut overhead costs, and boost your brand's ROI with unparalleled efficiency and smoothness.</p>
+                <p className="text-gray-600 text-sm mb-4">Effortlessly create, manage, and optimize digital content, websites, and user experiences with the Kentico headless CMS. Streamline operations, cut overhead costs, and boost your brand&apos;s ROI with unparalleled efficiency and smoothness.</p>
                 <div className="flex justify-end">
                   <svg xmlns="http://www.w3.org/2000/svg" width="9" height="15" viewBox="0 0 9 15" fill="none" className="group-hover:translate-x-1 transition-transform">
                     <path d="M5.39062 7.5L0.84295 2.7546C0.37028 2.26138 0.366018 1.48458 0.833247 0.986203C1.33615 0.449771 2.18576 0.443794 2.69616 0.9731L8.08594 6.5625C8.32031 6.83594 8.4375 7.14844 8.4375 7.5C8.4375 7.85156 8.32031 8.16406 8.08594 8.4375L2.69616 14.0269C2.18576 14.5562 1.33615 14.5502 0.833247 14.0138C0.366018 13.5154 0.37028 12.7386 0.84295 12.2454L5.39062 7.5Z" fill="#1C1C1C"/>
@@ -119,8 +119,8 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="text-white">
               <h6 className="text-yellow-400 font-bold mb-4 text-sm tracking-wider">OUR PASSION</h6>
-              <h3 className="text-3xl lg:text-4xl font-bold mb-6">Revise Your Digital Landscape with Aaitek's Headless Solutions Casting Unique Digital Experiences for Enhanced Engagement</h3>
-              <p className="text-gray-200 mb-6">Aaitek is all about digital experiences and digital transformation. Through the power of headless, we deliver smart and unique experiences to customers, people, and the community. We can proudly say we're a mix of a digital experience provider, headless solutions creator, and a content experience company that crafts unique user experiences to connect with audiences, making their digital journeys more engaging, enjoyable, and valuable.</p>
+              <h3 className="text-3xl lg:text-4xl font-bold mb-6">Revise Your Digital Landscape with Aaitek&apos;s Headless Solutions Casting Unique Digital Experiences for Enhanced Engagement</h3>
+              <p className="text-gray-200 mb-6">Aaitek is all about digital experiences and digital transformation. Through the power of headless, we deliver smart and unique experiences to customers, people, and the community. We can proudly say we&apos;re a mix of a digital experience provider, headless solutions creator, and a content experience company that crafts unique user experiences to connect with audiences, making their digital journeys more engaging, enjoyable, and valuable.</p>
               <a href="/events">
                 <button className="bg-yellow-400 text-black px-8 py-3 rounded-full font-bold hover:bg-yellow-500 transition-colors duration-300 flex items-center gap-2">
                   Challenges
@@ -256,9 +256,9 @@ export default function HomePage() {
           {/* Second Block */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h6 className="text-sm font-bold text-gray-500 mb-4 tracking-wider">Exploring Tomorrow's Technology Today</h6>
+              <h6 className="text-sm font-bold text-gray-500 mb-4 tracking-wider">Exploring Tomorrow&apos;s Technology Today</h6>
               <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Navigating the Landscape of AI: A Comprehensive Guide for Newcomers</h2>
-              <p className="text-gray-600 mb-6">Dive into the fascinating world of Artificial Intelligence (AI) with our comprehensive guide. From understanding the basics to exploring advanced applications, embark on a journey through tomorrow's technology landscape.</p>
+              <p className="text-gray-600 mb-6">Dive into the fascinating world of Artificial Intelligence (AI) with our comprehensive guide. From understanding the basics to exploring advanced applications, embark on a journey through tomorrow&apos;s technology landscape.</p>
               <a href="/events">
                 <button className="bg-yellow-400 text-black px-8 py-3 rounded-lg font-bold hover:bg-yellow-500 transition-colors duration-300 flex items-center gap-2">
                   Read more
