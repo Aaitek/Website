@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -12,10 +13,13 @@ export default function ContentfulPage() {
     <div className="bg-white">
       <section className="relative">
         <div className="relative w-full">
-          <img
+          <Image
             src="/img/services-contentful.jpg"
             alt="Contentful Services Banner"
+            width={1200}
+            height={600}
             className="w-full h-auto object-cover"
+            priority
           />
           <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
             <div className="text-left text-white px-4 max-w-4xl">
@@ -42,7 +46,7 @@ export default function ContentfulPage() {
                   Customers have become accustomed to seeing exactly the right offer, at the right time and through
                   the right channel. To achieve this, an organization needs to have a 360º view of its customers,
                   and a consistent customer experience across all channels and a personalized message are essential.
-                  However, this is nowhere near enough to make you distinctive as an organization: it's the bare minimum!
+                  However, this is nowhere near enough to make you distinctive as an organization: it&apos;s the bare minimum!
                   If you wish to take the next step, you need to develop a customer data platform. This will help you
                   to understand or even predict customer behavior. The optimal customer experience begins with data.
                 </p>
@@ -146,7 +150,7 @@ export default function ContentfulPage() {
                 FULL-SERVICE DIGITAL PARTNER
               </h6>
               <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-gray-800">
-                What's your challenge?
+                What&apos;s your challenge?
               </h2>
               <p className="text-gray-600 mb-6 leading-relaxed">
                 We are happy to help you to create a unique customer experience, empowering your employees
@@ -164,9 +168,11 @@ export default function ContentfulPage() {
               </Link>
             </div>
             <div className="mt-8 lg:mt-0">
-              <img
+              <Image
                 src="/img/Partnerships-sitecore.png"
                 alt="Partnership"
+                width={600}
+                height={400}
                 className="w-full h-auto"
               />
             </div>

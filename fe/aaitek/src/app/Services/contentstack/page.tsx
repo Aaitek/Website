@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -12,10 +13,13 @@ export default function ContentstackPage() {
     <div className="bg-white">
       <section className="relative">
         <div className="relative w-full">
-          <img
+          <Image
             src="/img/services-contentstack.jpg"
             alt="Contentstack Services Banner"
+            width={1200}
+            height={600}
             className="w-full h-auto object-cover"
+            priority
           />
           <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
             <div className="text-left text-white px-4 max-w-4xl">

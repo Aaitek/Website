@@ -173,9 +173,11 @@ export default function AboutPage() {
             <div className={`transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}`}>
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl blur-xl opacity-30 animate-pulse"></div>
-                <img
+                <Image
                   src="/img/About-banner.png"
                   alt="Aaitek Team"
+                  width={600}
+                  height={400}
                   className="relative rounded-2xl shadow-2xl w-full"
                 />
               </div>
@@ -219,9 +221,11 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
             <div>
-              <img
+              <Image
                 src="/img/main-baner-about.png"
                 alt="Digital Journey"
+                width={600}
+                height={400}
                 className="rounded-2xl shadow-xl w-full"
               />
             </div>
@@ -344,9 +348,11 @@ export default function AboutPage() {
                 className="group bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
               >
                 <div className="relative overflow-hidden">
-                  <img
+                  <Image
                     src="/img/about-section-2.png"
                     alt={member.name}
+                    width={300}
+                    height={256}
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
