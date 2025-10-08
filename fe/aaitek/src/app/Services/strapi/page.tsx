@@ -14,7 +14,7 @@ export default function StrapiPage() {
       <section className="relative">
         <div className="relative w-full">
           <Image
-            src="/img/services-strapi.jpg"
+            src="/img/services-strapi.png"
             alt="Strapi Services Banner"
             width={1200}
             height={600}

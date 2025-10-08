@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { HeroCarousel } from '@/components/common/HeroCarousel';
 import BlogCarousel from '@/components/common/BlogCarousel';
 
@@ -7,7 +8,7 @@ export default function HomePage() {
   return (
     <div className="bg-white text-gray-800">
       {/* Hero Banner Section */}
-      <section id="hero" className="relative mt-20">
+      <section id="hero" className="relative">
         <HeroCarousel />
       </section>
 
@@ -17,7 +18,7 @@ export default function HomePage() {
           {/* Three Service Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             {/* Contentful Card */}
-            <a href="/Services" className="group">
+            <Link href="/Services" className="group">
               <div className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 p-6 h-full">
                 <div className="mb-4">
                   <svg width="60" height="60" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -37,10 +38,10 @@ export default function HomePage() {
                   </svg>
                 </div>
               </div>
-            </a>
+            </Link>
 
             {/* Strapi Card */}
-            <a href="/Services" className="group">
+            <Link href="/Services" className="group">
               <div className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 p-6 h-full">
                 <div className="mb-4">
                   <svg width="60" height="60" viewBox="0 0 47 47" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -59,10 +60,10 @@ export default function HomePage() {
                   </svg>
                 </div>
               </div>
-            </a>
+            </Link>
 
             {/* Kentico Card */}
-            <a href="/Services" className="group">
+            <Link href="/Services" className="group">
               <div className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 p-6 h-full">
                 <div className="mb-4">
                   <svg width="60" height="60" viewBox="0 0 77 83" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -81,39 +82,39 @@ export default function HomePage() {
                   </svg>
                 </div>
               </div>
-            </a>
+            </Link>
           </div>
 
           {/* Additional Images */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4 mt-8">
             <div className="md:col-span-7">
-              <a href="/Services" className="block group">
+              <Link href="/Services" className="block group">
                 <Image
-                  src="/images/about-2.png"
+                  src="/img/about-2.png"
                   alt="About service 2"
                   width={600}
                   height={400}
                   className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
                 />
-              </a>
+              </Link>
             </div>
             <div className="md:col-span-5">
-              <a href="/Services" className="block group">
+              <Link href="/Services" className="block group">
                 <Image
-                  src="/images/About-1.png"
+                  src="/img/About-1.png"
                   alt="About service 1"
                   width={400}
                   height={400}
                   className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
                 />
-              </a>
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
       {/* Our Passion Section */}
-      <section className="relative py-20 bg-cover bg-center" style={{backgroundImage: "url('/images/passion-banner.png')"}}>
+      <section className="relative py-20 bg-cover bg-center" style={{backgroundImage: "url('/img/passion-banner.png')"}}>
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
         <div className="relative z-10 container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -121,18 +122,18 @@ export default function HomePage() {
               <h6 className="text-yellow-400 font-bold mb-4 text-sm tracking-wider">OUR PASSION</h6>
               <h3 className="text-3xl lg:text-4xl font-bold mb-6">Revise Your Digital Landscape with Aaitek&apos;s Headless Solutions Casting Unique Digital Experiences for Enhanced Engagement</h3>
               <p className="text-gray-200 mb-6">Aaitek is all about digital experiences and digital transformation. Through the power of headless, we deliver smart and unique experiences to customers, people, and the community. We can proudly say we&apos;re a mix of a digital experience provider, headless solutions creator, and a content experience company that crafts unique user experiences to connect with audiences, making their digital journeys more engaging, enjoyable, and valuable.</p>
-              <a href="/events">
+              <Link href="/events">
                 <button className="bg-yellow-400 text-black px-8 py-3 rounded-full font-bold hover:bg-yellow-500 transition-colors duration-300 flex items-center gap-2">
                   Challenges
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="8" viewBox="0 0 16 8" fill="none">
                     <path d="M11.806 7.80429C11.6802 7.92573 11.5118 7.99292 11.337 7.9914C11.1622 7.98989 10.995 7.91977 10.8714 7.79617C10.7478 7.67256 10.6777 7.50535 10.6762 7.33056C10.6747 7.15576 10.7419 6.98736 10.8633 6.86162L13.0586 4.66629H5.33463C5.15782 4.66629 4.98825 4.59605 4.86323 4.47103C4.73821 4.346 4.66797 4.17643 4.66797 3.99962C4.66797 3.82281 4.73821 3.65324 4.86323 3.52822C4.98825 3.40319 5.15782 3.33295 5.33463 3.33295H13.0586L10.8633 1.13762C10.7419 1.01189 10.6747 0.843484 10.6762 0.668686C10.6777 0.493888 10.7478 0.32668 10.8714 0.203075C10.995 0.0794695 11.1622 0.00935665 11.337 0.0078377C11.5118 0.00631876 11.6802 0.0735153 11.806 0.194954L15.1393 3.52829C15.2643 3.65331 15.3345 3.82284 15.3345 3.99962C15.3345 4.1764 15.2643 4.34594 15.1393 4.47095L11.806 7.80429Z" fill="#1C1C1C"/>
                   </svg>
                 </button>
-              </a>
+              </Link>
             </div>
             <div className="flex justify-center">
               <Image
-                src="/images/passion-frame.png"
+                src="/img/passion-frmae.png"
                 alt="Passion frame"
                 width={500}
                 height={400}
@@ -150,14 +151,14 @@ export default function HomePage() {
             <div>
               <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Our Services</h3>
               <p className="text-gray-600 mb-6">We specialize in revolutionizing digital landscapes through our comprehensive suite of services. From designing and implementing headless solutions to crafting unique digital experiences, we empower businesses to enhance their online presence and engage with their audience effectively.</p>
-              <a href="/Services">
+              <Link href="/Services">
                 <button className="bg-yellow-400 text-black px-8 py-3 rounded-full font-bold hover:bg-yellow-500 transition-colors duration-300 flex items-center gap-2">
                   Learn about all services
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="8" viewBox="0 0 16 8" fill="none">
                     <path d="M11.806 7.80429C11.6802 7.92573 11.5118 7.99292 11.337 7.9914C11.1622 7.98989 10.995 7.91977 10.8714 7.79617C10.7478 7.67256 10.6777 7.50535 10.6762 7.33056C10.6747 7.15576 10.7419 6.98736 10.8633 6.86162L13.0586 4.66629H5.33463C5.15782 4.66629 4.98825 4.59605 4.86323 4.47103C4.73821 4.346 4.66797 4.17643 4.66797 3.99962C4.66797 3.82281 4.73821 3.65324 4.86323 3.52822C4.98825 3.40319 5.15782 3.33295 5.33463 3.33295H13.0586L10.8633 1.13762C10.7419 1.01189 10.6747 0.843484 10.6762 0.668686C10.6777 0.493888 10.7478 0.32668 10.8714 0.203075C10.995 0.0794695 11.1622 0.00935665 11.337 0.0078377C11.5118 0.00631876 11.6802 0.0735153 11.806 0.194954L15.1393 3.52829C15.2643 3.65331 15.3345 3.82284 15.3345 3.99962C15.3345 4.1764 15.2643 4.34594 15.1393 4.47095L11.806 7.80429Z" fill="#1C1C1C"/>
                   </svg>
                 </button>
-              </a>
+              </Link>
             </div>
             <div>
               <h5 className="text-xl font-bold text-gray-900 mb-6">List of services</h5>
@@ -231,7 +232,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
             <div className="order-2 lg:order-1">
               <Image
-                src="/images/service-about-1.jpg"
+                src="/img/service-about-1.jpg"
                 alt="AI Technology"
                 width={600}
                 height={400}
@@ -242,14 +243,14 @@ export default function HomePage() {
               <h6 className="text-sm font-bold text-gray-500 mb-4 tracking-wider">A Journey into the Future</h6>
               <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Exploring the Transformative Power and Limitless Potential of AI Technology</h2>
               <p className="text-gray-600 mb-6">Dive into the realm of Artificial Intelligence as we uncover its profound impact on industries, society, and the future. Discover how AI is revolutionizing healthcare, finance, transportation, and beyond, shaping a world of innovation and endless possibilities.</p>
-              <a href="/events">
+              <Link href="/events">
                 <button className="bg-yellow-400 text-black px-8 py-3 rounded-lg font-bold hover:bg-yellow-500 transition-colors duration-300 flex items-center gap-2">
                   Read more
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="8" viewBox="0 0 16 8" fill="none">
                     <path d="M11.806 7.80429C11.6802 7.92573 11.5118 7.99292 11.337 7.9914C11.1622 7.98989 10.995 7.91977 10.8714 7.79617C10.7478 7.67256 10.6777 7.50535 10.6762 7.33056C10.6747 7.15576 10.7419 6.98736 10.8633 6.86162L13.0586 4.66629H5.33463C5.15782 4.66629 4.98825 4.59605 4.86323 4.47103C4.73821 4.346 4.66797 4.17643 4.66797 3.99962C4.66797 3.82281 4.73821 3.65324 4.86323 3.52822C4.98825 3.40319 5.15782 3.33295 5.33463 3.33295H13.0586L10.8633 1.13762C10.7419 1.01189 10.6747 0.843484 10.6762 0.668686C10.6777 0.493888 10.7478 0.32668 10.8714 0.203075C10.995 0.0794695 11.1622 0.00935665 11.337 0.0078377C11.5118 0.00631876 11.6802 0.0735153 11.806 0.194954L15.1393 3.52829C15.2643 3.65331 15.3345 3.82284 15.3345 3.99962C15.3345 4.1764 15.2643 4.34594 15.1393 4.47095L11.806 7.80429Z" fill="#1C1C1C"/>
                   </svg>
                 </button>
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -259,18 +260,18 @@ export default function HomePage() {
               <h6 className="text-sm font-bold text-gray-500 mb-4 tracking-wider">Exploring Tomorrow&apos;s Technology Today</h6>
               <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Navigating the Landscape of AI: A Comprehensive Guide for Newcomers</h2>
               <p className="text-gray-600 mb-6">Dive into the fascinating world of Artificial Intelligence (AI) with our comprehensive guide. From understanding the basics to exploring advanced applications, embark on a journey through tomorrow&apos;s technology landscape.</p>
-              <a href="/events">
+              <Link href="/events">
                 <button className="bg-yellow-400 text-black px-8 py-3 rounded-lg font-bold hover:bg-yellow-500 transition-colors duration-300 flex items-center gap-2">
                   Read more
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="8" viewBox="0 0 16 8" fill="none">
                     <path d="M11.806 7.80429C11.6802 7.92573 11.5118 7.99292 11.337 7.9914C11.1622 7.98989 10.995 7.91977 10.8714 7.79617C10.7478 7.67256 10.6777 7.50535 10.6762 7.33056C10.6747 7.15576 10.7419 6.98736 10.8633 6.86162L13.0586 4.66629H5.33463C5.15782 4.66629 4.98825 4.59605 4.86323 4.47103C4.73821 4.346 4.66797 4.17643 4.66797 3.99962C4.66797 3.82281 4.73821 3.65324 4.86323 3.52822C4.98825 3.40319 5.15782 3.33295 5.33463 3.33295H13.0586L10.8633 1.13762C10.7419 1.01189 10.6747 0.843484 10.6762 0.668686C10.6777 0.493888 10.7478 0.32668 10.8714 0.203075C10.995 0.0794695 11.1622 0.00935665 11.337 0.0078377C11.5118 0.00631876 11.6802 0.0735153 11.806 0.194954L15.1393 3.52829C15.2643 3.65331 15.3345 3.82284 15.3345 3.99962C15.3345 4.1764 15.2643 4.34594 15.1393 4.47095L11.806 7.80429Z" fill="#1C1C1C"/>
                   </svg>
                 </button>
-              </a>
+              </Link>
             </div>
             <div>
               <Image
-                src="/images/service-about-2.jpg"
+                src="/img/service-about-2.jpg"
                 alt="AI Guide"
                 width={600}
                 height={400}
@@ -289,18 +290,18 @@ export default function HomePage() {
               <h6 className="text-sm font-bold text-gray-500 mb-4 tracking-wider">GREAT PLACE TO WORK</h6>
               <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Working at Aaitek</h2>
               <p className="text-gray-600 mb-6">Do you want to work at a Great Place to Work? A place where we value vitality, culture, diversity and a good dose of challenges? Visit our Dutch or German website for all available vacancies.</p>
-              <a href="/events">
+              <Link href="/events">
                 <button className="bg-yellow-400 text-black px-8 py-3 rounded-full font-bold hover:bg-yellow-500 transition-colors duration-300 flex items-center gap-2">
                   Check out vacancies
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="8" viewBox="0 0 16 8" fill="none">
                     <path d="M11.806 7.80429C11.6802 7.92573 11.5118 7.99292 11.337 7.9914C11.1622 7.98989 10.995 7.91977 10.8714 7.79617C10.7478 7.67256 10.6777 7.50535 10.6762 7.33056C10.6747 7.15576 10.7419 6.98736 10.8633 6.86162L13.0586 4.66629H5.33463C5.15782 4.66629 4.98825 4.59605 4.86323 4.47103C4.73821 4.346 4.66797 4.17643 4.66797 3.99962C4.66797 3.82281 4.73821 3.65324 4.86323 3.52822C4.98825 3.40319 5.15782 3.33295 5.33463 3.33295H13.0586L10.8633 1.13762C10.7419 1.01189 10.6747 0.843484 10.6762 0.668686C10.6777 0.493888 10.7478 0.32668 10.8714 0.203075C10.995 0.0794695 11.1622 0.00935665 11.337 0.0078377C11.5118 0.00631876 11.6802 0.0735153 11.806 0.194954L15.1393 3.52829C15.2643 3.65331 15.3345 3.82284 15.3345 3.99962C15.3345 4.1764 15.2643 4.34594 15.1393 4.47095L11.806 7.80429Z" fill="white"/>
                   </svg>
                 </button>
-              </a>
+              </Link>
             </div>
             <div>
               <Image
-                src="/images/Working-at-Aaitek.png"
+                src="/img/Working-at Aaitek-old.png"
                 alt="Working at Aaitek"
                 width={600}
                 height={400}
@@ -317,7 +318,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <Image
-                src="/images/Partnerships-mic.jpg"
+                src="/img/Partnerships-mic.jpg"
                 alt="Microsoft Partnership"
                 width={600}
                 height={400}
@@ -327,7 +328,7 @@ export default function HomePage() {
             <div>
               <div className="mb-6">
                 <Image
-                  src="/images/microsoft.png"
+                  src="/img/microsoft.png"
                   alt="Microsoft Logo"
                   width={200}
                   height={60}

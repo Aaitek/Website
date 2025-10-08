@@ -14,7 +14,7 @@ export default function XMCloudPage() {
       <section className="relative">
         <div className="relative w-full">
           <Image
-            src="/img/services-xm-cloud.jpg"
+            src="/img/services-xm-cloud.png"
             alt="Sitecore XM Cloud Services Banner"
             width={1200}
             height={600}

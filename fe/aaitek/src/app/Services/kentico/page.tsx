@@ -14,7 +14,7 @@ export default function KenticoPage() {
       <section className="relative">
         <div className="relative w-full">
           <Image
-            src="/img/services-kentico.jpg"
+            src="/img/services-kentico.png"
             alt="Kentico Services Banner"
             width={1200}
             height={600}

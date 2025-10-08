@@ -14,7 +14,7 @@ export default function ContentstackPage() {
       <section className="relative">
         <div className="relative w-full">
           <Image
-            src="/img/services-contentstack.jpg"
+            src="/img/services-contentstack.png"
             alt="Contentstack Services Banner"
             width={1200}
             height={600}
