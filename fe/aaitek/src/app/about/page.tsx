@@ -21,9 +21,9 @@ import {
 // This would typically be in a separate metadata file or parent layout
 
 const stats = [
-  { label: 'Years of Experience', value: '25+', icon: Award },
-  { label: 'Successful Projects', value: '500+', icon: Star },
-  { label: 'Global Clients', value: '100+', icon: Globe },
+  { label: 'Years of Experience', value: '20', icon: Award },
+  { label: 'Projects Delivered', value: '2', icon: Star },
+  { label: 'Happy Clients', value: '2', icon: Globe },
   { label: 'Team Members', value: '50+', icon: Users },
 ];
 

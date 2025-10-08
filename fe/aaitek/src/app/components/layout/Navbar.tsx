@@ -51,8 +51,8 @@ export const Navbar = () => {
 
   return (
     <>
-      {/* Top Contact Bar */}
-      <div
+      {/* Top Contact Bar - Temporarily Commented Out */}
+      {/* <div
         className="py-2 hidden lg:block text-black"
         style={{ background: `linear-gradient(to right, var(--color-primary), var(--color-primary-dark))` }}
       >
@@ -82,14 +82,14 @@ export const Navbar = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Main Navigation */}
       <header
-        className={`fixed top-0 lg:top-10 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
           isScrolled
-            ? "bg-[#1C1C1C]/95 backdrop-blur-lg shadow-2xl border-b border-[#FBD506]/20"
-            : "bg-[#1C1C1C]/90 backdrop-blur-sm"
+            ? "bg-[#1c1c1c] shadow-2xl border-b border-[#FBD506]/20"
+            : "bg-[#1c1c1c]"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6">
@@ -207,7 +207,7 @@ export const Navbar = () => {
             isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
           }`}
         >
-          <div className="bg-[#1C1C1C]/98 backdrop-blur-lg border-t border-[#FBD506]/20">
+          <div className="bg-[#1c1c1c] border-t border-[#FBD506]/20">
             <div className="max-w-7xl mx-auto px-6 py-6">
               <nav className="space-y-2">
                 {navLinks.map((link) => (

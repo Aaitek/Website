@@ -53,13 +53,13 @@ const Footer: React.FC = () => {
   ];
 
   const stats = [
-    { icon: Calendar, value: "25+", label: "Years Experience" },
-    { icon: Users, value: "500+", label: "Projects Delivered" },
-    { icon: Award, value: "50+", label: "Happy Clients" },
+    { icon: Calendar, value: "20", label: "Years Experience" },
+    { icon: Users, value: "2", label: "Projects Delivered" },
+    { icon: Award, value: "2", label: "Happy Clients" },
   ];
 
   return (
-    <footer className="relative bg-gradient-to-br from-[#1C1C1C] via-[#2A2A2A] to-[#1C1C1C] text-white overflow-hidden">
+    <footer className="relative bg-[#1c1c1c] text-white overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -289,7 +289,7 @@ const Footer: React.FC = () => {
                     Terms
                   </Link>
                   <Link
-                    href="/privacy-policy"
+                    href="/terms-conditions"
                     className="text-gray-400 hover:text-[#FBD506] transition-colors duration-300"
                   >
                     Privacy
