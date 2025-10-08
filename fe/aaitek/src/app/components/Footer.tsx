@@ -20,7 +20,7 @@ const Footer = () => {
               <h5 className="font-bold text-yellow-400 mb-3">Pages</h5>
               <ul className="space-y-2">
                 <li><Link href="/" className="hover:text-yellow-400">Home</Link></li>
-                <li><Link href="/services" className="hover:text-yellow-400">Services</Link></li>
+                <li><Link href="/Services" className="hover:text-yellow-400">Services</Link></li>
                 <li><Link href="/about" className="hover:text-yellow-400">About Us</Link></li>
                 <li><Link href="/contact" className="hover:text-yellow-400">Contact Us</Link></li>
                 <li><Link href="/events" className="hover:text-yellow-400">Events</Link></li>
@@ -31,12 +31,12 @@ const Footer = () => {
             <div>
               <h5 className="font-bold text-yellow-400 mb-3">Aaitek Services</h5>
               <ul className="space-y-2">
-                <li><Link href="/services-contentful" className="hover:text-yellow-400">Contentful</Link></li>
-                <li><Link href="/services-umbraco" className="hover:text-yellow-400">Umbraco</Link></li>
-                <li><Link href="/services-kentico" className="hover:text-yellow-400">Kentico</Link></li>
-                <li><Link href="/services-contentstack" className="hover:text-yellow-400">Contentstack</Link></li>
-                <li><Link href="/services-strapi" className="hover:text-yellow-400">Strapi</Link></li>
-                <li><Link href="/services-xm-cloud" className="hover:text-yellow-400">XM Cloud</Link></li>
+                <li><Link href="/Services/contentful" className="hover:text-yellow-400">Contentful</Link></li>
+                <li><Link href="/Services/umbraco" className="hover:text-yellow-400">Umbraco</Link></li>
+                <li><Link href="/Services/kentico" className="hover:text-yellow-400">Kentico</Link></li>
+                <li><Link href="/Services/contentstack" className="hover:text-yellow-400">Contentstack</Link></li>
+                <li><Link href="/Services/strapi" className="hover:text-yellow-400">Strapi</Link></li>
+                <li><Link href="/Services/xm-cloud" className="hover:text-yellow-400">XM Cloud</Link></li>
               </ul>
             </div>
 
@@ -48,7 +48,7 @@ const Footer = () => {
                 <li><Link href="#" className="hover:text-yellow-400">What we do</Link></li>
                 <li><Link href="#" className="hover:text-yellow-400">Our thinking</Link></li>
                 <li><Link href="#" className="hover:text-yellow-400">Blogs</Link></li>
-                <li><Link href="/terms-condition" className="hover:text-yellow-400">Terms & Conditions</Link></li>
+                <li><Link href="/terms-conditions" className="hover:text-yellow-400">Terms & Conditions</Link></li>
               </ul>
             </div>
 

@@ -8,18 +8,7 @@ import Image from "next/image";
 
 const navLinks = [
   { name: "Home", href: "/" },
-  {
-    name: "Services",
-    href: "/Services",
-    submenu: [
-      { name: "Contentful", href: "/Services/contentful" },
-      { name: "Umbraco", href: "/Services/umbraco" },
-      { name: "Kentico", href: "/Services/kentico" },
-      { name: "Contentstack", href: "/Services/contentstack" },
-      { name: "Strapi", href: "/Services/strapi" },
-      { name: "XM Cloud", href: "/Services/xm-cloud" },
-    ],
-  },
+  { name: "Services", href: "/Services" },
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
   { name: "Events", href: "/events" },

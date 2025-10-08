@@ -159,7 +159,7 @@ export default function AboutPage() {
                     <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                   </button>
                 </Link>
-                <Link href="/services">
+                <Link href="/Services">
                   <button className="group border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-lg font-bold transition-all duration-300 flex items-center justify-center gap-2">
                     Our Services
                     <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />

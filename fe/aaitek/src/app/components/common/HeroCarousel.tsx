@@ -46,7 +46,7 @@ export const HeroCarousel = () => {
                 height={600}
                 className="object-cover w-full h-full transform hover:scale-105 transition duration-700 ease-in-out"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1C1C1C]/80 to-transparent flex flex-col justify-center items-start px-8 md:px-20 animate-fadeIn">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1C1C1C]/80 to-transparent flex flex-col justify-center items-start px-8 md:px-20 pt-20 animate-fadeIn">
                 <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-xl">
                   {slide.heading}
                 </h1>
