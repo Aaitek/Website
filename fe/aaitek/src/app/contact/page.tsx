@@ -13,7 +13,6 @@ import {
   Star,
   MessageSquare,
   Users,
-  Calendar,
   ArrowRight,
   Globe,
   Shield,
@@ -232,7 +231,7 @@ export default function ContactPage() {
         <div className="relative container mx-auto px-4 py-24 lg:py-32">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className={`text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-              Let's Build Something <span className="text-yellow-400">Amazing</span> Together
+              Let&apos;s Build Something <span className="text-yellow-400">Amazing</span> Together
             </h1>
             <p className={`text-xl text-gray-200 mb-8 leading-relaxed transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
               Ready to transform your digital presence? Our team of experts is here to help you navigate
@@ -269,7 +268,7 @@ export default function ContactPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {contactMethods.map((method, index) => (
+            {contactMethods.map((method) => (
               <a
                 key={method.title}
                 href={method.href}
@@ -313,7 +312,7 @@ export default function ContactPage() {
                     How can we help you?
                   </h2>
                   <p className="text-xl text-gray-600">
-                    Let's get in touch and discuss your project!
+                    Let&apos;s get in touch and discuss your project!
                   </p>
                 </div>
 
@@ -322,7 +321,7 @@ export default function ContactPage() {
                     <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
                     <h3 className="text-2xl font-bold text-gray-900 mb-2">Thank You!</h3>
                     <p className="text-gray-600">
-                      Your message has been sent successfully. We'll get back to you within 24 hours.
+                      Your message has been sent successfully. We&apos;ll get back to you within 24 hours.
                     </p>
                   </div>
                 ) : (
@@ -605,7 +604,7 @@ export default function ContactPage() {
               What Our <span className="text-blue-600">Clients Say</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Don't just take our word for it - hear from some of our satisfied clients.
+              Don&apos;t just take our word for it - hear from some of our satisfied clients.
             </p>
           </div>
 
@@ -618,7 +617,7 @@ export default function ContactPage() {
               </div>
 
               <blockquote className="text-xl lg:text-2xl text-gray-700 mb-8 italic leading-relaxed">
-                "{testimonials[activeTestimonial].content}"
+                &quot;{testimonials[activeTestimonial].content}&quot;
               </blockquote>
 
               <div>
@@ -694,7 +693,7 @@ export default function ContactPage() {
               Visit Our <span className="text-green-600">Office</span>
             </h2>
             <p className="text-xl text-gray-600">
-              Located in the heart of Sydney's innovation district
+              Located in the heart of Sydney&apos;s innovation district
             </p>
           </div>
 

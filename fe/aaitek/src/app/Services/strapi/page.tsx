@@ -45,7 +45,7 @@ export default function StrapiPage() {
                 <p className="text-gray-600 leading-relaxed">
                   Strapi is a flexible, open-source headless CMS that gives developers the freedom to use their
                   favorite tools and frameworks while providing content creators with an intuitive interface.
-                  It's customizable, self-hosted, and 100% JavaScript.
+                  It&apos;s customizable, self-hosted, and 100% JavaScript.
                 </p>
               </div>
 
@@ -110,7 +110,7 @@ export default function StrapiPage() {
                 FULL-SERVICE DIGITAL PARTNER
               </h6>
               <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-gray-800">
-                What's your challenge?
+                What&apos;s your challenge?
               </h2>
               <p className="text-gray-600 mb-6 leading-relaxed">
                 We are happy to help you to create a unique customer experience, empowering your employees
@@ -127,9 +127,11 @@ export default function StrapiPage() {
               </Link>
             </div>
             <div className="mt-8 lg:mt-0">
-              <img
+              <Image
                 src="/img/Partnerships-sitecore.png"
                 alt="Partnership"
+                width={600}
+                height={400}
                 className="w-full h-auto"
               />
             </div>

@@ -86,7 +86,7 @@ export default function XMCloudPage() {
               <div className="bg-blue-900 text-white p-6 rounded-lg sticky top-4">
                 <h4 className="text-2xl font-bold mb-4">Ready for the Future of DXP?</h4>
                 <p className="mb-6 text-blue-100">
-                  Transform your digital presence with Sitecore XM Cloud's composable architecture.
+                  Transform your digital presence with Sitecore XM Cloud&apos;s composable architecture.
                 </p>
                 <Link href="/contact">
                   <button className="bg-yellow-400 text-black px-6 py-3 rounded-lg font-bold hover:bg-yellow-300 transition-colors duration-300 flex items-center gap-2 w-full justify-center">
@@ -110,7 +110,7 @@ export default function XMCloudPage() {
                 FULL-SERVICE DIGITAL PARTNER
               </h6>
               <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-gray-800">
-                What's your challenge?
+                What&apos;s your challenge?
               </h2>
               <p className="text-gray-600 mb-6 leading-relaxed">
                 We are happy to help you to create a unique customer experience, empowering your employees
@@ -127,9 +127,11 @@ export default function XMCloudPage() {
               </Link>
             </div>
             <div className="mt-8 lg:mt-0">
-              <img
+              <Image
                 src="/img/Partnerships-sitecore.png"
                 alt="Partnership"
+                width={600}
+                height={400}
                 className="w-full h-auto"
               />
             </div>

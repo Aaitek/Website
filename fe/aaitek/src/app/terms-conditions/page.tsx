@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -11,10 +12,13 @@ export default function TermsConditionsPage() {
     <div className="bg-white">
       <section className="relative">
         <div className="relative w-full">
-          <img
+          <Image
             src="/img/About-banner.png"
             alt="Terms & Conditions Banner"
+            width={1200}
+            height={600}
             className="w-full h-auto object-cover"
+            priority
           />
           <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
             <div className="text-center text-white px-4">
@@ -43,9 +47,9 @@ export default function TermsConditionsPage() {
               <div>
                 <h3 className="text-2xl font-semibold mb-3 text-gray-800">2. Definitions</h3>
                 <p>
-                  The following terminology applies to these terms and conditions: "Company" (or "we" or "us" or "our")
-                  refers to Aaitek Technology Specialists. "You" refers to the user or viewer of our website.
-                  "Service" refers to the technology solutions and consulting services provided by our company.
+                  The following terminology applies to these terms and conditions: &quot;Company&quot; (or &quot;we&quot; or &quot;us&quot; or &quot;our&quot;)
+                  refers to Aaitek Technology Specialists. &quot;You&quot; refers to the user or viewer of our website.
+                  &quot;Service&quot; refers to the technology solutions and consulting services provided by our company.
                 </p>
               </div>
 
@@ -53,7 +57,7 @@ export default function TermsConditionsPage() {
                 <h3 className="text-2xl font-semibold mb-3 text-gray-800">3. Use License</h3>
                 <p>
                   Permission is granted to temporarily download one copy of the materials on Aaitek Technology
-                  Specialists' website for personal, non-commercial transitory viewing only. This is the grant
+                  Specialists&apos; website for personal, non-commercial transitory viewing only. This is the grant
                   of a license, not a transfer of title, and under this license you may not:
                 </p>
                 <ul className="list-disc list-inside mt-2 space-y-1">

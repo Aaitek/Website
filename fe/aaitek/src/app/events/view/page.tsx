@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -12,10 +13,13 @@ export default function EventViewPage() {
     <div className="bg-white">
       <section className="relative">
         <div className="relative w-full">
-          <img
+          <Image
             src="/img/envent-view.png"
             alt="Event View Banner"
+            width={1200}
+            height={600}
             className="w-full h-auto object-cover"
+            priority
           />
           <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
             <div className="text-left text-white px-4 max-w-4xl">
@@ -57,7 +61,7 @@ export default function EventViewPage() {
                 <p className="text-gray-600 leading-relaxed">
                   During the App in a Day workshop you will be introduced to the Power Apps and Power Automate
                   technologies of the Power Platform. Guided by Microsoft and Macaw experts, you will build a
-                  business app in one day, which you can immediately apply to your organization. And that's all
+                  business app in one day, which you can immediately apply to your organization. And that&apos;s all
                   without having to write any complicated code. Speed up your knowledge of the Microsoft Stack
                   and request your free participation for this interactive workshop today!
                 </p>
@@ -137,7 +141,7 @@ export default function EventViewPage() {
                 FULL-SERVICE DIGITAL PARTNER
               </h6>
               <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-gray-800">
-                What's your challenge?
+                What&apos;s your challenge?
               </h2>
               <p className="text-gray-600 mb-6 leading-relaxed">
                 We are happy to help you to create a unique customer experience, empowering your employees
@@ -155,9 +159,11 @@ export default function EventViewPage() {
               </Link>
             </div>
             <div className="mt-8 lg:mt-0">
-              <img
+              <Image
                 src="/img/Partnerships-sitecore.png"
                 alt="Partnership"
+                width={600}
+                height={400}
                 className="w-full h-auto"
               />
             </div>

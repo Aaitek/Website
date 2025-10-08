@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Metadata } from 'next';
 import {
   ChevronRight,
   Users,
@@ -12,7 +11,6 @@ import {
   MapPin,
   Star,
   Award,
-  TrendingUp,
   Globe,
   Lightbulb,
   Heart,
@@ -38,7 +36,7 @@ const values = [
   {
     icon: Heart,
     title: 'Client-Centric',
-    description: 'Our clients\' success is our success. We build lasting partnerships through exceptional service and results.'
+    description: 'Our clients&apos; success is our success. We build lasting partnerships through exceptional service and results.'
   },
   {
     icon: Zap,
@@ -232,7 +230,7 @@ export default function AboutPage() {
             <div>
               <h3 className="text-3xl font-bold text-gray-900 mb-6">The Coming Big Thing</h3>
               <p className="text-gray-600 mb-6 leading-relaxed">
-                We can say we're a combination of a digital experience provider, headless solutions creator,
+                We can say we&apos;re a combination of a digital experience provider, headless solutions creator,
                 and a content experience company that designs unique user experiences to connect with the
                 audience and make their digital journeys more engaging, more enjoyable and more valuable.
               </p>
@@ -272,7 +270,7 @@ export default function AboutPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => (
+            {values.map((value) => (
               <div
                 key={value.title}
                 className="group bg-gray-800 hover:bg-gray-700 p-8 rounded-xl transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl"
@@ -342,7 +340,7 @@ export default function AboutPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {team.map((member, index) => (
+            {team.map((member) => (
               <div
                 key={member.name}
                 className="group bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
@@ -387,7 +385,7 @@ export default function AboutPage() {
                 <h3 className="text-2xl font-bold text-gray-900">Sydney, Australia</h3>
               </div>
               <p className="text-gray-600 mb-6 leading-relaxed">
-                Our headquarters in Sydney puts us at the heart of Australia's technology innovation hub.
+                Our headquarters in Sydney puts us at the heart of Australia&apos;s technology innovation hub.
                 From here, we serve clients across the globe, bringing world-class digital solutions to
                 businesses of all sizes.
               </p>
@@ -435,7 +433,7 @@ export default function AboutPage() {
             Want to get to know us more?
           </h2>
           <p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
-            We'd love to chat. Let's get started with a conversation and take it from there!
+            We&apos;d love to chat. Let&apos;s get started with a conversation and take it from there!
           </p>
           <Link href="/contact">
             <button className="group bg-yellow-400 hover:bg-yellow-300 text-black px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 flex items-center gap-2 mx-auto">

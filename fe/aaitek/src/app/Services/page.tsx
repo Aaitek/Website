@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -94,10 +95,13 @@ export default function ServicesPage() {
       {/* Hero Section */}
       <section className="relative">
         <div className="relative w-full">
-          <img
+          <Image
             src="/img/service-banner.png"
             alt="Services Banner"
+            width={1200}
+            height={600}
             className="w-full h-auto object-cover"
+            priority
           />
           <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
             <div className="text-center text-white px-4 max-w-4xl">
@@ -157,7 +161,7 @@ export default function ServicesPage() {
                 FULL-SERVICE DIGITAL PARTNER
               </h6>
               <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-gray-800">
-                What's your challenge?
+                What&apos;s your challenge?
               </h2>
               <p className="text-gray-600 mb-6 leading-relaxed">
                 We are happy to help you to create a unique customer experience, empowering your employees
@@ -175,9 +179,11 @@ export default function ServicesPage() {
               </Link>
             </div>
             <div className="mt-8 lg:mt-0">
-              <img
+              <Image
                 src="/img/Partnerships-sitecore.png"
                 alt="Partnership"
+                width={600}
+                height={400}
                 className="w-full h-auto"
               />
             </div>
