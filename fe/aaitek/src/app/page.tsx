@@ -13,13 +13,21 @@ export default function HomePage() {
       </section>
 
       {/* About Section with Service Cards */}
-      <section className="py-16 lg:py-20 bg-white">
+      <section className="py-20 lg:py-24 bg-gradient-to-b from-gray-50 to-white">
         <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Our <span className="text-[#FBD506]">Expertise</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Delivering cutting-edge content management solutions with 20+ years of experience in enterprise-grade platforms
+            </p>
+          </div>
           {/* Three Service Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             {/* Contentful Card */}
             <Link href="/Services" className="group">
-              <div className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 p-6 h-full">
+              <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 p-8 h-full border border-gray-100 hover:border-[#FBD506]/20 hover:scale-105 transform">
                 <div className="mb-4">
                   <svg width="60" height="60" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clipPath="url(#clip0_18_265)">
@@ -29,9 +37,9 @@ export default function HomePage() {
                     </g>
                   </svg>
                 </div>
-                <h5 className="text-sm font-bold text-gray-600 mb-2">Services</h5>
-                <h4 className="text-lg font-bold text-gray-900 mb-3">Everything You Should Know About Contentful</h4>
-                <p className="text-gray-600 text-sm mb-4">Elevate your business and launch outstanding experiences painlessly with the Contentful composable content platform. Simplify content storage and ensure flawless delivery across various devices and platforms, eliminating concerns about servers and maintenance.</p>
+                <h5 className="text-sm font-bold text-[#FBD506] mb-2">HEADLESS CMS</h5>
+                <h4 className="text-xl font-bold text-gray-900 mb-3">Contentful Development Excellence</h4>
+                <p className="text-gray-600 text-sm mb-4 leading-relaxed">Transform your digital content strategy with our expert Contentful implementation. We deliver scalable, API-first solutions that power seamless content delivery across all platforms while reducing technical complexity.</p>
                 <div className="flex justify-end">
                   <svg xmlns="http://www.w3.org/2000/svg" width="9" height="15" viewBox="0 0 9 15" fill="none" className="group-hover:translate-x-1 transition-transform">
                     <path d="M5.39062 7.5L0.84295 2.7546C0.37028 2.26138 0.366018 1.48458 0.833247 0.986203C1.33615 0.449771 2.18576 0.443794 2.69616 0.9731L8.08594 6.5625C8.32031 6.83594 8.4375 7.14844 8.4375 7.5C8.4375 7.85156 8.32031 8.16406 8.08594 8.4375L2.69616 14.0269C2.18576 14.5562 1.33615 14.5502 0.833247 14.0138C0.366018 13.5154 0.37028 12.7386 0.84295 12.2454L5.39062 7.5Z" fill="#1C1C1C"/>
@@ -42,7 +50,7 @@ export default function HomePage() {
 
             {/* Strapi Card */}
             <Link href="/Services" className="group">
-              <div className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 p-6 h-full">
+              <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 p-8 h-full border border-gray-100 hover:border-[#FBD506]/20 hover:scale-105 transform">
                 <div className="mb-4">
                   <svg width="60" height="60" viewBox="0 0 47 47" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clipPath="url(#clip0_18_279)">
@@ -51,9 +59,9 @@ export default function HomePage() {
                     </g>
                   </svg>
                 </div>
-                <h5 className="text-sm font-bold text-gray-600 mb-2">Services</h5>
-                <h4 className="text-lg font-bold text-gray-900 mb-3">Everything You Need to Know About Strapi Development</h4>
-                <p className="text-gray-600 text-sm mb-4">Turn your content operation dreams into reality and revise your online presence with our Strapi Development Services. Benefit from custom API development, beautiful website creations, theme customizations, and continuous support with our Strapi tools.</p>
+                <h5 className="text-sm font-bold text-[#FBD506] mb-2">OPEN SOURCE CMS</h5>
+                <h4 className="text-xl font-bold text-gray-900 mb-3">Strapi Development Mastery</h4>
+                <p className="text-gray-600 text-sm mb-4 leading-relaxed">Unlock the power of flexible content management with our custom Strapi solutions. We create robust APIs, beautiful front-ends, and scalable architectures that give you complete control over your digital content ecosystem.</p>
                 <div className="flex justify-end">
                   <svg xmlns="http://www.w3.org/2000/svg" width="9" height="15" viewBox="0 0 9 15" fill="none" className="group-hover:translate-x-1 transition-transform">
                     <path d="M5.39062 7.5L0.84295 2.7546C0.37028 2.26138 0.366018 1.48458 0.833247 0.986203C1.33615 0.449771 2.18576 0.443794 2.69616 0.9731L8.08594 6.5625C8.32031 6.83594 8.4375 7.14844 8.4375 7.5C8.4375 7.85156 8.32031 8.16406 8.08594 8.4375L2.69616 14.0269C2.18576 14.5562 1.33615 14.5502 0.833247 14.0138C0.366018 13.5154 0.37028 12.7386 0.84295 12.2454L5.39062 7.5Z" fill="#1C1C1C"/>
@@ -64,7 +72,7 @@ export default function HomePage() {
 
             {/* Kentico Card */}
             <Link href="/Services" className="group">
-              <div className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 p-6 h-full">
+              <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 p-8 h-full border border-gray-100 hover:border-[#FBD506]/20 hover:scale-105 transform">
                 <div className="mb-4">
                   <svg width="60" height="60" viewBox="0 0 77 83" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clipPath="url(#clip0_18_291)">
@@ -73,9 +81,9 @@ export default function HomePage() {
                     </g>
                   </svg>
                 </div>
-                <h5 className="text-sm font-bold text-gray-600 mb-2">Services</h5>
-                <h4 className="text-lg font-bold text-gray-900 mb-3">Discover the True Potential of Kentico CMS</h4>
-                <p className="text-gray-600 text-sm mb-4">Effortlessly create, manage, and optimize digital content, websites, and user experiences with the Kentico headless CMS. Streamline operations, cut overhead costs, and boost your brand&apos;s ROI with unparalleled efficiency and smoothness.</p>
+                <h5 className="text-sm font-bold text-[#FBD506] mb-2">ENTERPRISE CMS</h5>
+                <h4 className="text-xl font-bold text-gray-900 mb-3">Kentico CMS Excellence</h4>
+                <p className="text-gray-600 text-sm mb-4 leading-relaxed">Maximize your digital potential with enterprise-grade Kentico solutions. We build comprehensive platforms that streamline content management, enhance user experiences, and deliver measurable ROI for your business.</p>
                 <div className="flex justify-end">
                   <svg xmlns="http://www.w3.org/2000/svg" width="9" height="15" viewBox="0 0 9 15" fill="none" className="group-hover:translate-x-1 transition-transform">
                     <path d="M5.39062 7.5L0.84295 2.7546C0.37028 2.26138 0.366018 1.48458 0.833247 0.986203C1.33615 0.449771 2.18576 0.443794 2.69616 0.9731L8.08594 6.5625C8.32031 6.83594 8.4375 7.14844 8.4375 7.5C8.4375 7.85156 8.32031 8.16406 8.08594 8.4375L2.69616 14.0269C2.18576 14.5562 1.33615 14.5502 0.833247 14.0138C0.366018 13.5154 0.37028 12.7386 0.84295 12.2454L5.39062 7.5Z" fill="#1C1C1C"/>
@@ -119,12 +127,12 @@ export default function HomePage() {
         <div className="relative z-10 container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="text-white">
-              <h6 className="text-yellow-400 font-bold mb-4 text-sm tracking-wider">OUR PASSION</h6>
-              <h3 className="text-3xl lg:text-4xl font-bold mb-6">Revise Your Digital Landscape with Aaitek&apos;s Headless Solutions Casting Unique Digital Experiences for Enhanced Engagement</h3>
-              <p className="text-gray-200 mb-6">Aaitek is all about digital experiences and digital transformation. Through the power of headless, we deliver smart and unique experiences to customers, people, and the community. We can proudly say we&apos;re a mix of a digital experience provider, headless solutions creator, and a content experience company that crafts unique user experiences to connect with audiences, making their digital journeys more engaging, enjoyable, and valuable.</p>
-              <Link href="/events">
-                <button className="bg-yellow-400 text-black px-8 py-3 rounded-full font-bold hover:bg-yellow-500 transition-colors duration-300 flex items-center gap-2">
-                  Challenges
+              <h6 className="text-[#FBD506] font-bold mb-4 text-sm tracking-wider">OUR MISSION</h6>
+              <h3 className="text-3xl lg:text-5xl font-bold mb-6 leading-tight">Transforming Digital Experiences Through Innovation</h3>
+              <p className="text-gray-200 mb-8 text-lg leading-relaxed">With over two decades of expertise, Aaitek specializes in delivering cutting-edge headless solutions that revolutionize how businesses connect with their audiences. We combine technical excellence with creative vision to build digital experiences that drive engagement, growth, and lasting success.</p>
+              <Link href="/about">
+                <button className="bg-gradient-to-r from-[#FBD506] to-[#F4A607] hover:from-[#F4A607] hover:to-[#E8960F] text-black px-8 py-4 rounded-full font-bold transition-all duration-300 flex items-center gap-2 hover:scale-105 transform shadow-lg">
+                  Learn Our Story
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="8" viewBox="0 0 16 8" fill="none">
                     <path d="M11.806 7.80429C11.6802 7.92573 11.5118 7.99292 11.337 7.9914C11.1622 7.98989 10.995 7.91977 10.8714 7.79617C10.7478 7.67256 10.6777 7.50535 10.6762 7.33056C10.6747 7.15576 10.7419 6.98736 10.8633 6.86162L13.0586 4.66629H5.33463C5.15782 4.66629 4.98825 4.59605 4.86323 4.47103C4.73821 4.346 4.66797 4.17643 4.66797 3.99962C4.66797 3.82281 4.73821 3.65324 4.86323 3.52822C4.98825 3.40319 5.15782 3.33295 5.33463 3.33295H13.0586L10.8633 1.13762C10.7419 1.01189 10.6747 0.843484 10.6762 0.668686C10.6777 0.493888 10.7478 0.32668 10.8714 0.203075C10.995 0.0794695 11.1622 0.00935665 11.337 0.0078377C11.5118 0.00631876 11.6802 0.0735153 11.806 0.194954L15.1393 3.52829C15.2643 3.65331 15.3345 3.82284 15.3345 3.99962C15.3345 4.1764 15.2643 4.34594 15.1393 4.47095L11.806 7.80429Z" fill="#1C1C1C"/>
                   </svg>
@@ -145,15 +153,16 @@ export default function HomePage() {
       </section>
 
       {/* Services Section */}
-      <section className="py-16 lg:py-20 bg-white">
+      <section className="py-20 lg:py-24 bg-gradient-to-br from-gray-50 via-white to-gray-50">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Our Services</h3>
-              <p className="text-gray-600 mb-6">We specialize in revolutionizing digital landscapes through our comprehensive suite of services. From designing and implementing headless solutions to crafting unique digital experiences, we empower businesses to enhance their online presence and engage with their audience effectively.</p>
+              <h6 className="text-[#FBD506] font-bold mb-4 text-sm tracking-wider">COMPREHENSIVE SOLUTIONS</h6>
+              <h3 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-8 leading-tight">Enterprise-Grade Digital Solutions</h3>
+              <p className="text-gray-600 mb-8 text-lg leading-relaxed">We deliver world-class content management systems, headless architectures, and digital transformation solutions that scale with your business. Our proven methodologies ensure rapid deployment, exceptional performance, and long-term success.</p>
               <Link href="/Services">
-                <button className="bg-yellow-400 text-black px-8 py-3 rounded-full font-bold hover:bg-yellow-500 transition-colors duration-300 flex items-center gap-2">
-                  Learn about all services
+                <button className="bg-gradient-to-r from-[#FBD506] to-[#F4A607] hover:from-[#F4A607] hover:to-[#E8960F] text-black px-8 py-4 rounded-full font-bold transition-all duration-300 flex items-center gap-2 hover:scale-105 transform shadow-lg">
+                  Explore All Services
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="8" viewBox="0 0 16 8" fill="none">
                     <path d="M11.806 7.80429C11.6802 7.92573 11.5118 7.99292 11.337 7.9914C11.1622 7.98989 10.995 7.91977 10.8714 7.79617C10.7478 7.67256 10.6777 7.50535 10.6762 7.33056C10.6747 7.15576 10.7419 6.98736 10.8633 6.86162L13.0586 4.66629H5.33463C5.15782 4.66629 4.98825 4.59605 4.86323 4.47103C4.73821 4.346 4.66797 4.17643 4.66797 3.99962C4.66797 3.82281 4.73821 3.65324 4.86323 3.52822C4.98825 3.40319 5.15782 3.33295 5.33463 3.33295H13.0586L10.8633 1.13762C10.7419 1.01189 10.6747 0.843484 10.6762 0.668686C10.6777 0.493888 10.7478 0.32668 10.8714 0.203075C10.995 0.0794695 11.1622 0.00935665 11.337 0.0078377C11.5118 0.00631876 11.6802 0.0735153 11.806 0.194954L15.1393 3.52829C15.2643 3.65331 15.3345 3.82284 15.3345 3.99962C15.3345 4.1764 15.2643 4.34594 15.1393 4.47095L11.806 7.80429Z" fill="#1C1C1C"/>
                   </svg>
@@ -161,7 +170,7 @@ export default function HomePage() {
               </Link>
             </div>
             <div>
-              <h5 className="text-xl font-bold text-gray-900 mb-6">List of services</h5>
+              <h5 className="text-2xl font-bold text-gray-900 mb-8">Core Technologies</h5>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div>
                   <ul className="space-y-4">
