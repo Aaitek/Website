@@ -14,7 +14,7 @@ export default function EventViewPage() {
       <section className="relative">
         <div className="relative w-full">
           <Image
-            src="/img/envent-view.png"
+            src="/img/events-banner.png"
             alt="Event View Banner"
             width={1200}
             height={600}

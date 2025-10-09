@@ -467,7 +467,7 @@ export default function ContactPage() {
                       />
                       <label htmlFor="agreeToTerms" className="text-sm text-gray-600">
                         By sending this request, you agree to our{' '}
-                        <Link href="/terms-conditions" className="text-blue-600 hover:text-blue-700 underline">
+                        <Link href="/privacy-policy" className="text-blue-600 hover:text-blue-700 underline">
                           privacy terms
                         </Link>
                         . <span className="text-red-500">*</span>

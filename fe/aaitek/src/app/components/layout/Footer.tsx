@@ -289,7 +289,7 @@ const Footer: React.FC = () => {
                     Terms
                   </Link>
                   <Link
-                    href="/terms-conditions"
+                    href="/privacy-policy"
                     className="text-gray-400 hover:text-[#FBD506] transition-colors duration-300"
                   >
                     Privacy
