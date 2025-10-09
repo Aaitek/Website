@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown, ArrowRight } from "lucide-react";
 import Image from "next/image";
 
 const navLinks = [
@@ -16,21 +15,10 @@ const navLinks = [
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
     setIsOpen(false);
-    setActiveDropdown(null);
   }, [pathname]);
 
   const isActivePath = (href: string) => {
@@ -96,58 +84,18 @@ export const Navbar = () => {
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-1">
               {navLinks.map((link) => (
-                <div key={link.name} className="relative group">
-                  {link.submenu ? (
-                    <>
-                      <button
-                        className={`flex items-center space-x-1 px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
-                          isActivePath(link.href)
-                            ? "text-[#FBD506] bg-[#FBD506]/10"
-                            : "text-white hover:text-[#FBD506] hover:bg-white/5"
-                        }`}
-                        onMouseEnter={() => setActiveDropdown(link.name)}
-                      >
-                        <span>{link.name}</span>
-                        <ChevronDown className="w-4 h-4 transition-transform duration-300 group-hover:rotate-180" />
-                      </button>
-
-                      {/* Dropdown Menu */}
-                      <div
-                        className={`absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden transition-all duration-300 transform origin-top ${
-                          activeDropdown === link.name
-                            ? "opacity-100 scale-100 translate-y-0"
-                            : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
-                        }`}
-                        onMouseLeave={() => setActiveDropdown(null)}
-                      >
-                        <div className="p-2">
-                          {link.submenu.map((sublink) => (
-                            <Link
-                              key={sublink.name}
-                              href={sublink.href}
-                              className="flex items-center justify-between p-3 rounded-lg text-gray-700 hover:text-[#FBD506] hover:bg-[#FBD506]/5 transition-all duration-200 group/item"
-                            >
-                              <span className="font-medium">{sublink.name}</span>
-                              <ArrowRight className="w-4 h-4 opacity-0 group-hover/item:opacity-100 transform translate-x-1 group-hover/item:translate-x-0 transition-all duration-200" />
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    </>
-                  ) : (
-                    <Link
-                      href={link.href}
-                      className={`block px-4 py-2 rounded-lg font-medium transition-all duration-300 relative overflow-hidden ${
-                        isActivePath(link.href)
-                          ? "text-[#FBD506] bg-[#FBD506]/10"
-                          : "text-white hover:text-[#FBD506] hover:bg-white/5"
-                      }`}
-                    >
-                      <span className="relative z-10">{link.name}</span>
-                      <div className="absolute inset-0 bg-gradient-to-r from-[#FBD506]/10 to-transparent transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
-                    </Link>
-                  )}
-                </div>
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className={`block px-4 py-2 rounded-lg font-medium transition-all duration-300 relative overflow-hidden group ${
+                    isActivePath(link.href)
+                      ? "text-[#FBD506] bg-[#FBD506]/10"
+                      : "text-white hover:text-[#FBD506] hover:bg-white/5"
+                  }`}
+                >
+                  <span className="relative z-10">{link.name}</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#FBD506]/10 to-transparent transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+                </Link>
               ))}
 
               {/* CTA Button */}
@@ -196,53 +144,18 @@ export const Navbar = () => {
             <div className="max-w-7xl mx-auto px-6 py-6">
               <nav className="space-y-2">
                 {navLinks.map((link) => (
-                  <div key={link.name}>
-                    {link.submenu ? (
-                      <div>
-                        <button
-                          className="w-full flex items-center justify-between p-4 rounded-xl font-semibold text-white hover:text-[#FBD506] hover:bg-white/5 transition-all duration-300"
-                          onClick={() => setActiveDropdown(activeDropdown === link.name ? null : link.name)}
-                        >
-                          <span>{link.name}</span>
-                          <ChevronDown
-                            className={`w-5 h-5 transition-transform duration-300 ${
-                              activeDropdown === link.name ? "rotate-180" : ""
-                            }`}
-                          />
-                        </button>
-                        <div
-                          className={`overflow-hidden transition-all duration-300 ${
-                            activeDropdown === link.name ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-                          }`}
-                        >
-                          <div className="pl-4 space-y-1">
-                            {link.submenu.map((sublink) => (
-                              <Link
-                                key={sublink.name}
-                                href={sublink.href}
-                                className="block p-3 rounded-lg font-medium text-gray-300 hover:text-[#FBD506] hover:bg-white/5 transition-all duration-300"
-                                onClick={() => setIsOpen(false)}
-                              >
-                                {sublink.name}
-                              </Link>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    ) : (
-                      <Link
-                        href={link.href}
-                        className={`block p-4 rounded-xl font-semibold transition-all duration-300 ${
-                          isActivePath(link.href)
-                            ? "text-[#FBD506] bg-[#FBD506]/10"
-                            : "text-white hover:text-[#FBD506] hover:bg-white/5"
-                        }`}
-                        onClick={() => setIsOpen(false)}
-                      >
-                        {link.name}
-                      </Link>
-                    )}
-                  </div>
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className={`block p-4 rounded-xl font-semibold transition-all duration-300 ${
+                      isActivePath(link.href)
+                        ? "text-[#FBD506] bg-[#FBD506]/10"
+                        : "text-white hover:text-[#FBD506] hover:bg-white/5"
+                    }`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
                 ))}
 
                 {/* Mobile CTA */}
