@@ -1,97 +1,168 @@
+/* Font imports must come first */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+/* Tailwind CSS v4 - single import */
 @import "tailwindcss";
-@import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-
-@theme inline {
-  --font-sans: 'Inter', sans-serif;
-  --font-mono: 'Roboto Mono', monospace;
-
-  /* 🎨 Brand Colors */
-  --color-background: #1C1C1C; /* Main background/dark */
-  --color-foreground: #FFFFFF; /* Text & highlights */
-
-  --color-primary: #FBD506; /* Accent color */
-  --color-primary-foreground: #1C1C1C;
-
-  --color-secondary: #F4F4F4; /* Cards & UI panels */
-  --color-secondary-foreground: #1C1C1C;
-
-  --color-muted: #2E2E2E; /* Secondary contrast */
-  --color-muted-foreground: #F4F4F4;
-
-  --color-accent: #FBD506; /* Accent (duplicate for consistency) */
-  --color-accent-foreground: #1C1C1C;
-
-  --color-destructive: #EF4444;
-  --color-border: #2E2E2E;
-  --color-input: #2E2E2E;
-  --color-ring: #FBD506;
-
-  --radius-sm: 0.375rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.625rem;
-  --radius-xl: 1rem;
-
-  --color-highlight: #FBD506; /* ✅ Highlight color */
-}
-
+/* Design system CSS variables */
 :root {
-  --radius: 0.625rem;
-  --background: var(--color-background);
-  --foreground: var(--color-foreground);
-  --primary: var(--color-primary);
-  --primary-foreground: var(--color-primary-foreground);
-  --secondary: var(--color-secondary);
-  --secondary-foreground: var(--color-secondary-foreground);
-  --muted: var(--color-muted);
-  --muted-foreground: var(--color-muted-foreground);
-  --accent: var(--color-accent);
-  --accent-foreground: var(--color-accent-foreground);
-  --destructive: var(--color-destructive);
-  --border: var(--color-border);
-  --input: var(--color-input);
-  --ring: var(--color-ring);
+  /* Brand colors - HSL for better manipulation */
+  --brand-50: 52 96% 95%;
+  --brand-100: 52 96% 89%;
+  --brand-200: 52 96% 78%;
+  --brand-300: 52 96% 67%;
+  --brand-400: 52 96% 56%;
+  --brand-500: 52 96% 51%;
+  --brand-600: 52 96% 45%;
+  --brand-700: 52 96% 35%;
+  --brand-800: 52 96% 28%;
+  --brand-900: 52 96% 20%;
+  --brand-950: 52 96% 12%;
+
+  /* Neutral colors */
+  --neutral-0: 0 0% 100%;
+  --neutral-50: 0 0% 96%;
+  --neutral-100: 0 0% 92%;
+  --neutral-200: 0 0% 86%;
+  --neutral-300: 0 0% 78%;
+  --neutral-400: 0 0% 64%;
+  --neutral-500: 0 0% 45%;
+  --neutral-600: 0 0% 32%;
+  --neutral-700: 0 0% 23%;
+  --neutral-800: 0 0% 18%;
+  --neutral-900: 0 0% 11%;
+  --neutral-950: 0 0% 7%;
+
+  /* Semantic colors */
+  --success-500: 142 71% 45%;
+  --error-500: 0 84% 60%;
+  --warning-500: 38 92% 50%;
+  --info-500: 204 96% 53%;
+
+  /* Semantic mappings */
+  --primary: var(--brand-500);
+  --primary-foreground: var(--neutral-900);
+  --secondary: var(--neutral-50);
+  --secondary-foreground: var(--neutral-900);
+  --background: var(--neutral-0);
+  --background-muted: var(--neutral-50);
+  --foreground: var(--neutral-900);
+  --foreground-muted: var(--neutral-600);
+  --border: var(--neutral-200);
+  --border-muted: var(--neutral-100);
 }
 
 .dark {
-  --background: #1C1C1C; /* Dark mode background remains consistent */
-  --foreground: #FFFFFF; /* Text in dark mode */
-  --primary: #FBD506; /* Accent stays the same */
-  --primary-foreground: #1C1C1C;
-  --secondary: #2E2E2E; /* Slightly darker card background in dark mode */
-  --secondary-foreground: #FFFFFF;
-  --muted: #2E2E2E;
-  --muted-foreground: #F4F4F4;
-  --accent: #FBD506;
-  --accent-foreground: #1C1C1C;
-  --destructive: #F87171;
-  --border: #2E2E2E;
-  --input: #2E2E2E;
-  --ring: #FBD506;
+  --background: var(--neutral-900);
+  --background-muted: var(--neutral-800);
+  --foreground: var(--neutral-0);
+  --foreground-muted: var(--neutral-400);
+  --border: var(--neutral-700);
+  --border-muted: var(--neutral-800);
+  --secondary: var(--neutral-800);
+  --secondary-foreground: var(--neutral-0);
 }
 
-@layer base {
+/* Base styles */
+* {
+  border-color: hsl(var(--border));
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px hsl(var(--brand-500) / 0.3);
+}
+
+/* Improved text rendering */
+h1, h2, h3, h4, h5, h6 {
+  text-rendering: optimizeLegibility;
+}
+
+/* Better button and link interactions */
+button, [role="button"] {
+  cursor: pointer;
+}
+
+button:disabled, [role="button"][aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Smooth scrolling for skip links */
+[href^="#"] {
+  scroll-behavior: smooth;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --border: var(--neutral-900);
+    --border-muted: var(--neutral-800);
+  }
+}
+
+/* Print styles */
+@media print {
   * {
-    @apply border-border outline-ring;
-  }
-  body {
-    @apply bg-background text-foreground;
-    font-family: var(--font-sans);
-  }
-
-  a,
-  button,
-  [role="button"],
-  .hover-highlight {
-    border-bottom: 2px solid transparent;
-    transition: border-color 0.2s ease-in-out;
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
   }
 
-  a:hover,
-  button:hover,
-  [role="button"]:hover,
-  .hover-highlight:hover {
-    border-bottom: 2px solid var(--color-highlight); /* Yellow hover underline */
+  a, a:visited {
+    text-decoration: underline;
+  }
+
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  pre, blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tr, img {
+    page-break-inside: avoid;
+  }
+
+  p, h2, h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2, h3 {
+    page-break-after: avoid;
   }
 }

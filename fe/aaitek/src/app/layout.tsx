@@ -73,7 +73,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`bg-white text-gray-900 font-sans ${themeClass}`}>
         <Navbar />
-        <main className="pt-20 lg:pt-32">
+        <main className="min-h-screen">
           {children}
         </main>
         <Footer />

@@ -63,7 +63,7 @@ export const Navbar = () => {
 
       {/* Main Navigation */}
       <header
-        className={`relative left-0 right-0 z-50 transition-all duration-500 ease-in-out bg-[#1c1c1c]`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out bg-black/80 backdrop-blur-md`}
       >
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between h-20">

@@ -13,6 +13,11 @@ import {
   Users,
   Award,
   ChevronUp,
+  Linkedin,
+  Twitter,
+  Facebook,
+  Instagram,
+  Youtube,
 } from "lucide-react";
 
 const Footer: React.FC = () => {
@@ -229,19 +234,21 @@ const Footer: React.FC = () => {
                 </h5>
                 <div className="flex flex-wrap gap-4 mb-6">
                   {[
-                    { icon: "fab fa-linkedin-in", href: "#", label: "LinkedIn" },
-                    { icon: "fab fa-twitter", href: "#", label: "Twitter" },
-                    { icon: "fab fa-facebook-f", href: "#", label: "Facebook" },
-                    { icon: "fab fa-instagram", href: "#", label: "Instagram" },
-                    { icon: "fab fa-youtube", href: "#", label: "YouTube" },
+                    { icon: Linkedin, href: "https://linkedin.com/company/aaitek", label: "LinkedIn" },
+                    { icon: Twitter, href: "https://twitter.com/aaitek", label: "Twitter" },
+                    { icon: Facebook, href: "https://facebook.com/aaitek", label: "Facebook" },
+                    { icon: Instagram, href: "https://instagram.com/aaitek", label: "Instagram" },
+                    { icon: Youtube, href: "https://youtube.com/@aaitek", label: "YouTube" },
                   ].map((social, index) => (
                     <a
                       key={index}
                       href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="w-12 h-12 bg-white/5 hover:bg-[#FBD506] rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group"
-                      aria-label={social.label}
+                      aria-label={`Follow us on ${social.label}`}
                     >
-                      <i className={`${social.icon} text-lg group-hover:text-black transition-colors duration-300`}></i>
+                      <social.icon className="w-5 h-5 text-gray-300 group-hover:text-black transition-colors duration-300" />
                     </a>
                   ))}
                 </div>
