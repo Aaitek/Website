@@ -84,10 +84,10 @@ export const AwardWinningHero: React.FC<AwardWinningHeroProps> = ({
       y: 0,
       scale: 1,
       transition: {
-        duration: 0.8,
+        duration: 0.6,
         ease: [0.25, 0.1, 0.25, 1.0],
-        staggerChildren: 0.15,
-        delayChildren: 0.3
+        staggerChildren: 0.1,
+        delayChildren: 0.1
       }
     },
     exit: {
@@ -104,7 +104,7 @@ export const AwardWinningHero: React.FC<AwardWinningHeroProps> = ({
       opacity: 1,
       y: 0,
       rotateX: 0,
-      transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1.0] }
+      transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1.0] }
     }
   }
 
@@ -114,7 +114,7 @@ export const AwardWinningHero: React.FC<AwardWinningHeroProps> = ({
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1.0] }
+      transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1.0] }
     }
   }
 
@@ -124,7 +124,7 @@ export const AwardWinningHero: React.FC<AwardWinningHeroProps> = ({
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1.0] }
+      transition: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1.0] }
     },
     hover: {
       scale: 1.05,
@@ -146,9 +146,9 @@ export const AwardWinningHero: React.FC<AwardWinningHeroProps> = ({
             animate="center"
             exit="exit"
             transition={{
-              x: { type: "spring", stiffness: 400, damping: 40 },
-              scale: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1.0] },
-              opacity: { duration: 0.6 }
+              x: { type: "spring", stiffness: 500, damping: 45 },
+              scale: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1.0] },
+              opacity: { duration: 0.3 }
             }}
             className="absolute inset-0"
           >

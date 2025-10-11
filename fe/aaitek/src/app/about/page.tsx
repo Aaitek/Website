@@ -138,21 +138,21 @@ export default function AboutPage() {
           <div className="absolute bottom-1/4 left-1/3 w-64 h-64 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-4000"></div>
         </div>
 
-        <div className="relative container mx-auto px-4 py-24 lg:py-32">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
+        <div className="relative container mx-auto px-4 pt-32 pb-24 lg:pt-40 lg:pb-32">
+          <div className="text-center max-w-5xl mx-auto">
+            <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
               <h1 className="text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight">
                 We love <span className="text-yellow-400">challenges.</span><br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
                   That is our motto.
                 </span>
               </h1>
-              <p className="text-xl text-gray-200 mb-8 leading-relaxed">
+              <p className="text-xl text-gray-200 mb-8 leading-relaxed max-w-4xl mx-auto">
                 Only companies that combine data, design and advanced specialized results with the right people,
                 can successfully transform. And that strong combination is exactly what Aaitek has been focusing on
                 for 25 years in order to make both customers and their employees successful.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact">
                   <button className="group bg-yellow-400 hover:bg-yellow-300 text-black px-8 py-4 rounded-lg font-bold transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105">
                     Start Your Journey
@@ -165,19 +165,6 @@ export default function AboutPage() {
                     <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                   </button>
                 </Link>
-              </div>
-            </div>
-
-            <div className={`transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}`}>
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl blur-xl opacity-30 animate-pulse"></div>
-                <Image
-                  src="/img/About-banner.png"
-                  alt="Aaitek Team"
-                  width={600}
-                  height={400}
-                  className="relative rounded-2xl shadow-2xl w-full"
-                />
               </div>
             </div>
           </div>

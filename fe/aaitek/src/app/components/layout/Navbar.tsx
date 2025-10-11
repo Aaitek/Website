@@ -65,8 +65,8 @@ export const Navbar = () => {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out bg-black/80 backdrop-blur-md`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 sm:h-20">
+        <div className="max-w-7xl mx-auto px-4 xs:px-5 sm:px-6 md:px-7 lg:px-8 xl:px-10 2xl:px-12">
+          <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <Link href="/" className="flex items-center group">
               <div className="relative overflow-hidden rounded-lg">
@@ -75,19 +75,19 @@ export const Navbar = () => {
                   alt="Aaitek Logo"
                   width={200}
                   height={60}
-                  className="h-8 sm:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                  className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                   priority
                 />
               </div>
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2">
+            <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2 2xl:space-x-3">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`block px-3 xl:px-4 py-2 rounded-lg font-medium text-sm xl:text-base transition-all duration-300 relative overflow-hidden group ${
+                  className={`block px-3 lg:px-3 xl:px-4 2xl:px-5 py-2 rounded-lg font-medium text-sm lg:text-sm xl:text-base 2xl:text-lg transition-all duration-300 relative overflow-hidden group ${
                     isActivePath(link.href)
                       ? "text-[#FBD506] bg-[#FBD506]/10"
                       : "text-white hover:text-[#FBD506] hover:bg-white/5"
@@ -101,7 +101,7 @@ export const Navbar = () => {
               {/* CTA Button */}
               <Link
                 href="/contact"
-                className="ml-4 xl:ml-6 bg-gradient-to-r from-[#FBD506] to-[#F4A607] text-black px-4 xl:px-6 py-2 xl:py-3 rounded-full font-semibold text-sm xl:text-base hover:shadow-lg hover:shadow-[#FBD506]/25 transform hover:scale-105 transition-all duration-300 hover:from-[#F4A607] hover:to-[#FBD506]"
+                className="ml-4 xl:ml-6 2xl:ml-8 bg-gradient-to-r from-[#FBD506] to-[#F4A607] text-black px-4 lg:px-4 xl:px-6 2xl:px-8 py-2 xl:py-3 2xl:py-3 rounded-full font-semibold text-sm lg:text-sm xl:text-base 2xl:text-lg hover:shadow-lg hover:shadow-[#FBD506]/25 transform hover:scale-105 transition-all duration-300 hover:from-[#F4A607] hover:to-[#FBD506]"
               >
                 Get Started
               </Link>
@@ -141,7 +141,7 @@ export const Navbar = () => {
           }`}
         >
           <div className="bg-[#1c1c1c] border-t border-[#FBD506]/20">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
+            <div className="max-w-7xl mx-auto px-4 xs:px-5 sm:px-6 py-4 xs:py-5 sm:py-6">
               <nav className="space-y-2">
                 {navLinks.map((link) => (
                   <Link

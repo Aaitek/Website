@@ -228,7 +228,7 @@ export default function ContactPage() {
           <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-2000"></div>
         </div>
 
-        <div className="relative container mx-auto px-4 py-24 lg:py-32">
+        <div className="relative container mx-auto px-4 pt-32 pb-24 lg:pt-40 lg:pb-32">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className={`text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
               Let&apos;s Build Something <span className="text-yellow-400">Amazing</span> Together
