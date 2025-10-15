@@ -2,7 +2,6 @@ import './styles/globals.css';
 import './styles/animations.css';
 import { Navbar } from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
-import { getThemeClass } from './lib/theme';
 
 export const metadata = {
   title: {
@@ -67,13 +66,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const themeClass = getThemeClass();
-
   return (
     <html lang="en">
-      <body className={`bg-white text-gray-900 font-sans ${themeClass}`}>
+      <body className="bg-white text-gray-900 font-sans">
         <Navbar />
-        <main className="pt-20 lg:pt-32">
+        <main>
           {children}
         </main>
         <Footer />
