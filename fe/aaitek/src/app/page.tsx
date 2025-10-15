@@ -333,7 +333,7 @@ export default function HomePage() {
       </section>
 
       {/* Partnerships Section */}
-      <section className="py-16 lg:py-20 bg-[#1C1C1C]">
+      {/* <section className="py-16 lg:py-20 bg-[#1C1C1C]">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -363,7 +363,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Blog Carousel */}
       <section id="blogs" className="py-10 bg-[#2E2E2E]">
