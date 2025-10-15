@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_related_related_articles",
+  "info": {
+    "displayName": "Related Articles",
+    "icon": "magic"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "blocks"
+    },
+    "Image": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  },
+  "config": {}
+}
