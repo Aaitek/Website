@@ -1,7 +1,7 @@
 import './styles/globals.css';
 import './styles/animations.css';
-// import { Navbar } from './components/layout/Navbar';
-// import Footer from './components/layout/Footer';
+import { Navbar } from './components/layout/Navbar';
+import Footer from './components/layout/Footer';
 
 export const metadata = {
   title: {
@@ -69,11 +69,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-white text-gray-900 font-sans">
-        {/* <Navbar /> */}
+        { <Navbar /> }
         <main>
           {children}
         </main>
-        {/* <Footer /> */}
+        {<Footer />}
       </body>
     </html>
   );
