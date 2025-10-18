@@ -107,19 +107,30 @@ const team = [
   }
 ];
 
-// export default function AboutPage() {
-//   const [isVisible, setIsVisible] = useState(false);
-//   const [activeTimelineItem, setActiveTimelineItem] = useState(0);
+export default function AboutPage() {
+  const [isVisible, setIsVisible] = useState(false);
+  const [activeTimelineItem, setActiveTimelineItem] = useState(0);
 
-//   useEffect(() => {
-//     setIsVisible(true);
+  useEffect(() => {
+    setIsVisible(true);
 
-//     const interval = setInterval(() => {
-//       setActiveTimelineItem((prev) => (prev + 1) % timeline.length);
-//     }, 3000);
+    const interval = setInterval(() => {
+      setActiveTimelineItem((prev) => (prev + 1) % timeline.length);
+    }, 3000);
 
-//     return () => clearInterval(interval);
-//   }, []);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div>
+      {timeline.map((item, index) => (
+        <div key={index} className={index === activeTimelineItem ? "active" : ""}>
+          {item.title}
+        </div>
+      ))}
+    </div>
+  );
+}
 
   return (
     <div className="bg-[#1C1C1C]">
