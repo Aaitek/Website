@@ -18,10 +18,10 @@ import {
 } from 'lucide-react';
 
 const stats = [
-  { label: 'Years of Experience', value: '25+', icon: Award },
-  { label: 'Projects Delivered', value: '500+', icon: Star },
-  { label: 'Happy Clients', value: '100+', icon: Globe },
-  { label: 'Team Members', value: '50+', icon: Users },
+  { label: 'Years of Experience', value: '20+', icon: Award },
+  { label: 'Projects Delivered', value: '2+', icon: Star },
+  { label: 'Happy Clients', value: '2+', icon: Globe },
+  { label: 'Team Members', value: '3+', icon: Users },
 ];
 
 const values = [
@@ -85,7 +85,7 @@ const team = [
     name: 'Sarah Johnson',
     role: 'CEO & Founder',
     image: '/img/team-1.jpg',
-    description: 'Visionary leader with 25+ years in digital transformation and enterprise solutions.'
+    description: 'Visionary leader with 20+ years in digital transformation and enterprise solutions.'
   },
   {
     name: 'Michael Chen',
@@ -162,7 +162,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className={`transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}`}>
+            {/* <div className={`transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}`}>
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-[#FBD506] to-[#FFF480] rounded-2xl blur-xl opacity-30 animate-pulse"></div>
                 <div className="relative bg-[#2E2E2E] rounded-2xl p-4 border border-[#FBD506]/20">
@@ -175,7 +175,7 @@ export default function AboutPage() {
                   />
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
@@ -280,45 +280,7 @@ export default function AboutPage() {
       </section>
 
       {/* Timeline Section */}
-      <section className="py-20 bg-[#1C1C1C]">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
-              Our <span className="text-[#FBD506]">Journey</span>
-            </h2>
-            <p className="text-xl text-[#F4F4F4] max-w-3xl mx-auto">
-              From a small startup to a global leader in digital transformation and headless architecture.
-            </p>
-          </div>
-
-          <div className="relative">
-            {/* Timeline line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-[#2E2E2E]"></div>
-
-            <div className="space-y-12">
-              {timeline.map((item, index) => (
-                <div
-                  key={item.year}
-                  className={`relative flex items-center ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}
-                >
-                  {/* Timeline dot */}
-                  <div className={`absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full z-10 transition-all duration-300 ${
-                    activeTimelineItem === index ? 'bg-[#FBD506] scale-125' : 'bg-[#2E2E2E]'
-                  }`}></div>
-
-                  <div className={`w-full max-w-md ${index % 2 === 0 ? 'pr-8 text-right' : 'pl-8'}`}>
-                    <div className="bg-[#2E2E2E] p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-[#FBD506]/20">
-                      <div className="text-sm font-bold text-[#FBD506] mb-2">{item.year}</div>
-                      <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
-                      <p className="text-[#F4F4F4]">{item.description}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      
 
       {/* Team Section */}
       <section className="py-20 bg-[#2E2E2E]">

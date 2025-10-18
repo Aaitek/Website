@@ -8,7 +8,7 @@ export const metadata = {
     default: "Aaitek Technology Specialists - Innovating Solutions for Tomorrow",
     template: "%s | Aaitek Technology Specialists"
   },
-  description: "Aaitek Technology Specialists - 25+ years of experience in digital transformation, headless CMS solutions, and innovative technology consulting. Experts in Contentful, Umbraco, Contentstack, Kentico, Strapi, and Sitecore XM Cloud.",
+  description: "Aaitek Technology Specialists - 20+ years of experience in digital transformation, headless CMS solutions, and innovative technology consulting. Experts in Contentful, Umbraco, Contentstack, Kentico, Strapi, and Sitecore XM Cloud.",
   keywords: "technology specialists, digital transformation, headless cms, contentful, umbraco, contentstack, kentico, strapi, sitecore, web development, consulting",
   authors: [{ name: "Aaitek Technology Specialists" }],
   creator: "Aaitek Technology Specialists",
@@ -36,7 +36,7 @@ export const metadata = {
     url: "https://aaitek.com",
     siteName: "Aaitek Technology Specialists",
     title: "Aaitek Technology Specialists - Innovating Solutions for Tomorrow",
-    description: "25+ years of experience in digital transformation, headless CMS solutions, and innovative technology consulting.",
+    description: "20+ years of experience in digital transformation, headless CMS solutions, and innovative technology consulting.",
     images: [
       {
         url: "/img/aaitek_cover.png",
@@ -51,7 +51,7 @@ export const metadata = {
     site: "@aaitek",
     creator: "@aaitek",
     title: "Aaitek Technology Specialists - Innovating Solutions for Tomorrow",
-    description: "25+ years of experience in digital transformation and headless CMS solutions.",
+    description: "20+ years of experience in digital transformation and headless CMS solutions.",
     images: ["/img/aaitek_cover.png"],
   },
   viewport: {

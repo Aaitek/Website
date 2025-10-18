@@ -336,7 +336,7 @@ export default function HomePage() {
                 </button>
               </Link>
             </div>
-            <div>
+            {/* <div>
               <div className="bg-[#1C1C1C] rounded-2xl p-6 border border-[#FBD506]/20">
                 <Image
                   src="/img/Working-at Aaitek-old.png"
@@ -346,7 +346,7 @@ export default function HomePage() {
                   className="w-full h-auto rounded-lg"
                 />
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
