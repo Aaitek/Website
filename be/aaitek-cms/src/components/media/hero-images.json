@@ -1,0 +1,10 @@
+{
+  "collectionName": "components_media_hero_images",
+  "info": { "displayName": "Hero Images", "description": "Header + thumbnail bundle" },
+  "attributes": {
+    "headerImage": { "type": "media", "multiple": false, "required": true, "allowedTypes": ["images"] },
+    "thumbnail": { "type": "media", "multiple": false, "required": true, "allowedTypes": ["images"] },
+    "altText": { "type": "string" },
+    "credit": { "type": "string" }
+  }
+}

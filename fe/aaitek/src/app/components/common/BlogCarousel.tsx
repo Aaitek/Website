@@ -27,7 +27,7 @@ const BlogCarousel = () => {
               Get inspired by our experts in Digital Transformation, Customer Experience, Commissioning, and IT.
             </p>
             <Link
-              href="/events"
+              href="/blogs"
               className="inline-flex items-center bg-[#FBD506] hover:bg-[#e2c700] text-[#1C1C1C] px-5 py-3 rounded-full shadow-lg transition duration-300 font-semibold"
             >
               Discover more

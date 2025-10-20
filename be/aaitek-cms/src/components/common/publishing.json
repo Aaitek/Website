@@ -1,0 +1,10 @@
+{
+"collectionName": "components_common_publishing",
+"info": { "displayName": "Publishing", "description": "Display dates and flags" },
+"attributes": {
+    "displayDate": { "type": "datetime", "required": false },
+    "readingTime": { "type": "integer" },
+    "isFeatured": { "type": "boolean", "default": false },
+    "hideAuthor": { "type": "boolean", "default": false }
+}
+}

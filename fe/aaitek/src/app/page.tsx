@@ -278,7 +278,7 @@ export default function HomePage() {
               <h6 className="text-sm font-bold text-[#FBD506] mb-4 tracking-wider">A Journey into the Future</h6>
               <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">Exploring the Transformative Power and Limitless Potential of AI Technology</h2>
               <p className="text-[#F4F4F4] mb-6">Dive into the realm of Artificial Intelligence as we uncover its profound impact on industries, society, and the future. Discover how AI is revolutionizing healthcare, finance, transportation, and beyond, shaping a world of innovation and endless possibilities.</p>
-              <Link href="/events">
+              <Link href="/blogs">
                 <button className="bg-[#FBD506] text-[#1C1C1C] px-8 py-3 rounded-full font-bold hover:scale-105 transition-all duration-300 flex items-center gap-2">
                   Read more
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="8" viewBox="0 0 16 8" fill="none">
@@ -295,7 +295,7 @@ export default function HomePage() {
               <h6 className="text-sm font-bold text-[#FBD506] mb-4 tracking-wider">Exploring Tomorrow&apos;s Technology Today</h6>
               <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">Navigating the Landscape of AI: A Comprehensive Guide for Newcomers</h2>
               <p className="text-[#F4F4F4] mb-6">Dive into the fascinating world of Artificial Intelligence (AI) with our comprehensive guide. From understanding the basics to exploring advanced applications, embark on a journey through tomorrow&apos;s technology landscape.</p>
-              <Link href="/events">
+              <Link href="/blogs">
                 <button className="bg-[#FBD506] text-[#1C1C1C] px-8 py-3 rounded-full font-bold hover:scale-105 transition-all duration-300 flex items-center gap-2">
                   Read more
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="8" viewBox="0 0 16 8" fill="none">
@@ -327,7 +327,7 @@ export default function HomePage() {
               <h6 className="text-sm font-bold text-[#FBD506] mb-4 tracking-wider">GREAT PLACE TO WORK</h6>
               <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">Working at Aaitek</h2>
               <p className="text-[#F4F4F4] mb-6">Do you want to work at a Great Place to Work? A place where we value vitality, culture, diversity and a good dose of challenges? Visit our Dutch or German website for all available vacancies.</p>
-              <Link href="/events">
+              <Link href="/blogs">
                 <button className="bg-[#FBD506] text-[#1C1C1C] px-8 py-3 rounded-full font-bold hover:scale-105 transition-all duration-300 flex items-center gap-2">
                   Check out vacancies
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="8" viewBox="0 0 16 8" fill="none">

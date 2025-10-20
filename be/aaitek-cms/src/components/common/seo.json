@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_common_seo",
+  "info": { "displayName": "SEO", "description": "SEO and social meta" },
+  "attributes": {
+    "metaTitle": { "type": "string", "maxLength": 60 },
+    "metaDescription": { "type": "text", "maxLength": 160 },
+    "canonicalUrl": { "type": "string" },
+    "ogImage": { "type": "media", "multiple": false, "allowedTypes": ["images"] },
+    "noindex": { "type": "boolean", "default": false },
+    "nofollow": { "type": "boolean", "default": false }
+  }
+}
