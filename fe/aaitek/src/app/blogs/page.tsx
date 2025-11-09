@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { strapiFetch } from "@/lib/strapi";
-import { Calendar, User, Tag, Clock, Search, Filter } from "lucide-react";
+import { Calendar, User, Clock, Filter } from "lucide-react";
 
 export const revalidate = 60;
 

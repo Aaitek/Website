@@ -1,5 +1,4 @@
 import { Loader2, ArrowLeft } from 'lucide-react';
-import Link from 'next/link';
 
 export default function BlogViewLoading() {
   return (

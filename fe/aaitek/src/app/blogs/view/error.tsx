@@ -46,7 +46,7 @@ export default function BlogViewError({
                 <AlertTriangle className="w-16 h-16 text-[#FBD506] mx-auto mb-4" />
                 <h1 className="text-2xl font-bold text-white mb-2">Failed to load blog post</h1>
                 <p className="text-gray-300 mb-6">
-                  We encountered an error while loading this blog post. This might be because the post doesn't exist or there's a temporary issue.
+                  We encountered an error while loading this blog post. This might be because the post doesn&apos;t exist or there&apos;s a temporary issue.
                 </p>
 
                 <div className="space-y-4 max-w-sm mx-auto">
