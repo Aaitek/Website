@@ -26,8 +26,10 @@ function mediaUrl(path?: string) {
 export default async function BlogViewPage({
   searchParams,
 }: {
-  searchParams: { id?: string; slug?: string };
+  searchParams: Promise<{ id?: string; slug?: string }>;
 }) {
+  const resolvedSearchParams = await searchParams;
+
   // Build query parameters for blog fetching
   const queryParams: Record<string, string> = {
     "fields[0]": "Title",
@@ -40,10 +42,10 @@ export default async function BlogViewPage({
   };
 
   // Add filter based on slug or id
-  if (searchParams?.slug) {
-    queryParams["filters[slug][$eq]"] = String(searchParams.slug);
-  } else if (searchParams?.id) {
-    queryParams["filters[id][$eq]"] = String(searchParams.id);
+  if (resolvedSearchParams?.slug) {
+    queryParams["filters[slug][$eq]"] = String(resolvedSearchParams.slug);
+  } else if (resolvedSearchParams?.id) {
+    queryParams["filters[id][$eq]"] = String(resolvedSearchParams.id);
   }
 
   // ✅ Request only fields that exist (Title, Description, publishedAt)
