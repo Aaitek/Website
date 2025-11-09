@@ -4,8 +4,6 @@ import { marked } from 'marked';
 marked.setOptions({
   gfm: true, // GitHub Flavored Markdown
   breaks: true, // Line breaks
-  headerIds: true, // Generate header IDs
-  mangle: false, // Don't mangle autolinks
 });
 
 /**
