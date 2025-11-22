@@ -45,7 +45,6 @@ const nextConfig = {
 
   // Enable experimental features for better performance
   experimental: {
-    optimizeCss: true,
     optimizePackageImports: [
       'react-icons',
       'framer-motion',

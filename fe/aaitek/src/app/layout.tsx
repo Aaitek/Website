@@ -8,6 +8,7 @@ import { Suspense } from 'react';
 import Loading from '@/components/ui/Loading';
 
 export const metadata = {
+  metadataBase: new URL('https://aaitek.com'),
   title: {
     default: "Aaitek Technology Specialists - Innovating Solutions for Tomorrow",
     template: "%s | Aaitek Technology Specialists"
@@ -58,11 +59,12 @@ export const metadata = {
     description: "20+ years of experience in digital transformation and headless CMS solutions.",
     images: ["/img/aaitek_cover.png"],
   },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
-  },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 export default function RootLayout({

@@ -10,6 +10,7 @@ import Loading from "@/components/ui/Loading";
 import { ErrorBoundary, SimpleErrorFallback } from "@/components/ui/ErrorBoundary";
 
 export const revalidate = 60;
+export const dynamic = 'force-dynamic';
 
 async function getAllCategories() {
   try {
@@ -49,25 +50,41 @@ async function getRelatedPosts(currentBlogId: number, categorySlug?: string) {
 }
 
 export default async function BlogViewPage({ searchParams }: PageProps) {
-  const params = await searchParams;
+  // Handle the case when searchParams is not available (e.g., during static generation)
+  let params;
+  try {
+    params = await searchParams;
+  } catch (error) {
+    // During static generation, searchParams might not be available
+    console.warn('SearchParams not available during static generation:', error);
+    notFound();
+  }
+
   const identifier = params?.slug || params?.id;
 
   if (!identifier) {
     notFound();
   }
 
-  // Fetch both blog data and categories in parallel
-  const [blog, categories] = await Promise.all([
-    strapiFetchOne<Blog>('blogs', String(identifier), ['Image', 'category', 'author', 'tags']),
-    getAllCategories(),
-  ]);
+  // Fetch both blog data and categories in parallel with error handling
+  let blog, categories, relatedPosts;
 
-  if (!blog) {
+  try {
+    [blog, categories] = await Promise.all([
+      strapiFetchOne<Blog>('blogs', String(identifier), ['Image', 'category', 'author', 'tags']),
+      getAllCategories(),
+    ]);
+
+    if (!blog) {
+      notFound();
+    }
+
+    // Fetch related posts after we have the blog
+    relatedPosts = await getRelatedPosts(blog.id, blog.category?.slug);
+  } catch (error) {
+    console.error('Error fetching blog data during build:', error);
     notFound();
   }
-
-  // Fetch related posts after we have the blog
-  const relatedPosts = await getRelatedPosts(blog.id, blog.category?.slug);
 
   const readingTime = blog.Content ? calculateReadingTime(blog.Content) : 0;
   const processedContent = blog.Content ? processContent(blog.Content) : '';

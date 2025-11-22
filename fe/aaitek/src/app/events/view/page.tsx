@@ -13,27 +13,43 @@ import OptimizedImage from "@/components/ui/OptimizedImage";
 
 // Revalidate every hour for better performance
 export const revalidate = 3600;
+export const dynamic = 'force-dynamic';
 
 /**
  * Event view page component with optimized performance and error handling
  */
 export default async function EventViewPage({ searchParams }: PageProps) {
-  const resolvedSearchParams = await searchParams;
+  // Handle the case when searchParams is not available (e.g., during static generation)
+  let resolvedSearchParams;
+  try {
+    resolvedSearchParams = await searchParams;
+  } catch (error) {
+    // During static generation, searchParams might not be available
+    console.warn('SearchParams not available during static generation:', error);
+    notFound();
+  }
+
   const identifier = resolvedSearchParams?.slug || resolvedSearchParams?.id;
 
   if (!identifier) {
     notFound();
   }
 
-  // Fetch event data with optimized query
-  const event = await strapiFetchOne<Event>(
-    'events',
-    String(identifier),
-    ['Image'],
-    { revalidate: 3600 }
-  );
+  // Fetch event data with optimized query and error handling
+  let event;
+  try {
+    event = await strapiFetchOne<Event>(
+      'events',
+      String(identifier),
+      ['Image'],
+      { revalidate: 3600 }
+    );
 
-  if (!event) {
+    if (!event) {
+      notFound();
+    }
+  } catch (error) {
+    console.error('Error fetching event data during build:', error);
     notFound();
   }
 
