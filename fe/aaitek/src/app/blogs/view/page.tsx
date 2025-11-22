@@ -1,60 +1,21 @@
-// app/blogs/view/page.tsx
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { strapiFetch } from "@/lib/strapi";
+import { Suspense } from "react";
+import { strapiFetch, strapiFetchOne, strapiFetchMany } from "@/lib/strapi";
 import { processContent, calculateReadingTime } from "@/lib/content";
+import { Blog, Category, Tag as BlogTag, PageProps } from "@/types";
 import { Calendar, User, ArrowLeft, Tag, Clock } from "lucide-react";
-
-type MediaFormat = { url: string; width: number; height: number };
-type Media = { url: string; alternativeText?: string; formats?: Record<string, MediaFormat> };
-
-type Category = {
-  id: number;
-  name: string;
-  slug: string;
-  description?: string;
-  color?: string;
-  icon?: string;
-};
-
-type Author = {
-  id: number;
-  name: string;
-  slug: string;
-  bio?: string;
-  avatar?: Media[];
-};
-
-type Blog = {
-  id: number;
-  Title: string;
-  Description?: string;
-  Content?: string;
-  publishedAt?: string;
-  Image?: Media[];
-  category?: Category;
-  author?: Author;
-  tags?: { id: number; name: string; slug: string; color?: string }[];
-};
+import OptimizedImage from "@/components/ui/OptimizedImage";
+import Loading from "@/components/ui/Loading";
+import { ErrorBoundary, SimpleErrorFallback } from "@/components/ui/ErrorBoundary";
 
 export const revalidate = 60;
 
-// prefix /uploads/... with STRAPI_URL
-function mediaUrl(path?: string) {
-  if (!path) return "";
-  return path.startsWith("http") ? path : `${process.env.STRAPI_URL}${path}`;
-}
-
 async function getAllCategories() {
   try {
-    const resp = await strapiFetch<{ data: Category[] }>("/api/categories", {
-      "fields[0]": "name",
-      "fields[1]": "slug",
-      "fields[2]": "description",
-      "fields[3]": "color",
-      "fields[4]": "icon",
-      "sort[0]": "name:asc",
+    const resp = await strapiFetchMany<Category>('categories', {
+      pageSize: 50,
+      sort: 'name:asc',
     });
     return resp?.data ?? [];
   } catch (error) {
@@ -67,13 +28,14 @@ async function getRelatedPosts(currentBlogId: number, categorySlug?: string) {
   if (!categorySlug) return [];
 
   try {
+    // Use the direct strapiFetch with explicit parameters for now
     const resp = await strapiFetch<{ data: Blog[] }>("/api/blogs", {
       "fields[0]": "Title",
       "fields[1]": "publishedAt",
       "populate[Image][fields][0]": "url",
-      "populate[Image][fields][1]": "formats",
-      "populate[category][fields][0]": "name",
-      "populate[category][fields][1]": "slug",
+      "populate[Image][fields][1]": "alternativeText",
+      "populate[Image][fields][2]": "formats",
+      "populate[category]": "*",
       "filters[category][slug][$eq]": categorySlug,
       "filters[id][$ne]": currentBlogId.toString(),
       "pagination[pageSize]": "3",
@@ -86,47 +48,20 @@ async function getRelatedPosts(currentBlogId: number, categorySlug?: string) {
   }
 }
 
-export default async function BlogViewPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ id?: string; slug?: string }>;
-}) {
+export default async function BlogViewPage({ searchParams }: PageProps) {
   const params = await searchParams;
-  // Build query parameters for blog fetching
-  const queryParams: Record<string, string> = {
-    "fields[0]": "Title",
-    "fields[1]": "Description",
-    "fields[2]": "Content",
-    "fields[3]": "publishedAt",
-    "pagination[pageSize]": "1",
-    "populate[Image][fields][0]": "url",
-    "populate[Image][fields][1]": "alternativeText",
-    "populate[Image][fields][2]": "formats",
-    "populate[category][fields][0]": "name",
-    "populate[category][fields][1]": "slug",
-    "populate[category][fields][2]": "color",
-    "populate[author][fields][0]": "name",
-    "populate[author][fields][1]": "slug",
-    "populate[author][fields][2]": "bio",
-    "populate[tags][fields][0]": "name",
-    "populate[tags][fields][1]": "slug",
-    "populate[tags][fields][2]": "color",
-  };
+  const identifier = params?.slug || params?.id;
 
-  // Add filter based on slug or id
-  if (params?.slug) {
-    queryParams["filters[slug][$eq]"] = String(params.slug);
-  } else if (params?.id) {
-    queryParams["filters[id][$eq]"] = String(params.id);
+  if (!identifier) {
+    notFound();
   }
 
   // Fetch both blog data and categories in parallel
-  const [blogResp, categories] = await Promise.all([
-    strapiFetch<{ data: Blog[] }>("/api/blogs", queryParams),
+  const [blog, categories] = await Promise.all([
+    strapiFetchOne<Blog>('blogs', String(identifier), ['Image', 'category', 'author', 'tags']),
     getAllCategories(),
   ]);
 
-  const blog = blogResp?.data?.[0];
   if (!blog) {
     notFound();
   }
@@ -134,18 +69,12 @@ export default async function BlogViewPage({
   // Fetch related posts after we have the blog
   const relatedPosts = await getRelatedPosts(blog.id, blog.category?.slug);
 
-  const img = blog.Image?.[0];
-  const candidate =
-    img?.formats?.medium?.url ||
-    img?.formats?.small?.url ||
-    img?.formats?.thumbnail?.url ||
-    img?.url;
-
   const readingTime = blog.Content ? calculateReadingTime(blog.Content) : 0;
   const processedContent = blog.Content ? processContent(blog.Content) : '';
 
   return (
-    <div className="min-h-screen bg-[#1C1C1C] text-white">
+    <ErrorBoundary fallback={(error) => <SimpleErrorFallback error={error} />}>
+      <div className="min-h-screen bg-[#1C1C1C] text-white">
       <div className="max-w-full mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-0">
           {/* Left Sidebar */}
@@ -170,7 +99,7 @@ export default async function BlogViewPage({
                   >
                     All Posts
                   </Link>
-                  {categories.map((category) => (
+                  {categories.map((category: Category) => (
                     <Link
                       key={category.id}
                       href={`/blogs?category=${category.slug}`}
@@ -207,7 +136,7 @@ export default async function BlogViewPage({
                 <div className="bg-[#252525] rounded-2xl p-6">
                   <h3 className="text-xl font-bold text-[#FBD506] mb-4">Tags</h3>
                   <div className="flex flex-wrap gap-2">
-                    {blog.tags.map((tag) => (
+                    {blog.tags.map((tag: BlogTag) => (
                       <span
                         key={tag.id}
                         className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium"
@@ -228,10 +157,7 @@ export default async function BlogViewPage({
                 <div className="bg-[#252525] rounded-2xl p-6">
                   <h3 className="text-xl font-bold text-[#FBD506] mb-6">Related Posts</h3>
                   <div className="space-y-4">
-                    {relatedPosts.map((post) => {
-                      const postImg = post.Image?.[0];
-                      const postImageUrl = postImg?.formats?.thumbnail?.url || postImg?.url;
-
+                    {relatedPosts.map((post: Blog) => {
                       return (
                         <Link
                           key={post.id}
@@ -239,14 +165,15 @@ export default async function BlogViewPage({
                           className="block group hover:bg-[#FBD506]/5 p-3 rounded-lg transition-all duration-200"
                         >
                           <div className="flex gap-3">
-                            {postImageUrl && (
+                            {post.Image?.[0] && (
                               <div className="relative w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden">
-                                <Image
-                                  src={mediaUrl(postImageUrl)}
+                                <OptimizedImage
+                                  media={post.Image?.[0]}
                                   alt={post.Title}
                                   fill
                                   sizes="64px"
                                   className="object-cover"
+                                  preferredSize="thumbnail"
                                 />
                               </div>
                             )}
@@ -286,19 +213,20 @@ export default async function BlogViewPage({
           <main className="lg:col-span-3">
             <article className="bg-[#1C1C1C] overflow-hidden">
               {/* Hero Image */}
-              {candidate && (
+              <Suspense fallback={<Loading size="lg" text="Loading image..." />}>
                 <div className="relative aspect-[16/9] w-full">
-                  <Image
-                    src={mediaUrl(candidate)}
-                    alt={img?.alternativeText ?? blog.Title}
+                  <OptimizedImage
+                    media={blog.Image?.[0]}
+                    alt={blog.Title}
                     fill
                     sizes="(max-width: 768px) 100vw, 75vw"
                     className="object-cover"
                     priority
+                    preferredSize="large"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 </div>
-              )}
+              </Suspense>
 
               {/* Article Content */}
               <div className="px-8 lg:px-16 py-12">
@@ -371,11 +299,12 @@ export default async function BlogViewPage({
                     <div className="flex items-start gap-6">
                       {blog.author.avatar?.[0] && (
                         <div className="relative w-20 h-20 rounded-full overflow-hidden flex-shrink-0">
-                          <Image
-                            src={mediaUrl(blog.author.avatar[0].url)}
+                          <OptimizedImage
+                            media={blog.author.avatar[0]}
                             alt={blog.author.name}
                             fill
                             className="object-cover"
+                            preferredSize="thumbnail"
                           />
                         </div>
                       )}
@@ -391,6 +320,7 @@ export default async function BlogViewPage({
           </main>
         </div>
       </div>
-    </div>
+      </div>
+    </ErrorBoundary>
   );
 }

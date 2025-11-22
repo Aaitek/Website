@@ -2,6 +2,10 @@ import './styles/globals.css';
 import './styles/animations.css';
 import { Navbar } from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
+import GoogleAnalytics from './components/analytics/GoogleAnalytics';
+import { ErrorBoundary } from '@/components/ui/ErrorBoundary';
+import { Suspense } from 'react';
+import Loading from '@/components/ui/Loading';
 
 export const metadata = {
   title: {
@@ -67,13 +71,28 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="bg-white text-gray-900 font-sans">
-        { <Navbar /> }
-        <main>
-          {children}
-        </main>
-        {<Footer />}
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <GoogleAnalytics />
+      </head>
+      <body className="bg-white text-gray-900 font-sans antialiased">
+        <ErrorBoundary>
+          <div id="root" className="min-h-screen flex flex-col">
+            <Suspense fallback={<Loading text="Loading navigation..." />}>
+              <Navbar />
+            </Suspense>
+
+            <main className="flex-1">
+              <Suspense fallback={<Loading size="lg" text="Loading page..." />}>
+                {children}
+              </Suspense>
+            </main>
+
+            <Suspense fallback={<Loading text="Loading footer..." />}>
+              <Footer />
+            </Suspense>
+          </div>
+        </ErrorBoundary>
       </body>
     </html>
   );
