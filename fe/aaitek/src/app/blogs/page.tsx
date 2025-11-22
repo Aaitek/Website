@@ -47,12 +47,8 @@ type Blog = {
 async function getAllCategories() {
   try {
     const resp = await strapiFetch<{ data: Category[] }>("/api/categories", {
-      "fields[0]": "name",
-      "fields[1]": "slug",
-      "fields[2]": "description",
-      "fields[3]": "color",
-      "fields[4]": "icon",
-      "sort[0]": "name:asc",
+      "fields": "name,slug,description,color,icon",
+      "sort": "name:asc",
     });
     return resp?.data ?? [];
   } catch (error) {
@@ -75,21 +71,9 @@ export default async function BlogsPage({
   const params = await searchParams;
   // Build query parameters for blog filtering
   const queryParams: Record<string, string> = {
-    "fields[0]": "Title",
-    "fields[1]": "Description",
-    "fields[2]": "publishedAt",
-    "populate[Image][fields][0]": "url",
-    "populate[Image][fields][1]": "alternativeText",
-    "populate[Image][fields][2]": "formats",
-    "populate[category][fields][0]": "name",
-    "populate[category][fields][1]": "slug",
-    "populate[category][fields][2]": "color",
-    "populate[author][fields][0]": "name",
-    "populate[author][fields][1]": "slug",
-    "populate[tags][fields][0]": "name",
-    "populate[tags][fields][1]": "slug",
-    "populate[tags][fields][2]": "color",
-    "sort[0]": "publishedAt:desc",
+    "fields": "Title,Description,publishedAt",
+    "populate": "Image,category,author,tags",
+    "sort": "publishedAt:desc",
     "pagination[pageSize]": "12",
   };
 

@@ -29,18 +29,14 @@ async function getRelatedPosts(currentBlogId: number, categorySlug?: string) {
   if (!categorySlug) return [];
 
   try {
-    // Use the direct strapiFetch with explicit parameters for now
+    // Use the direct strapiFetch with simplified parameters
     const resp = await strapiFetch<{ data: Blog[] }>("/api/blogs", {
-      "fields[0]": "Title",
-      "fields[1]": "publishedAt",
-      "populate[Image][fields][0]": "url",
-      "populate[Image][fields][1]": "alternativeText",
-      "populate[Image][fields][2]": "formats",
-      "populate[category]": "*",
+      "fields": "Title,publishedAt",
+      "populate": "Image,category",
       "filters[category][slug][$eq]": categorySlug,
       "filters[id][$ne]": currentBlogId.toString(),
       "pagination[pageSize]": "3",
-      "sort[0]": "publishedAt:desc",
+      "sort": "publishedAt:desc",
     });
     return resp?.data ?? [];
   } catch (error) {
