@@ -32,7 +32,7 @@ export default async function EventsPage() {
   try {
     const data = await strapiFetch<{ data: Event[] }>("/api/events", {
       "fields": "Title,Description,publishedAt",
-      "populate": "Image",
+      "populate[0]": "Image",
       "sort": "publishedAt:desc",
       "pagination[pageSize]": "12",
     });

@@ -8,12 +8,105 @@ import { Calendar, User, Clock, Filter } from "lucide-react";
 
 export const revalidate = 60;
 
-// ✅ metadata must be top-level, before the function
-export const metadata: Metadata = {
-  title: "Blog - Aaitek Technology Specialists",
-  description:
-    "Explore our latest blog posts and stay connected with the latest in technology and innovation.",
-};
+// Generate dynamic metadata for SEO
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ category?: string; search?: string }>;
+}): Promise<Metadata> {
+  const params = await searchParams;
+
+  let title = "Blog - Aaitek Technology Specialists";
+  let description = "Explore our latest blog posts and insights on technology, digital transformation, headless CMS, and innovation. Expert articles from Aaitek Technology Specialists.";
+
+  // Get category info for better SEO
+  if (params.category) {
+    try {
+      const categories = await getAllCategories();
+      const selectedCategory = categories.find(cat => cat.slug === params.category);
+
+      if (selectedCategory) {
+        title = `${selectedCategory.name} Blog Posts - Aaitek Technology Specialists`;
+        description = `Explore our latest ${selectedCategory.name.toLowerCase()} blog posts and insights. ${selectedCategory.description || 'Expert articles on technology and innovation.'}`;
+      }
+    } catch (error) {
+      console.error('Error fetching category for metadata:', error);
+    }
+  }
+
+  if (params.search) {
+    title = `Search: "${params.search}" - Aaitek Blog`;
+    description = `Search results for "${params.search}" in our blog. Find articles on technology, digital transformation, and innovation.`;
+  }
+
+  const keywords = [
+    'technology blog',
+    'digital transformation',
+    'headless CMS',
+    'Contentful',
+    'Umbraco',
+    'Strapi',
+    'Sitecore',
+    'web development',
+    'innovation',
+    'tech insights',
+    'Aaitek',
+    params.category || '',
+    params.search || ''
+  ].filter(Boolean).join(', ');
+
+  return {
+    title,
+    description,
+    keywords,
+    authors: [{ name: "Aaitek Technology Specialists" }],
+    creator: "Aaitek Technology Specialists",
+    publisher: "Aaitek Technology Specialists",
+    category: 'Technology',
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
+    openGraph: {
+      type: 'website',
+      locale: 'en_US',
+      url: `https://aaitek.com/blogs${params.category ? `?category=${params.category}` : ''}`,
+      siteName: 'Aaitek Technology Specialists',
+      title,
+      description,
+      images: [
+        {
+          url: '/img/aaitek_blog_cover.png',
+          width: 1200,
+          height: 630,
+          alt: 'Aaitek Technology Specialists Blog',
+          type: 'image/png',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      site: '@aaitek',
+      creator: '@aaitek',
+      title,
+      description,
+      images: ['/img/aaitek_blog_cover.png'],
+    },
+    alternates: {
+      canonical: `https://aaitek.com/blogs${params.category ? `?category=${params.category}` : ''}`,
+      types: {
+        'application/rss+xml': 'https://aaitek.com/feed.xml',
+      },
+    },
+  };
+}
 
 type MediaFormat = { url: string; width: number; height: number };
 type Media = { url: string; alternativeText?: string; formats?: Record<string, MediaFormat> };
@@ -37,6 +130,7 @@ type Blog = {
   id: number;
   Title: string;
   Description?: string;
+  slug?: string;
   publishedAt?: string;
   Image?: Media[];
   category?: Category;
@@ -71,8 +165,11 @@ export default async function BlogsPage({
   const params = await searchParams;
   // Build query parameters for blog filtering
   const queryParams: Record<string, string> = {
-    "fields": "Title,Description,publishedAt",
-    "populate": "Image,category,author,tags",
+    "fields": "Title,Description,slug,publishedAt",
+    "populate[0]": "Image",
+    "populate[1]": "category",
+    "populate[2]": "author",
+    "populate[3]": "tags",
     "sort": "publishedAt:desc",
     "pagination[pageSize]": "12",
   };
@@ -97,9 +194,57 @@ export default async function BlogsPage({
   const blogs = blogsData?.data ?? [];
   const selectedCategory = categories.find(cat => cat.slug === params.category);
 
+  // Structured data for the blog listing page
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": selectedCategory ? `${selectedCategory.name} Blog - Aaitek Technology Specialists` : "Aaitek Technology Specialists Blog",
+    "description": selectedCategory
+      ? `${selectedCategory.description || `Latest ${selectedCategory.name.toLowerCase()} articles and insights.`}`
+      : "Expert insights on technology, digital transformation, headless CMS, and innovation.",
+    "url": `https://aaitek.com/blogs${params.category ? `?category=${params.category}` : ''}`,
+    "publisher": {
+      "@type": "Organization",
+      "name": "Aaitek Technology Specialists",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://aaitek.com/img/logo.png"
+      }
+    },
+    "blogPost": blogs.map(blog => ({
+      "@type": "BlogPosting",
+      "headline": blog.Title,
+      "description": blog.Description,
+      "url": `https://aaitek.com/blogs/${blog.slug || blog.id}`,
+      "datePublished": blog.publishedAt,
+      "author": {
+        "@type": "Person",
+        "name": blog.author?.name || "Aaitek Technology Specialists"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Aaitek Technology Specialists"
+      },
+      "image": blog.Image?.[0]?.url ?
+        (blog.Image[0].url.startsWith('http') ?
+          blog.Image[0].url :
+          `${process.env.NEXT_PUBLIC_STRAPI_URL || process.env.STRAPI_URL}${blog.Image[0].url}`
+        ) : null,
+      "articleSection": blog.category?.name || "Technology",
+      "keywords": blog.tags?.map(tag => tag.name).join(', ') || ''
+    }))
+  };
+
   return (
-    <div className="min-h-screen bg-[#1C1C1C] text-white">
-      <div className="max-w-full mx-auto px-6 lg:px-12 py-12">
+    <>
+      {/* Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+
+      <div className="min-h-screen bg-[#1C1C1C] text-white">
+        <div className="max-w-full mx-auto px-6 lg:px-12 py-12">
         {/* Header Section */}
         <div className="text-center mb-20">
           <h1 className="text-5xl lg:text-7xl xl:text-8xl font-bold text-white mb-8 tracking-tight">
@@ -198,7 +343,7 @@ export default async function BlogsPage({
               return (
                 <Link
                   key={blog.id}
-                  href={`/blogs/view?id=${blog.id}`}
+                  href={`/blogs/${blog.slug || blog.id}`}
                   className="group bg-[#1E1E1E] rounded-2xl overflow-hidden hover:bg-[#252525] transition-all duration-500 hover:transform hover:scale-105 hover:shadow-2xl"
                 >
                   {/* Image */}
@@ -305,7 +450,8 @@ export default async function BlogsPage({
             </p>
           </div>
         )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }

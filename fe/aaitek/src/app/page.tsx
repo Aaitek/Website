@@ -20,15 +20,36 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { HeroCarousel } from '@/components/common/HeroCarousel';
-import BlogCarousel from '@/components/common/BlogCarousel';
+// import { HeroCarousel } from '@/components/common/HeroCarousel';
+// import BlogCarousel from '@/components/common/BlogCarousel';
 
 export default function HomePage() {
   return (
-    <div className="bg-[#1C1C1C] text-[#F4F4F4]">
-      {/* Hero Banner Section */}
-      <section id="hero" className="relative">
-        <HeroCarousel />
+    <div className="bg-[#1C1C1C] text-[#F4F4F4] min-h-screen">
+      {/* Simple Hero Section for Testing */}
+      <section id="hero" className="relative py-20 text-center">
+        <div className="container mx-auto px-6">
+          <h1 className="text-5xl lg:text-7xl font-bold text-white mb-6">
+            Aaitek Technology <span className="text-[#FBD506]">Specialists</span>
+          </h1>
+          <p className="text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto mb-8">
+            20+ years of experience in digital transformation, headless CMS solutions, and innovative technology consulting.
+          </p>
+          <div className="flex gap-4 justify-center">
+            <Link
+              href="/contact"
+              className="bg-[#FBD506] text-black px-8 py-4 rounded-lg font-bold hover:bg-[#F4A607] transition-colors"
+            >
+              Get Started
+            </Link>
+            <Link
+              href="/about"
+              className="border border-[#FBD506] text-[#FBD506] px-8 py-4 rounded-lg font-bold hover:bg-[#FBD506] hover:text-black transition-colors"
+            >
+              Learn More
+            </Link>
+          </div>
+        </div>
       </section>
 
       {/* About Section with Service Cards */}
@@ -384,9 +405,22 @@ export default function HomePage() {
         </div>
       </section> */}
 
-      {/* Blog Carousel */}
-      <section id="blogs" className="py-10 bg-[#2E2E2E]">
-        <BlogCarousel />
+      {/* Blog Section - Temporarily Commented */}
+      <section id="blogs" className="py-20 bg-[#2E2E2E]">
+        <div className="container mx-auto px-6 text-center">
+          <h3 className="text-4xl lg:text-5xl font-bold text-white mb-8">
+            Latest <span className="text-[#FBD506]">Insights</span>
+          </h3>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12">
+            Stay updated with our latest thoughts on technology, digital transformation, and innovation.
+          </p>
+          <Link
+            href="/blogs"
+            className="bg-[#FBD506] text-black px-8 py-4 rounded-lg font-bold hover:bg-[#F4A607] transition-colors"
+          >
+            View All Blogs
+          </Link>
+        </div>
       </section>
     </div>
   );

@@ -5,13 +5,6 @@ const nextConfig = {
 
   // Optimize images
   images: {
-    // Use domains for backward compatibility and wildcards
-    domains: [
-      'localhost',
-      'balanced-heart-29014e60ac.strapiapp.com',
-      'balanced-heart-29014e60ac.media.strapiapp.com',
-      'res.cloudinary.com',
-    ],
     remotePatterns: [
       {
         protocol: 'http',

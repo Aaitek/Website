@@ -8,7 +8,7 @@ import { strapiFetchOne } from "@/lib/strapi";
 import { formatDate, getOptimizedImageUrl } from "@/lib/utils";
 import { Event, PageProps } from "@/types";
 import Loading from "@/components/ui/Loading";
-import { ErrorBoundary, SimpleErrorFallback } from "@/components/ui/ErrorBoundary";
+import { ErrorBoundary } from "@/components/ui/ErrorBoundary";
 import OptimizedImage from "@/components/ui/OptimizedImage";
 
 // Revalidate every hour for better performance
@@ -56,7 +56,7 @@ export default async function EventViewPage({ searchParams }: PageProps) {
   const fallbackImageUrl = "/img/envent-view.png";
 
   return (
-    <ErrorBoundary fallback={(error) => <SimpleErrorFallback error={error} />}>
+    <ErrorBoundary>
       <Script
         src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         strategy="lazyOnload"
