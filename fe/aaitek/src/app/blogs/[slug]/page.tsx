@@ -140,7 +140,7 @@ export default async function BlogDetailPage({ params }: BlogPageProps) {
   return (
     <ErrorBoundary>
       {/* Structured Data */}
-      <ArticleSchema blog={blog} relatedPosts={relatedPosts} />
+      <ArticleSchema blog={blog} />
       <BreadcrumbSchema items={breadcrumbs} />
 
       <div className="min-h-screen bg-[#1C1C1C] text-white">
