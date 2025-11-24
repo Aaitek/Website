@@ -42,8 +42,23 @@ const nextConfig = {
       'react-icons',
       'framer-motion',
       'swiper',
-      'embla-carousel-react'
+      'embla-carousel-react',
+      'lucide-react',
     ],
+    webVitalsAttribution: ['CLS', 'LCP'],
+    optimizeServerReact: true,
+  },
+
+  // External packages for server components
+  serverExternalPackages: ['web-vitals'],
+  modularizeImports: {
+    'lucide-react': {
+      transform: 'lucide-react/dist/esm/icons/{{ kebabCase member }}',
+      preventFullImport: true,
+    },
+    'react-icons': {
+      transform: 'react-icons/{{ member }}',
+    },
   },
 
   // Compression and performance
@@ -55,12 +70,21 @@ const nextConfig = {
     CUSTOM_KEY: process.env.CUSTOM_KEY,
   },
 
-  // Headers for security and performance
+  // Enhanced headers for security, performance, and SEO
   async headers() {
     return [
       {
         source: '/(.*)',
         headers: [
+          // Security headers
+          {
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on',
+          },
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=63072000; includeSubDomains; preload',
+          },
           {
             key: 'X-Frame-Options',
             value: 'DENY',
@@ -70,12 +94,34 @@ const nextConfig = {
             value: 'nosniff',
           },
           {
+            key: 'X-XSS-Protection',
+            value: '1; mode=block',
+          },
+          {
             key: 'Referrer-Policy',
-            value: 'origin-when-cross-origin',
+            value: 'strict-origin-when-cross-origin',
           },
           {
             key: 'Permissions-Policy',
-            value: 'camera=(), microphone=(), geolocation=()',
+            value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()',
+          },
+          {
+            key: 'Content-Security-Policy',
+            value: `
+              default-src 'self';
+              script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://polyfill.io;
+              style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+              font-src 'self' https://fonts.gstatic.com;
+              img-src 'self' data: https: blob:;
+              media-src 'self' https:;
+              connect-src 'self' https://www.google-analytics.com https://balanced-heart-29014e60ac.strapiapp.com https://balanced-heart-29014e60ac.media.strapiapp.com;
+              object-src 'none';
+              base-uri 'self';
+              form-action 'self';
+              frame-ancestors 'none';
+              block-all-mixed-content;
+              upgrade-insecure-requests;
+            `.replace(/\\s+/g, ' ').trim(),
           },
         ],
       },
@@ -85,6 +131,37 @@ const nextConfig = {
           {
             key: 'Cache-Control',
             value: 'public, s-maxage=60, stale-while-revalidate=300',
+          },
+          {
+            key: 'Vary',
+            value: 'Accept-Encoding',
+          },
+        ],
+      },
+      {
+        source: '/img/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/_next/static/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/(favicon\\.ico|manifest\\.json|robots\\.txt)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=86400',
           },
         ],
       },

@@ -4,7 +4,10 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { strapiFetch } from "@/lib/strapi";
-import { Calendar, User, Clock, Filter } from "lucide-react";
+import { generateSEOMetadata, generateCategorySEO } from "@/lib/seo";
+import { BlogSchema, BreadcrumbSchema } from "@/components/seo/StructuredData";
+import { Calendar, User, Clock, Filter, Search } from "lucide-react";
+import { ScreenReaderOnly } from "@/components/ui/SkipLink";
 
 export const revalidate = 60;
 
@@ -16,9 +19,6 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const params = await searchParams;
 
-  let title = "Blog - Aaitek Technology Specialists";
-  let description = "Explore our latest blog posts and insights on technology, digital transformation, headless CMS, and innovation. Expert articles from Aaitek Technology Specialists.";
-
   // Get category info for better SEO
   if (params.category) {
     try {
@@ -26,8 +26,7 @@ export async function generateMetadata({
       const selectedCategory = categories.find(cat => cat.slug === params.category);
 
       if (selectedCategory) {
-        title = `${selectedCategory.name} Blog Posts - Aaitek Technology Specialists`;
-        description = `Explore our latest ${selectedCategory.name.toLowerCase()} blog posts and insights. ${selectedCategory.description || 'Expert articles on technology and innovation.'}`;
+        return generateCategorySEO(selectedCategory);
       }
     } catch (error) {
       console.error('Error fetching category for metadata:', error);
@@ -35,77 +34,21 @@ export async function generateMetadata({
   }
 
   if (params.search) {
-    title = `Search: "${params.search}" - Aaitek Blog`;
-    description = `Search results for "${params.search}" in our blog. Find articles on technology, digital transformation, and innovation.`;
+    return generateSEOMetadata({
+      title: `Search: "${params.search}" - Blog`,
+      description: `Search results for "${params.search}" in our blog. Find articles on technology, digital transformation, and innovation.`,
+      keywords: ['search', 'blog', params.search],
+      url: `/blogs?search=${encodeURIComponent(params.search)}`,
+    });
   }
 
-  const keywords = [
-    'technology blog',
-    'digital transformation',
-    'headless CMS',
-    'Contentful',
-    'Umbraco',
-    'Strapi',
-    'Sitecore',
-    'web development',
-    'innovation',
-    'tech insights',
-    'Aaitek',
-    params.category || '',
-    params.search || ''
-  ].filter(Boolean).join(', ');
-
-  return {
-    title,
-    description,
-    keywords,
-    authors: [{ name: "Aaitek Technology Specialists" }],
-    creator: "Aaitek Technology Specialists",
-    publisher: "Aaitek Technology Specialists",
-    category: 'Technology',
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        'max-video-preview': -1,
-        'max-image-preview': 'large',
-        'max-snippet': -1,
-      },
-    },
-    openGraph: {
-      type: 'website',
-      locale: 'en_US',
-      url: `https://aaitek.com/blogs${params.category ? `?category=${params.category}` : ''}`,
-      siteName: 'Aaitek Technology Specialists',
-      title,
-      description,
-      images: [
-        {
-          url: '/img/aaitek_blog_cover.png',
-          width: 1200,
-          height: 630,
-          alt: 'Aaitek Technology Specialists Blog',
-          type: 'image/png',
-        },
-      ],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      site: '@aaitek',
-      creator: '@aaitek',
-      title,
-      description,
-      images: ['/img/aaitek_blog_cover.png'],
-    },
-    alternates: {
-      canonical: `https://aaitek.com/blogs${params.category ? `?category=${params.category}` : ''}`,
-      types: {
-        'application/rss+xml': 'https://aaitek.com/feed.xml',
-      },
-    },
-  };
+  return generateSEOMetadata({
+    title: "Blog",
+    description: "Explore our latest blog posts and insights on technology, digital transformation, headless CMS, and innovation. Expert articles from Aaitek Technology Specialists.",
+    keywords: ['blog', 'technology articles', 'insights', 'digital transformation'],
+    url: "/blogs",
+    image: "/img/aaitek-blog-og.png",
+  });
 }
 
 type MediaFormat = { url: string; width: number; height: number };
@@ -194,97 +137,129 @@ export default async function BlogsPage({
   const blogs = blogsData?.data ?? [];
   const selectedCategory = categories.find(cat => cat.slug === params.category);
 
-  // Structured data for the blog listing page
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Blog",
-    "name": selectedCategory ? `${selectedCategory.name} Blog - Aaitek Technology Specialists` : "Aaitek Technology Specialists Blog",
-    "description": selectedCategory
-      ? `${selectedCategory.description || `Latest ${selectedCategory.name.toLowerCase()} articles and insights.`}`
-      : "Expert insights on technology, digital transformation, headless CMS, and innovation.",
-    "url": `https://aaitek.com/blogs${params.category ? `?category=${params.category}` : ''}`,
-    "publisher": {
-      "@type": "Organization",
-      "name": "Aaitek Technology Specialists",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://aaitek.com/img/logo.png"
-      }
-    },
-    "blogPost": blogs.map(blog => ({
-      "@type": "BlogPosting",
-      "headline": blog.Title,
-      "description": blog.Description,
-      "url": `https://aaitek.com/blogs/${blog.slug || blog.id}`,
-      "datePublished": blog.publishedAt,
-      "author": {
-        "@type": "Person",
-        "name": blog.author?.name || "Aaitek Technology Specialists"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Aaitek Technology Specialists"
-      },
-      "image": blog.Image?.[0]?.url ?
-        (blog.Image[0].url.startsWith('http') ?
-          blog.Image[0].url :
-          `${process.env.NEXT_PUBLIC_STRAPI_URL || process.env.STRAPI_URL}${blog.Image[0].url}`
-        ) : null,
-      "articleSection": blog.category?.name || "Technology",
-      "keywords": blog.tags?.map(tag => tag.name).join(', ') || ''
-    }))
-  };
+  // Breadcrumb data
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Blog', url: '/blogs' },
+  ];
+
+  if (selectedCategory) {
+    breadcrumbs.push({ name: selectedCategory.name, url: `/blogs?category=${selectedCategory.slug}` });
+  }
 
   return (
     <>
       {/* Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
+      <BlogSchema blogs={blogs} category={selectedCategory} />
+      <BreadcrumbSchema items={breadcrumbs} />
 
       <div className="min-h-screen bg-[#1C1C1C] text-white">
         <div className="max-w-full mx-auto px-6 lg:px-12 py-12">
-        {/* Header Section */}
-        <div className="text-center mb-20">
-          <h1 className="text-5xl lg:text-7xl xl:text-8xl font-bold text-white mb-8 tracking-tight">
-            Our <span className="text-[#FBD506]">Blog</span>
-          </h1>
-          <p className="text-2xl lg:text-3xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-light">
-            Explore our latest insights on technology, digital transformation, and innovation
-          </p>
+        {/* Header Section with Enhanced Design */}
+        <div className="text-center mb-20 relative">
+          {/* Background Elements */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#FBD506]/5 rounded-full blur-3xl" />
+            <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-[#F4A607]/10 rounded-full blur-2xl" />
+            <div className="absolute bottom-1/4 left-1/4 w-48 h-48 bg-[#FBD506]/8 rounded-full blur-xl" />
+          </div>
+
+          <div className="relative z-10">
+            {/* Main Heading with Gradient */}
+            <h1 className="text-5xl lg:text-7xl xl:text-8xl font-bold mb-8 tracking-tight">
+              <span className="text-white">Our </span>
+              <span className="bg-gradient-to-r from-[#FBD506] via-[#F4A607] to-[#FBD506] bg-clip-text text-transparent bg-300% animate-gradient">
+                Blog
+              </span>
+            </h1>
+
+            {/* Animated Subtitle */}
+            <p className="text-2xl lg:text-3xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-light mb-8">
+              Explore our latest insights on{" "}
+              <span className="text-[#FBD506] font-medium">technology</span>,{" "}
+              <span className="text-[#FBD506] font-medium">digital transformation</span>, and{" "}
+              <span className="text-[#FBD506] font-medium">innovation</span>
+            </p>
+
+            {/* Stats Section */}
+            <div className="flex flex-wrap justify-center gap-8 mb-12 text-center">
+              <div className="bg-white/5 backdrop-blur-sm rounded-2xl px-6 py-4 border border-white/10">
+                <div className="text-2xl font-bold text-[#FBD506] mb-1">{blogs.length}+</div>
+                <div className="text-sm text-gray-400 uppercase tracking-wider">Articles</div>
+              </div>
+              <div className="bg-white/5 backdrop-blur-sm rounded-2xl px-6 py-4 border border-white/10">
+                <div className="text-2xl font-bold text-[#FBD506] mb-1">{categories.length}</div>
+                <div className="text-sm text-gray-400 uppercase tracking-wider">Categories</div>
+              </div>
+              <div className="bg-white/5 backdrop-blur-sm rounded-2xl px-6 py-4 border border-white/10">
+                <div className="text-2xl font-bold text-[#FBD506] mb-1">Weekly</div>
+                <div className="text-sm text-gray-400 uppercase tracking-wider">Updates</div>
+              </div>
+            </div>
+
+            {/* Search Results Indicator */}
+            {params.search && (
+              <div className="mt-6 inline-flex items-center gap-3 bg-[#FBD506]/10 border border-[#FBD506]/20 rounded-full px-6 py-3">
+                <Search className="w-4 h-4 text-[#FBD506]" />
+                <p className="text-gray-300" role="status" aria-live="polite">
+                  Search results for: <strong className="text-[#FBD506]">&quot;{params.search}&quot;</strong>
+                </p>
+              </div>
+            )}
+          </div>
         </div>
 
-        {/* Category Filter Bar */}
-        <div className="mb-16">
-          <div className="flex flex-wrap items-center justify-center gap-4">
+        {/* Enhanced Category Filter Bar */}
+        <div className="mb-16 relative">
+          {/* Background gradient */}
+          <div className="absolute inset-x-0 top-1/2 h-px bg-gradient-to-r from-transparent via-[#FBD506]/30 to-transparent transform -translate-y-1/2" />
+
+          <div className="relative bg-[#1C1C1C] flex flex-wrap items-center justify-center gap-4 py-6">
             <Link
               href="/blogs"
-              className={`px-6 py-3 rounded-full text-base font-semibold transition-all duration-300 ${
+              className={`group relative px-8 py-4 rounded-2xl text-base font-semibold transition-all duration-300 transform hover:scale-105 ${
                 !params.category
-                  ? "bg-[#FBD506] text-black shadow-lg shadow-[#FBD506]/25"
-                  : "bg-[#252525] text-gray-300 hover:bg-[#FBD506]/20 hover:text-[#FBD506] hover:shadow-lg"
+                  ? "bg-gradient-to-r from-[#FBD506] to-[#F4A607] text-black shadow-xl shadow-[#FBD506]/25"
+                  : "bg-white/5 backdrop-blur-sm border border-white/10 text-gray-300 hover:bg-[#FBD506]/10 hover:text-[#FBD506] hover:border-[#FBD506]/30"
               }`}
             >
-              All Posts
+              <span className="relative z-10 flex items-center gap-2">
+                <Sparkles className="w-4 h-4" />
+                All Posts
+              </span>
+              {!params.category && (
+                <div className="absolute inset-0 bg-gradient-to-r from-[#FBD506] to-[#F4A607] rounded-2xl blur opacity-30 group-hover:opacity-50 transition-opacity" />
+              )}
             </Link>
+
             {categories.map((category) => (
               <Link
                 key={category.id}
                 href={`/blogs?category=${category.slug}`}
-                className={`px-6 py-3 rounded-full text-base font-semibold transition-all duration-300 flex items-center gap-3 ${
+                className={`group relative px-8 py-4 rounded-2xl text-base font-semibold transition-all duration-300 transform hover:scale-105 flex items-center gap-3 ${
                   params.category === category.slug
-                    ? "text-black shadow-lg"
-                    : "bg-[#252525] text-gray-300 hover:bg-[#FBD506]/20 hover:text-[#FBD506] hover:shadow-lg"
+                    ? "text-black shadow-xl"
+                    : "bg-white/5 backdrop-blur-sm border border-white/10 text-gray-300 hover:bg-[#FBD506]/10 hover:text-[#FBD506] hover:border-[#FBD506]/30"
                 }`}
                 style={
                   params.category === category.slug
-                    ? { backgroundColor: category.color || '#FBD506', boxShadow: `0 10px 25px ${category.color || '#FBD506'}25` }
+                    ? {
+                        background: `linear-gradient(135deg, ${category.color || '#FBD506'}, ${category.color ? category.color + '80' : '#F4A607'})`,
+                        boxShadow: `0 20px 40px ${category.color || '#FBD506'}25`
+                      }
                     : {}
                 }
               >
-                {category.icon && <span className="text-lg">{category.icon}</span>}
-                {category.name}
+                <span className="relative z-10 flex items-center gap-2">
+                  {category.icon && <span className="text-lg">{category.icon}</span>}
+                  {category.name}
+                </span>
+                {params.category === category.slug && (
+                  <div
+                    className="absolute inset-0 rounded-2xl blur opacity-30 group-hover:opacity-50 transition-opacity"
+                    style={{ backgroundColor: category.color || '#FBD506' }}
+                  />
+                )}
               </Link>
             ))}
           </div>
@@ -306,29 +281,52 @@ export default async function BlogsPage({
           </div>
         )}
 
-        {/* Blog Grid */}
+        {/* Enhanced Blog Grid */}
         {blogs.length === 0 ? (
-          <div className="text-center py-24">
-            <div className="text-8xl mb-8">📝</div>
-            <h3 className="text-4xl font-bold text-white mb-6">No blog posts found</h3>
-            <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
-              {params.category
-                ? `No posts found in the "${selectedCategory?.name}" category.`
-                : "We haven't published any blog posts yet."
-              }
-            </p>
-            {params.category && (
-              <Link
-                href="/blogs"
-                className="inline-flex items-center gap-3 bg-[#FBD506] text-black px-8 py-4 rounded-full font-bold hover:bg-[#F4A607] transition-all duration-300 shadow-lg hover:shadow-xl text-lg"
-              >
-                View All Posts
-              </Link>
-            )}
+          <div className="text-center py-32 relative">
+            {/* Background decoration */}
+            <div className="absolute inset-0 overflow-hidden">
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[#FBD506]/5 rounded-full blur-3xl" />
+            </div>
+
+            <div className="relative z-10">
+              <div className="text-8xl mb-8 opacity-50">📝</div>
+              <h3 className="text-4xl font-bold text-white mb-6">
+                {params.search ? "No search results" : "No blog posts found"}
+              </h3>
+              <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed">
+                {params.search
+                  ? `No posts found for "${params.search}". Try different keywords or browse all categories.`
+                  : params.category
+                  ? `No posts found in the "${selectedCategory?.name}" category.`
+                  : "We haven't published any blog posts yet. Check back soon for exciting content!"
+                }
+              </p>
+
+              <div className="flex flex-wrap justify-center gap-4">
+                {params.category && (
+                  <Link
+                    href="/blogs"
+                    className="inline-flex items-center gap-3 bg-gradient-to-r from-[#FBD506] to-[#F4A607] text-black px-8 py-4 rounded-2xl font-bold hover:from-[#F4A607] hover:to-[#FBD506] transition-all duration-300 shadow-xl hover:shadow-2xl text-lg transform hover:scale-105"
+                  >
+                    <Sparkles className="w-5 h-5" />
+                    View All Posts
+                  </Link>
+                )}
+                {params.search && (
+                  <Link
+                    href="/blogs"
+                    className="inline-flex items-center gap-3 bg-white/10 text-white border border-white/20 px-8 py-4 rounded-2xl font-bold hover:bg-white/20 transition-all duration-300 text-lg transform hover:scale-105"
+                  >
+                    Clear Search
+                  </Link>
+                )}
+              </div>
+            </div>
           </div>
         ) : (
-          <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {blogs.map((blog) => {
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {blogs.map((blog, index) => {
               const img = blog.Image?.[0];
               const imageUrl =
                 img?.formats?.medium?.url ||
@@ -341,102 +339,133 @@ export default async function BlogsPage({
                 : 2;
 
               return (
-                <Link
+                <div
                   key={blog.id}
-                  href={`/blogs/${blog.slug || blog.id}`}
-                  className="group bg-[#1E1E1E] rounded-2xl overflow-hidden hover:bg-[#252525] transition-all duration-500 hover:transform hover:scale-105 hover:shadow-2xl"
+                  className="group relative"
+                  style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  {/* Image */}
-                  {imageUrl && (
-                    <div className="relative aspect-[16/9] overflow-hidden">
-                      <Image
-                        src={mediaUrl(imageUrl)}
-                        alt={img?.alternativeText ?? blog.Title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                        className="object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <Link
+                    href={`/blogs/${blog.slug || blog.id}`}
+                    className="block h-full"
+                  >
+                    <div className="relative bg-gradient-to-br from-[#1E1E1E] to-[#2A2A2A] rounded-3xl overflow-hidden border border-white/10 transition-all duration-500 group-hover:border-[#FBD506]/30 group-hover:shadow-2xl group-hover:shadow-[#FBD506]/10 h-full">
+                      {/* Glow effect */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-[#FBD506]/5 via-transparent to-[#F4A607]/5 opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-3xl" />
 
-                      {/* Category Badge */}
-                      {blog.category && (
-                        <div className="absolute top-6 left-6">
-                          <div
-                            className="px-4 py-2 rounded-full text-sm font-bold shadow-lg"
-                            style={{
-                              backgroundColor: blog.category.color || '#FBD506',
-                              color: '#000'
-                            }}
-                          >
-                            {blog.category.name}
+                      {/* Image with enhanced overlay */}
+                      {imageUrl && (
+                        <div className="relative aspect-[16/10] overflow-hidden rounded-t-3xl">
+                          <Image
+                            src={mediaUrl(imageUrl)}
+                            alt={img?.alternativeText ?? blog.Title}
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                            className="object-cover transition-all duration-700 group-hover:scale-110"
+                          />
+
+                          {/* Enhanced gradient overlay */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-all duration-500" />
+
+                          {/* Shimmer effect */}
+                          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[300%] transition-transform duration-1000 ease-out" />
+                          </div>
+
+                          {/* Enhanced Category Badge */}
+                          {blog.category && (
+                            <div className="absolute top-6 left-6 z-10">
+                              <div
+                                className="px-4 py-2 rounded-2xl text-sm font-bold shadow-2xl backdrop-blur-sm border border-white/20 transform group-hover:scale-105 transition-all duration-300"
+                                style={{
+                                  background: `linear-gradient(135deg, ${blog.category.color || '#FBD506'}, ${blog.category.color ? blog.category.color + '80' : '#F4A607'})`,
+                                  color: '#000'
+                                }}
+                              >
+                                {blog.category.name}
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Reading time badge */}
+                          <div className="absolute bottom-6 right-6 z-10">
+                            <div className="bg-black/50 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm flex items-center gap-1">
+                              <Clock className="w-3 h-3" />
+                              {readingTime}min
+                            </div>
                           </div>
                         </div>
                       )}
-                    </div>
-                  )}
 
-                  {/* Content */}
-                  <div className="p-8">
-                    {/* Meta Info */}
-                    <div className="flex items-center gap-4 text-sm text-gray-400 mb-4">
-                      {blog.publishedAt && (
-                        <div className="flex items-center gap-1">
-                          <Calendar className="w-3 h-3" />
-                          {new Date(blog.publishedAt).toLocaleDateString('en-US', {
-                            month: 'short',
-                            day: 'numeric',
-                            year: 'numeric'
-                          })}
+                      {/* Enhanced Content */}
+                      <div className="p-8 relative z-10">
+                        {/* Meta Info with improved styling */}
+                        <div className="flex items-center gap-6 text-sm text-gray-400 mb-6">
+                          {blog.publishedAt && (
+                            <div className="flex items-center gap-2">
+                              <Calendar className="w-4 h-4" />
+                              {new Date(blog.publishedAt).toLocaleDateString('en-US', {
+                                month: 'short',
+                                day: 'numeric',
+                                year: 'numeric'
+                              })}
+                            </div>
+                          )}
+                          {blog.author && (
+                            <div className="flex items-center gap-2">
+                              <User className="w-4 h-4" />
+                              {blog.author.name}
+                            </div>
+                          )}
                         </div>
-                      )}
-                      {blog.author && (
-                        <div className="flex items-center gap-1">
-                          <User className="w-3 h-3" />
-                          {blog.author.name}
-                        </div>
-                      )}
-                      <div className="flex items-center gap-1">
-                        <Clock className="w-3 h-3" />
-                        {readingTime} min read
-                      </div>
-                    </div>
 
-                    {/* Title */}
-                    <h3 className="text-2xl font-bold text-white mb-4 line-clamp-2 group-hover:text-[#FBD506] transition-colors leading-tight">
-                      {blog.Title}
-                    </h3>
+                        {/* Enhanced Title */}
+                        <h3 className="text-2xl font-bold text-white mb-4 line-clamp-2 group-hover:text-[#FBD506] transition-colors leading-tight">
+                          {blog.Title}
+                        </h3>
 
-                    {/* Description */}
-                    {blog.Description && (
-                      <p className="text-gray-300 text-base leading-relaxed line-clamp-3 mb-6">
-                        {blog.Description}
-                      </p>
-                    )}
+                        {/* Enhanced Description */}
+                        {blog.Description && (
+                          <p className="text-gray-300 text-base leading-relaxed line-clamp-3 mb-6 group-hover:text-gray-200 transition-colors">
+                            {blog.Description}
+                          </p>
+                        )}
 
-                    {/* Tags */}
-                    {blog.tags && blog.tags.length > 0 && (
-                      <div className="flex flex-wrap gap-2">
-                        {blog.tags.slice(0, 3).map((tag) => (
-                          <span
-                            key={tag.id}
-                            className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-medium"
-                            style={{
-                              backgroundColor: `${tag.color || '#64748B'}20`,
-                              color: tag.color || '#64748B'
-                            }}
-                          >
-                            #{tag.name}
-                          </span>
-                        ))}
-                        {blog.tags.length > 3 && (
-                          <span className="text-sm text-gray-400 font-medium">
-                            +{blog.tags.length - 3} more
-                          </span>
+                        {/* Enhanced Tags */}
+                        {blog.tags && blog.tags.length > 0 && (
+                          <div className="flex flex-wrap gap-2">
+                            {blog.tags.slice(0, 3).map((tag) => (
+                              <span
+                                key={tag.id}
+                                className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm border border-white/10 transition-all duration-300 hover:scale-105"
+                                style={{
+                                  backgroundColor: `${tag.color || '#64748B'}15`,
+                                  color: tag.color || '#64748B',
+                                  borderColor: `${tag.color || '#64748B'}30`
+                                }}
+                              >
+                                #{tag.name}
+                              </span>
+                            ))}
+                            {blog.tags.length > 3 && (
+                              <span className="text-xs text-gray-500 font-medium bg-white/5 px-3 py-1 rounded-full">
+                                +{blog.tags.length - 3} more
+                              </span>
+                            )}
+                          </div>
                         )}
                       </div>
-                    )}
-                  </div>
-                </Link>
+
+                      {/* Read more indicator */}
+                      <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                        <div className="w-8 h-8 bg-[#FBD506] text-black rounded-full flex items-center justify-center">
+                          <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
               );
             })}
           </div>

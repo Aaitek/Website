@@ -1,0 +1,85 @@
+# Robots.txt for Aaitek Technology Specialists
+# https://aaitek.com/robots.txt
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://aaitek.com/sitemap.xml
+Sitemap: https://aaitek.com/sitemap-blogs.xml
+Sitemap: https://aaitek.com/sitemap-services.xml
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
+
+# Disallow admin and sensitive areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /tmp/
+
+# Allow important resources
+Allow: /api/og/*
+Allow: /_next/static/*
+Allow: /_next/image/*
+
+# Block common bot paths
+Disallow: /cgi-bin/
+Disallow: /wp-admin/
+Disallow: /wp-content/
+Disallow: /wp-includes/
+
+# SEO specific rules
+Allow: /img/*
+Allow: /css/*
+Allow: /js/*
+Allow: /favicon.ico
+Allow: /manifest.json
+
+# Social media crawlers
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+# Search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# Block problematic bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+# Allow Lighthouse and PageSpeed
+User-agent: Lighthouse
+Allow: /
+
+User-agent: PageSpeed
+Allow: /

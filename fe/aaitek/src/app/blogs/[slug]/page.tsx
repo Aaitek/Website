@@ -9,6 +9,9 @@ import { Calendar, User, ArrowLeft, Tag, Clock, BookOpen } from "lucide-react";
 import OptimizedImage from "@/components/ui/OptimizedImage";
 import Loading from "@/components/ui/Loading";
 import { ErrorBoundary } from "@/components/ui/ErrorBoundary";
+import { generateBlogSEO } from "@/lib/seo";
+import { ArticleSchema, BreadcrumbSchema } from "@/components/seo/StructuredData";
+import { ScreenReaderOnly } from "@/components/ui/SkipLink";
 
 export const revalidate = 60;
 export const dynamic = 'force-dynamic';
@@ -78,86 +81,13 @@ export async function generateMetadata({ params }: BlogPageProps): Promise<Metad
       };
     }
 
-    const imageUrl = blog.Image?.[0]?.url ?
-      (blog.Image[0].url.startsWith('http') ?
-        blog.Image[0].url :
-        `${process.env.NEXT_PUBLIC_STRAPI_URL || process.env.STRAPI_URL}${blog.Image[0].url}`
-      ) : null;
-
-    const publishedTime = blog.publishedAt ? new Date(blog.publishedAt).toISOString() : undefined;
-    const modifiedTime = blog.updatedAt ? new Date(blog.updatedAt).toISOString() : undefined;
-
-    const keywords = [
-      'Aaitek',
-      'technology specialists',
-      'digital transformation',
-      blog.category?.name,
-      ...(blog.tags?.map(tag => tag.name) || [])
-    ].filter(Boolean).join(', ');
-
-    return {
-      title: `${blog.Title} | Aaitek Technology Specialists Blog`,
-      description: blog.Description || `Read about ${blog.Title} on Aaitek Technology Specialists blog. Insights on technology, digital transformation, and innovation.`,
-      keywords,
-      authors: blog.author ? [{ name: blog.author.name }] : [{ name: "Aaitek Technology Specialists" }],
-      creator: blog.author?.name || "Aaitek Technology Specialists",
-      publisher: "Aaitek Technology Specialists",
-      category: blog.category?.name || 'Technology',
-      robots: {
-        index: true,
-        follow: true,
-        googleBot: {
-          index: true,
-          follow: true,
-          'max-video-preview': -1,
-          'max-image-preview': 'large',
-          'max-snippet': -1,
-        },
-      },
-      openGraph: {
-        type: 'article',
-        locale: 'en_US',
-        url: `https://aaitek.com/blogs/${slug}`,
-        siteName: 'Aaitek Technology Specialists',
-        title: blog.Title,
-        description: blog.Description || `Read about ${blog.Title} on Aaitek Technology Specialists blog.`,
-        publishedTime,
-        modifiedTime,
-        authors: blog.author ? [blog.author.name] : ['Aaitek Technology Specialists'],
-        section: blog.category?.name || 'Technology',
-        tags: blog.tags?.map(tag => tag.name) || [],
-        images: imageUrl ? [{
-          url: imageUrl,
-          width: 1200,
-          height: 630,
-          alt: blog.Title,
-          type: 'image/jpeg',
-        }] : [],
-      },
-      twitter: {
-        card: 'summary_large_image',
-        site: '@aaitek',
-        creator: '@aaitek',
-        title: blog.Title,
-        description: blog.Description || `Read about ${blog.Title} on Aaitek Technology Specialists blog.`,
-        images: imageUrl ? [imageUrl] : [],
-      },
-      alternates: {
-        canonical: `https://aaitek.com/blogs/${slug}`,
-      },
-      other: {
-        'article:author': blog.author?.name || 'Aaitek Technology Specialists',
-        'article:published_time': publishedTime || '',
-        'article:modified_time': modifiedTime || '',
-        'article:section': blog.category?.name || 'Technology',
-        'article:tag': blog.tags?.map(tag => tag.name).join(',') || '',
-      },
-    };
+    return generateBlogSEO(blog);
   } catch (error) {
     console.error('Error generating metadata:', error);
     return {
       title: 'Blog | Aaitek Technology Specialists',
       description: 'Discover insights on technology and digital transformation.',
+      robots: { index: false, follow: true },
     };
   }
 }
@@ -196,50 +126,23 @@ export default async function BlogDetailPage({ params }: BlogPageProps) {
   const publishedDate = blog.publishedAt ? new Date(blog.publishedAt) : null;
   const updatedDate = blog.updatedAt ? new Date(blog.updatedAt) : null;
 
-  // Structured data for SEO
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": blog.Title,
-    "description": blog.Description,
-    "image": blog.Image?.[0]?.url ?
-      (blog.Image[0].url.startsWith('http') ?
-        blog.Image[0].url :
-        `${process.env.NEXT_PUBLIC_STRAPI_URL || process.env.STRAPI_URL}${blog.Image[0].url}`
-      ) : null,
-    "author": {
-      "@type": "Person",
-      "name": blog.author?.name || "Aaitek Technology Specialists",
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Aaitek Technology Specialists",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://aaitek.com/img/logo.png"
-      }
-    },
-    "datePublished": publishedDate?.toISOString(),
-    "dateModified": updatedDate?.toISOString(),
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": `https://aaitek.com/blogs/${slug}`
-    },
-    "articleSection": blog.category?.name || "Technology",
-    "keywords": blog.tags?.map(tag => tag.name).join(', ') || '',
-    "wordCount": blog.Content ? blog.Content.replace(/<[^>]*>/g, '').split(/\s+/).length : 0,
-    "timeRequired": `PT${readingTime}M`,
-    "inLanguage": "en-US",
-    "isAccessibleForFree": true,
-  };
+  // Breadcrumb data
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Blog', url: '/blogs' },
+  ];
+
+  if (blog.category) {
+    breadcrumbs.push({ name: blog.category.name, url: `/blogs?category=${blog.category.slug}` });
+  }
+
+  breadcrumbs.push({ name: blog.Title, url: `/blogs/${slug}` });
 
   return (
     <ErrorBoundary>
       {/* Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
+      <ArticleSchema blog={blog} relatedPosts={relatedPosts} />
+      <BreadcrumbSchema items={breadcrumbs} />
 
       <div className="min-h-screen bg-[#1C1C1C] text-white">
         <div className="max-w-full mx-auto">

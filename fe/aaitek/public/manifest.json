@@ -1,50 +1,73 @@
 {
-  "name": "Aaitek Technology Specialists",
+  "name": "Aaitek Technology Specialists - Innovating Solutions for Tomorrow",
   "short_name": "Aaitek",
-  "description": "Technology specialists providing digital transformation and headless CMS solutions",
+  "description": "Leading technology specialists with 20+ years of experience in digital transformation, headless CMS solutions, and innovative technology consulting.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#3b82f6",
+  "background_color": "#1C1C1C",
+  "theme_color": "#FBD506",
   "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en-US",
   "categories": ["business", "technology", "consulting"],
-  "lang": "en",
   "icons": [
     {
       "src": "/img/favicon.png",
       "sizes": "48x48",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "maskable any"
     },
     {
       "src": "/img/favicon.png",
       "sizes": "72x72",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "maskable any"
     },
     {
       "src": "/img/favicon.png",
       "sizes": "96x96",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "maskable any"
     },
     {
       "src": "/img/favicon.png",
       "sizes": "144x144",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "maskable any"
     },
     {
       "src": "/img/favicon.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "maskable any"
     },
     {
       "src": "/img/favicon.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "maskable any"
     }
-  ]
+  ],
+  "shortcuts": [
+    {
+      "name": "Blog",
+      "short_name": "Blog",
+      "description": "Read our latest technology insights and articles",
+      "url": "/blogs"
+    },
+    {
+      "name": "Services",
+      "short_name": "Services",
+      "description": "Explore our technology consulting services",
+      "url": "/services"
+    },
+    {
+      "name": "Contact",
+      "short_name": "Contact",
+      "description": "Get in touch with our team",
+      "url": "/contact"
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
 }
