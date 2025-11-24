@@ -107,7 +107,7 @@ export default async function EventViewPage({ searchParams }: PageProps) {
               className="w-100"
               style={{ objectFit: 'cover' }}
               priority
-              fallbackSrc={fallbackImageUrl}
+              fallbackUrl={fallbackImageUrl}
               preferredSize="large"
             />
           </Suspense>
