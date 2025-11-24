@@ -1,4 +1,4 @@
-import { Blog, Category } from '@/types';
+import { Blog, BlogSummary, Category, CategorySummary } from '@/types';
 
 interface StructuredDataProps {
   data: Record<string, unknown>;
@@ -129,8 +129,8 @@ export function ArticleSchema({ blog }: ArticleSchemaProps) {
 
 // Blog Schema Component for listing pages
 interface BlogSchemaProps {
-  blogs: Blog[];
-  category?: Category;
+  blogs: Blog[] | BlogSummary[];
+  category?: Category | CategorySummary;
 }
 
 export function BlogSchema({ blogs, category }: BlogSchemaProps) {

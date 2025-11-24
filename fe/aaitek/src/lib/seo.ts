@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { Blog, Category, Event } from '@/types';
+import { Blog, BlogSummary, Category, CategorySummary, Event } from '@/types';
 
 // SEO Configuration Constants
 export const SEO_CONFIG = {
@@ -152,7 +152,7 @@ export function generateSEOMetadata({
 }
 
 // Blog-specific SEO metadata
-export function generateBlogSEO(blog: Blog): Metadata {
+export function generateBlogSEO(blog: Blog | BlogSummary): Metadata {
   const keywords = [
     blog.category?.name,
     ...(blog.tags?.map(tag => tag.name) || []),
@@ -181,7 +181,7 @@ export function generateBlogSEO(blog: Blog): Metadata {
 }
 
 // Category page SEO
-export function generateCategorySEO(category: Category, blogCount?: number): Metadata {
+export function generateCategorySEO(category: Category | CategorySummary, blogCount?: number): Metadata {
   return generateSEOMetadata({
     title: `${category.name} Blog Posts`,
     description: category.description ||
@@ -279,7 +279,7 @@ export function generateBreadcrumbSchema(items: Array<{ name: string; url: strin
   };
 }
 
-export function generateArticleSchema(blog: Blog) {
+export function generateArticleSchema(blog: Blog | BlogSummary) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -318,7 +318,7 @@ export function generateArticleSchema(blog: Blog) {
       '@type': 'Organization',
       name: SEO_CONFIG.siteName,
     },
-    copyrightYear: new Date(blog.publishedAt || blog.createdAt).getFullYear(),
+    copyrightYear: new Date(blog.publishedAt || blog.createdAt || new Date().toISOString()).getFullYear(),
   };
 }
 

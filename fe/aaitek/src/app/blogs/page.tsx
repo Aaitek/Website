@@ -7,6 +7,7 @@ import { strapiFetch } from "@/lib/strapi";
 import { generateSEOMetadata, generateCategorySEO } from "@/lib/seo";
 import { BlogSchema, BreadcrumbSchema } from "@/components/seo/StructuredData";
 import { Calendar, User, Clock, Filter, Search, Sparkles } from "lucide-react";
+import type { CategorySummary, BlogSummary } from "@/types";
 
 export const revalidate = 60;
 
@@ -82,7 +83,7 @@ type Blog = {
 
 async function getAllCategories() {
   try {
-    const resp = await strapiFetch<{ data: Category[] }>("/api/categories", {
+    const resp = await strapiFetch<{ data: CategorySummary[] }>("/api/categories", {
       "fields": "name,slug,description,color,icon",
       "sort": "name:asc",
     });
@@ -129,7 +130,7 @@ export default async function BlogsPage({
 
   // Fetch blogs and categories in parallel
   const [blogsData, categories] = await Promise.all([
-    strapiFetch<{ data: Blog[] }>("/api/blogs", queryParams),
+    strapiFetch<{ data: BlogSummary[] }>("/api/blogs", queryParams),
     getAllCategories(),
   ]);
 

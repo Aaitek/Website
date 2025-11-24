@@ -62,6 +62,20 @@ export interface Category extends BaseContent {
 }
 
 /**
+ * Partial category for API responses that don't include all fields
+ */
+export interface CategorySummary {
+  id?: number;
+  name: string;
+  slug: string;
+  description?: string;
+  color?: string;
+  icon?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+/**
  * Author content type
  */
 export interface Author extends BaseContent {
@@ -94,6 +108,37 @@ export interface Blog extends BaseContent {
   author?: Author;
   tags?: Tag[];
   readTime?: number;
+}
+
+/**
+ * Partial blog for API responses that don't include all fields
+ */
+export interface BlogSummary {
+  id?: number;
+  Title: string;
+  Description?: string;
+  Content?: string;
+  slug?: string;
+  Image?: Media[];
+  featured?: boolean;
+  category?: CategorySummary;
+  author?: {
+    id?: number;
+    name: string;
+    slug: string;
+    bio?: string;
+    avatar?: Media[];
+  };
+  tags?: {
+    id?: number;
+    name: string;
+    slug: string;
+    color?: string;
+  }[];
+  readTime?: number;
+  createdAt?: string;
+  updatedAt?: string;
+  publishedAt?: string;
 }
 
 /**
