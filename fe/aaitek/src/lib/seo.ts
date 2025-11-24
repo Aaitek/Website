@@ -152,14 +152,14 @@ export function generateSEOMetadata({
 }
 
 // Blog-specific SEO metadata
-export function generateBlogSEO(blog: Blog, relatedPosts?: Blog[]): Metadata {
+export function generateBlogSEO(blog: Blog): Metadata {
   const keywords = [
     blog.category?.name,
     ...(blog.tags?.map(tag => tag.name) || []),
     'blog',
     'insights',
     'technology articles'
-  ].filter(Boolean);
+  ].filter((keyword): keyword is string => Boolean(keyword));
 
   return generateSEOMetadata({
     title: blog.Title,

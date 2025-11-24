@@ -6,8 +6,7 @@ import type { Metadata } from "next";
 import { strapiFetch } from "@/lib/strapi";
 import { generateSEOMetadata, generateCategorySEO } from "@/lib/seo";
 import { BlogSchema, BreadcrumbSchema } from "@/components/seo/StructuredData";
-import { Calendar, User, Clock, Filter, Search } from "lucide-react";
-import { ScreenReaderOnly } from "@/components/ui/SkipLink";
+import { Calendar, User, Clock, Filter, Search, Sparkles } from "lucide-react";
 
 export const revalidate = 60;
 

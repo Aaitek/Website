@@ -8,12 +8,12 @@ export default function WebVitals() {
     // Load web-vitals dynamically to avoid build issues
     const loadWebVitals = async () => {
       try {
-        const { onCLS, onFCP, onFID, onLCP, onTTFB } = await import('web-vitals');
+        const { onCLS, onFCP, onLCP, onTTFB } = await import('web-vitals');
 
-        const sendToAnalytics = (metric: any) => {
+        const sendToAnalytics = (metric: { name: string; id: string; value: number }) => {
           // Send to Google Analytics if available
-          if (typeof window !== 'undefined' && (window as any).gtag) {
-            (window as any).gtag('event', metric.name, {
+          if (typeof window !== 'undefined' && (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag) {
+            (window as unknown as { gtag: (...args: unknown[]) => void }).gtag('event', metric.name, {
               event_category: 'Web Vitals',
               event_label: metric.id,
               value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),
@@ -29,7 +29,6 @@ export default function WebVitals() {
         // Set up web vitals tracking
         onCLS(sendToAnalytics);
         onFCP(sendToAnalytics);
-        onFID(sendToAnalytics);
         onLCP(sendToAnalytics);
         onTTFB(sendToAnalytics);
       } catch (error) {
@@ -45,11 +44,11 @@ export default function WebVitals() {
 
 // Hook for getting current web vitals
 export function useWebVitals() {
-  const getWebVitals = async () => {
+  const getWebVitals = async (): Promise<Record<string, unknown>> => {
     try {
       // Return empty object if web-vitals is not available
       return {};
-    } catch (error) {
+    } catch {
       return {};
     }
   };

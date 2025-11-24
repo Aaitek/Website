@@ -11,7 +11,7 @@ import Loading from "@/components/ui/Loading";
 import { ErrorBoundary } from "@/components/ui/ErrorBoundary";
 import { generateBlogSEO } from "@/lib/seo";
 import { ArticleSchema, BreadcrumbSchema } from "@/components/seo/StructuredData";
-import { ScreenReaderOnly } from "@/components/ui/SkipLink";
+// Removed unused import
 
 export const revalidate = 60;
 export const dynamic = 'force-dynamic';
@@ -124,7 +124,6 @@ export default async function BlogDetailPage({ params }: BlogPageProps) {
   const readingTime = blog.Content ? calculateReadingTime(blog.Content) : 0;
   const processedContent = blog.Content ? processContent(blog.Content) : '';
   const publishedDate = blog.publishedAt ? new Date(blog.publishedAt) : null;
-  const updatedDate = blog.updatedAt ? new Date(blog.updatedAt) : null;
 
   // Breadcrumb data
   const breadcrumbs = [

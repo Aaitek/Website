@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 
 interface ModernCardProps {
@@ -109,7 +109,12 @@ export default function ModernCard({
         )}
 
         {/* Mesh gradient overlay */}
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cdefs%3E%3CradialGradient id=\"g\" cx=\"50%25\" cy=\"50%25\" r=\"50%25\"%3E%3Cstop offset=\"0%25\" stop-color=\"rgba(251, 213, 6, 0.05)\" /%3E%3Cstop offset=\"100%25\" stop-color=\"transparent\" /%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width=\"100\" height=\"100\" fill=\"url(%23g)\" /%3E%3C/svg%3E')] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div
+          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3CradialGradient id='g' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' stop-color='rgba(251, 213, 6, 0.05)' /%3E%3Cstop offset='100%25' stop-color='transparent' /%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='100' height='100' fill='url(%23g)' /%3E%3C/svg%3E")`
+          }}
+        />
 
         {/* Content */}
         <div className="relative z-10 p-6 h-full">

@@ -1,7 +1,7 @@
-import { Blog, Category, Event } from '@/types';
+import { Blog, Category } from '@/types';
 
 interface StructuredDataProps {
-  data: Record<string, any>;
+  data: Record<string, unknown>;
 }
 
 function StructuredDataScript({ data }: StructuredDataProps) {
@@ -84,10 +84,9 @@ export function BreadcrumbSchema({ items }: BreadcrumbSchemaProps) {
 // Article Schema Component
 interface ArticleSchemaProps {
   blog: Blog;
-  relatedPosts?: Blog[];
 }
 
-export function ArticleSchema({ blog, relatedPosts }: ArticleSchemaProps) {
+export function ArticleSchema({ blog }: ArticleSchemaProps) {
   const imageUrl = blog.Image?.[0]?.url ?
     (blog.Image[0].url.startsWith('http') ?
       blog.Image[0].url :

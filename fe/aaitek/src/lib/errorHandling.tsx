@@ -14,7 +14,7 @@ export interface AppError extends Error {
   statusCode?: number;
   severity?: ErrorSeverity;
   category?: ErrorCategory;
-  context?: Record<string, any>;
+  context?: Record<string, unknown>;
   timestamp?: Date;
   userId?: string;
   sessionId?: string;
@@ -30,7 +30,7 @@ export function createAppError(
     statusCode?: number;
     severity?: ErrorSeverity;
     category?: ErrorCategory;
-    context?: Record<string, any>;
+    context?: Record<string, unknown>;
     originalError?: Error;
   } = {}
 ): AppError {
@@ -68,7 +68,7 @@ export class NetworkErrorHandler {
       retries?: number;
       retryDelay?: number;
       timeout?: number;
-      context?: Record<string, any>;
+      context?: Record<string, unknown>;
     } = {}
   ): Promise<T> {
     const { retries = this.maxRetries, retryDelay = this.retryDelay, timeout, context } = options;
@@ -146,7 +146,7 @@ export class NetworkErrorHandler {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  private enhanceError(error: Error, context: { attempt: number; context?: Record<string, any> }): AppError {
+  private enhanceError(error: Error, context: { attempt: number; context?: Record<string, unknown> }): AppError {
     const appError = error as AppError;
 
     appError.context = {
@@ -320,7 +320,7 @@ export class ErrorReporter {
             category: 'network',
             context: {
               tagName: target.tagName,
-              src: (target as any).src || (target as any).href,
+              src: 'src' in target ? target.src : 'href' in target ? target.href : undefined,
             },
           }
         );
@@ -343,7 +343,7 @@ export class ErrorReporter {
 export const errorReporter = typeof window !== 'undefined' ? new ErrorReporter() : null;
 
 // Utility functions
-export function reportError(error: Error | AppError, context?: Record<string, any>): void {
+export function reportError(error: Error | AppError, context?: Record<string, unknown>): void {
   const appError = error instanceof Error && !(error as AppError).severity
     ? createAppError(error.message, { originalError: error, context })
     : error as AppError;
@@ -355,9 +355,9 @@ export function reportError(error: Error | AppError, context?: Record<string, an
   errorReporter?.report(appError);
 }
 
-export function withErrorHandling<T extends (...args: any[]) => any>(
+export function withErrorHandling<T extends (...args: unknown[]) => unknown>(
   fn: T,
-  context?: Record<string, any>
+  context?: Record<string, unknown>
 ): T {
   return ((...args: Parameters<T>) => {
     try {
@@ -382,9 +382,9 @@ export function withErrorHandling<T extends (...args: any[]) => any>(
 // React error boundary utility
 export function createErrorBoundary(
   fallbackComponent: React.ComponentType<{ error: Error; reset: () => void }>,
-  onError?: (error: Error, errorInfo: any) => void
+  onError?: (error: Error, errorInfo: React.ErrorInfo) => void
 ) {
-  return class extends React.Component<
+  return class ErrorBoundary extends React.Component<
     { children: React.ReactNode },
     { error: Error | null }
   > {
@@ -397,7 +397,7 @@ export function createErrorBoundary(
       return { error };
     }
 
-    componentDidCatch(error: Error, errorInfo: any) {
+    componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
       reportError(error, { errorInfo });
       onError?.(error, errorInfo);
     }
