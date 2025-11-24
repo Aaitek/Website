@@ -47,7 +47,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Fetch blogs for dynamic sitemap entries
   let blogPages: MetadataRoute.Sitemap = []
   try {
-    const blogsResponse = await strapiFetch<{ data: any[] }>('/api/blogs', {
+    const blogsResponse = await strapiFetch<{ data: Array<{id: number, slug?: string, publishedAt?: string, updatedAt?: string}> }>('/api/blogs', {
       fields: 'slug,publishedAt,updatedAt',
       'pagination[pageSize]': '100',
       sort: 'publishedAt:desc',
@@ -55,7 +55,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     blogPages = blogsResponse.data?.map((blog) => ({
       url: `${baseUrl}/blogs/${blog.slug || blog.id}`,
-      lastModified: new Date(blog.updatedAt || blog.publishedAt),
+      lastModified: new Date(blog.updatedAt || blog.publishedAt || new Date()),
       changeFrequency: 'weekly' as const,
       priority: 0.7,
     })) || []
@@ -66,14 +66,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Fetch categories for blog category pages
   let categoryPages: MetadataRoute.Sitemap = []
   try {
-    const categoriesResponse = await strapiFetch<{ data: any[] }>('/api/categories', {
+    const categoriesResponse = await strapiFetch<{ data: Array<{slug: string, updatedAt?: string}> }>('/api/categories', {
       fields: 'slug,updatedAt',
       'pagination[pageSize]': '50',
     })
 
     categoryPages = categoriesResponse.data?.map((category) => ({
       url: `${baseUrl}/blogs?category=${category.slug}`,
-      lastModified: new Date(category.updatedAt),
+      lastModified: new Date(category.updatedAt || new Date()),
       changeFrequency: 'weekly' as const,
       priority: 0.6,
     })) || []

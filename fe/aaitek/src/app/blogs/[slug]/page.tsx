@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import { strapiFetch, strapiFetchOne, strapiFetchMany } from "@/lib/strapi";
 import { processContent, calculateReadingTime } from "@/lib/content";
 import { Blog, Category, Tag as BlogTag } from "@/types";
-import { Calendar, User, ArrowLeft, Tag, Clock, Share2, BookOpen } from "lucide-react";
+import { Calendar, User, ArrowLeft, Tag, Clock, BookOpen } from "lucide-react";
 import OptimizedImage from "@/components/ui/OptimizedImage";
 import Loading from "@/components/ui/Loading";
 import { ErrorBoundary } from "@/components/ui/ErrorBoundary";

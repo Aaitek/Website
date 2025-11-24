@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image, { ImageProps } from 'next/image';
-import { Media, MediaFormat } from '@/types';
+import { Media } from '@/types';
 
 interface OptimizedImageProps extends Omit<ImageProps, 'src' | 'alt'> {
   media?: Media;
@@ -43,10 +43,10 @@ export default function OptimizedImage({
     }
 
     // Fallback order: medium -> small -> thumbnail -> original
-    const fallbackOrder: (keyof MediaFormat)[] = ['medium', 'small', 'thumbnail'];
+    const fallbackOrder: string[] = ['medium', 'small', 'thumbnail'];
 
     for (const size of fallbackOrder) {
-      const format = media.formats[size as string];
+      const format = media.formats[size];
       if (format?.url) {
         return getFullUrl(format.url);
       }
