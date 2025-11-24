@@ -51,35 +51,7 @@ export async function generateMetadata({
   });
 }
 
-type MediaFormat = { url: string; width: number; height: number };
-type Media = { url: string; alternativeText?: string; formats?: Record<string, MediaFormat> };
 
-type Category = {
-  id: number;
-  name: string;
-  slug: string;
-  description?: string;
-  color?: string;
-  icon?: string;
-};
-
-type Author = {
-  id: number;
-  name: string;
-  slug: string;
-};
-
-type Blog = {
-  id: number;
-  Title: string;
-  Description?: string;
-  slug?: string;
-  publishedAt?: string;
-  Image?: Media[];
-  category?: Category;
-  author?: Author;
-  tags?: { id: number; name: string; slug: string; color?: string }[];
-};
 
 async function getAllCategories() {
   try {
