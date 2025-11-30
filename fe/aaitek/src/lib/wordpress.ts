@@ -1,6 +1,6 @@
 import { Blog, WordPressPost, Category, Author, Tag } from "@/types";
 
-const WORDPRESS_API_URL = "https://test1.ddev.site/wp-json/wp/v2";
+const WORDPRESS_API_URL = process.env.WORDPRESS_API_URL || "https://test1.ddev.site/wp-json/wp/v2";
 
 // Allow self-signed certificates for development
 if (process.env.NODE_ENV === 'development') {
