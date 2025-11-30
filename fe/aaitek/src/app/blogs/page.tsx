@@ -7,7 +7,7 @@ import { getWordPressPosts, getWordPressCategories } from "@/lib/wordpress";
 import { generateSEOMetadata, generateCategorySEO } from "@/lib/seo";
 import { BlogSchema, BreadcrumbSchema } from "@/components/seo/StructuredData";
 import { Calendar, User, Clock, Filter, Search, Sparkles } from "lucide-react";
-import type { CategorySummary, BlogSummary } from "@/types";
+
 
 export const revalidate = 60;
 
@@ -158,8 +158,8 @@ export default async function BlogsPage({
               <Link
                 href="/blogs"
                 className={`group relative px-8 py-4 rounded-2xl text-base font-semibold transition-all duration-300 transform hover:scale-105 ${!params.category
-                    ? "bg-gradient-to-r from-[#FBD506] to-[#F4A607] text-black shadow-xl shadow-[#FBD506]/25"
-                    : "bg-white/5 backdrop-blur-sm border border-white/10 text-gray-300 hover:bg-[#FBD506]/10 hover:text-[#FBD506] hover:border-[#FBD506]/30"
+                  ? "bg-gradient-to-r from-[#FBD506] to-[#F4A607] text-black shadow-xl shadow-[#FBD506]/25"
+                  : "bg-white/5 backdrop-blur-sm border border-white/10 text-gray-300 hover:bg-[#FBD506]/10 hover:text-[#FBD506] hover:border-[#FBD506]/30"
                   }`}
               >
                 <span className="relative z-10 flex items-center gap-2">
@@ -176,8 +176,8 @@ export default async function BlogsPage({
                   key={category.id}
                   href={`/blogs?category=${category.slug}`}
                   className={`group relative px-8 py-4 rounded-2xl text-base font-semibold transition-all duration-300 transform hover:scale-105 flex items-center gap-3 ${params.category === category.slug
-                      ? "text-black shadow-xl"
-                      : "bg-white/5 backdrop-blur-sm border border-white/10 text-gray-300 hover:bg-[#FBD506]/10 hover:text-[#FBD506] hover:border-[#FBD506]/30"
+                    ? "text-black shadow-xl"
+                    : "bg-white/5 backdrop-blur-sm border border-white/10 text-gray-300 hover:bg-[#FBD506]/10 hover:text-[#FBD506] hover:border-[#FBD506]/30"
                     }`}
                   style={
                     params.category === category.slug
