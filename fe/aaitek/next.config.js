@@ -27,6 +27,12 @@ const nextConfig = {
         hostname: 'res.cloudinary.com',
         pathname: '/**',
       },
+      // Wordpress site url for blog post
+      {
+        protocol: 'https',
+        hostname: 'test1.ddev.site',
+        pathname: '/**',
+      },
     ],
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
@@ -114,14 +120,14 @@ const nextConfig = {
               font-src 'self' https://fonts.gstatic.com;
               img-src 'self' data: https: blob:;
               media-src 'self' https:;
-              connect-src 'self' https://www.google-analytics.com https://balanced-heart-29014e60ac.strapiapp.com https://balanced-heart-29014e60ac.media.strapiapp.com;
+              connect-src 'self' https://www.google-analytics.com https://balanced-heart-29014e60ac.strapiapp.com https://balanced-heart-29014e60ac.media.strapiapp.com https://test1.ddev.site;
               object-src 'none';
               base-uri 'self';
               form-action 'self';
               frame-ancestors 'none';
               block-all-mixed-content;
               upgrade-insecure-requests;
-            `.replace(/\\s+/g, ' ').trim(),
+            `.replace(/\s+/g, ' ').trim(),
           },
         ],
       },
