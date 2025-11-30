@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import type { Metadata } from "next";
-import { strapiFetch, strapiFetchOne, strapiFetchMany } from "@/lib/strapi";
+import { getWordPressPostBySlug, getWordPressCategories, getWordPressPosts } from "@/lib/wordpress";
 import { processContent, calculateReadingTime } from "@/lib/content";
 import { Blog, Category, Tag as BlogTag } from "@/types";
 import { Calendar, User, ArrowLeft, Tag, Clock, BookOpen } from "lucide-react";
@@ -11,7 +11,6 @@ import Loading from "@/components/ui/Loading";
 import { ErrorBoundary } from "@/components/ui/ErrorBoundary";
 import { generateBlogSEO } from "@/lib/seo";
 import { ArticleSchema, BreadcrumbSchema } from "@/components/seo/StructuredData";
-// Removed unused import
 
 export const revalidate = 60;
 export const dynamic = 'force-dynamic';
@@ -20,46 +19,19 @@ interface BlogPageProps {
   params: Promise<{ slug: string }>;
 }
 
-async function getAllCategories() {
-  try {
-    const resp = await strapiFetchMany<Category>('categories', {
-      pageSize: 50,
-      sort: 'name:asc',
-    });
-    return resp?.data ?? [];
-  } catch (error) {
-    console.error("Error fetching categories:", error);
-    return [];
-  }
-}
-
 async function getRelatedPosts(currentBlogId: number, categorySlug?: string) {
   if (!categorySlug) return [];
 
   try {
-    const resp = await strapiFetch<{ data: Blog[] }>("/api/blogs", {
-      "fields": "Title,slug,publishedAt,Description",
-      "populate[0]": "Image",
-      "populate[1]": "category",
-      "filters[category][slug][$eq]": categorySlug,
-      "filters[id][$ne]": currentBlogId.toString(),
-      "pagination[pageSize]": "3",
-      "sort": "publishedAt:desc",
+    const posts = await getWordPressPosts({
+      category: categorySlug,
+      per_page: 4 // Fetch 4 to ensure we have enough after filtering out current
     });
-    return resp?.data ?? [];
+
+    return posts.data.filter(post => post.id !== currentBlogId).slice(0, 3);
   } catch (error) {
     console.error("Error fetching related posts:", error);
     return [];
-  }
-}
-
-async function getBlogBySlug(slug: string): Promise<Blog | null> {
-  try {
-    const resp = await strapiFetchOne<Blog>('blogs', slug, ['Image', 'category', 'author', 'tags']);
-    return resp;
-  } catch (error) {
-    console.error('Error fetching blog by slug:', error);
-    return null;
   }
 }
 
@@ -68,7 +40,7 @@ export async function generateMetadata({ params }: BlogPageProps): Promise<Metad
   const { slug } = await params;
 
   try {
-    const blog = await getBlogBySlug(slug);
+    const blog = await getWordPressPostBySlug(slug);
 
     if (!blog) {
       return {
@@ -106,8 +78,8 @@ export default async function BlogDetailPage({ params }: BlogPageProps) {
 
   try {
     [blog, categories] = await Promise.all([
-      getBlogBySlug(slug),
-      getAllCategories(),
+      getWordPressPostBySlug(slug),
+      getWordPressCategories(),
     ]);
 
     if (!blog) {
@@ -121,7 +93,7 @@ export default async function BlogDetailPage({ params }: BlogPageProps) {
     notFound();
   }
 
-  const readingTime = blog.Content ? calculateReadingTime(blog.Content) : 0;
+  const readingTime = blog.readTime || (blog.Content ? calculateReadingTime(blog.Content) : 0);
   const processedContent = blog.Content ? processContent(blog.Content) : '';
   const publishedDate = blog.publishedAt ? new Date(blog.publishedAt) : null;
 
