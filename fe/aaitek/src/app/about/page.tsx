@@ -72,17 +72,12 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-                We love <span className="text-[#FBD506]">challenges.</span>
-                <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FBD506] to-[#FFF480]">
-                  That is our motto.
+                  We Transform Vision Into Reality.
                 </span>
               </h1>
               <p className="text-xl text-[#F4F4F4] mb-8 leading-relaxed">
-                Transform Your Digital Vision Into Reality. Only companies that
-                combine data, design, and specialized talent can truly
-                transform. That combination is exactly what Aaitek has focused
-                on for 25+ years.
+                For 25+ years, Aaitek has combined data, design, and specialized talent to deliver real digital change.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/contact" className="w-full sm:w-auto">
@@ -100,19 +95,6 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className="relative">
-              <div className="absolute inset-0 rounded-2xl blur-xl opacity-30 bg-gradient-to-r from-[#FBD506] to-[#FFF480]" />
-              <div className="relative bg-[#2E2E2E] rounded-2xl p-4 border border-[#FBD506]/20">
-                <Image
-                  src="/img/About-banner.png"
-                  alt="Aaitek team collaboration"
-                  width={600}
-                  height={400}
-                  className="rounded-lg shadow-2xl w-full"
-                  priority
-                />
-              </div>
-            </div>
           </div>
         </div>
       </section>
