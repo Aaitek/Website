@@ -1,0 +1,1131 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#061B2D" />
+  <meta name="description" content="Aaitek delivers AI-powered digital transformation, Sitecore XM Cloud expertise, and full-stack engineering for modern enterprises." />
+  <title>Aaitek — AI-Powered Digital Transformation</title>
+  <link rel="icon" href="Aaitek logo in Black.png" sizes="any">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    :root{
+      --bg: #061B2D;
+      --bg2: #071F34;
+      --text: #FFFFFF;
+      --muted: rgba(255,255,255,.78);
+      --muted2: rgba(255,255,255,.62);
+      --border: rgba(255,255,255,.12);
+      --panel: rgba(255,255,255,.05);
+      --panel2: rgba(255,255,255,.08);
+      --brand: #19B3FF;
+      --accent: #FF9C28;
+      --ink: #04131F;
+
+      --radius: 18px;
+      --radius-lg: 24px;
+      --pill: 999px;
+
+      --shadow: 0 18px 50px rgba(0,0,0,.45);
+      --shadow-soft: 0 10px 30px rgba(0,0,0,.28);
+      --glow: 0 10px 35px rgba(25,179,255,.35);
+
+      --container: 1120px;
+      --ring: 0 0 0 4px rgba(25,179,255,.25);
+
+      --header-h: 84px;
+    }
+
+    *{ box-sizing: border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: Outfit, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    img{ max-width:100%; height:auto; }
+    a{ color:inherit; text-decoration:none; }
+    p{ margin:0; color: var(--muted); }
+    h1,h2,h3,h4{ margin:0; letter-spacing:-.02em; }
+    ::selection{ background: rgba(25,179,255,.35); }
+
+    .bg{
+      position:fixed; inset:0; z-index:-2;
+      background:
+        radial-gradient(1200px 600px at 50% 15%, rgba(25,179,255,0.35), transparent 70%),
+        radial-gradient(900px 500px at 15% 55%, rgba(0,140,255,0.22), transparent 65%),
+        radial-gradient(900px 500px at 85% 60%, rgba(255,156,40,0.16), transparent 60%),
+        linear-gradient(180deg, #06243c 0%, #061B2D 55%, #061B2D 100%);
+    }
+    .dots{
+      position:fixed; inset:0; z-index:-1;
+      opacity:.12;
+      background-image: radial-gradient(rgba(255,255,255,0.8) 1px, transparent 1px);
+      background-size: 26px 26px;
+      pointer-events:none;
+    }
+
+    .container{
+      width:min(var(--container), calc(100% - 2rem));
+      margin-inline:auto;
+    }
+
+    .section{
+      padding: clamp(3rem, 4vw, 5rem) 0;
+    }
+
+    .skip-link{
+      position:absolute;
+      left:-999px;
+      top:0;
+      background: var(--brand);
+      color: var(--ink);
+      padding:.75rem 1rem;
+      border-radius: var(--pill);
+      z-index: 9999;
+      font-weight: 800;
+    }
+    .skip-link:focus{
+      left: 1rem;
+      top: 1rem;
+      outline: none;
+      box-shadow: var(--ring);
+    }
+    :focus-visible{
+      outline: none;
+      box-shadow: var(--ring);
+      border-radius: 12px;
+    }
+
+    /* ===========================
+       HEADER (fixed height + center tagline)
+       =========================== */
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index: 1000;
+      height: var(--header-h);
+      background: rgba(7,31,52,.72);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-grid{
+      height: var(--header-h);
+      display:grid;
+      grid-template-columns: auto 1fr auto;
+      align-items:center;
+      gap: 16px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      min-width: 170px;
+      gap: .75rem;
+    }
+    .brand-logo{
+      height: 80px;       /* lock logo height */
+      max-height: 80px;
+      width: auto;
+      object-fit: contain;
+      display:block;
+    }
+
+    .header-center{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      min-width:0;
+    }
+    .brand-tagline{
+      color: rgba(255,255,255,.55);
+      letter-spacing: .35em;
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .header-right{
+      display:flex;
+      justify-content:flex-end;
+      align-items:center;
+      gap: 14px;
+    }
+
+    .nav-links{
+      list-style:none;
+      display:flex;
+      align-items:center;
+      gap: 26px;
+      margin:0;
+      padding:0;
+    }
+    .nav-link{
+      display:inline-block;
+      padding: .5rem .25rem;
+      color: rgba(255,255,255,.78);
+      font-weight: 700;
+      font-size: 1rem;
+      border-bottom: 2px solid transparent;
+      transition: color .2s ease, border-color .2s ease, background .2s ease;
+      border-radius: 12px;
+    }
+    .nav-link:hover{
+      color:#fff;
+      border-bottom-color: rgba(25,179,255,.65);
+    }
+
+    .menu-btn{
+      display:none;
+      align-items:center;
+      gap:.5rem;
+      padding: .6rem .9rem;
+      border-radius: var(--pill);
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      color:#fff;
+      font-weight: 800;
+      cursor:pointer;
+    }
+    .menu-btn svg{ width: 18px; height: 18px; }
+
+    .menu-panel{
+      display:block;
+      padding: .75rem 0 1rem;
+      border-top: 1px solid var(--border);
+    }
+    .menu-panel[hidden]{ display:none; }
+    .menu-panel a{
+      display:block;
+      padding: .75rem .5rem;
+      border-radius: 12px;
+      color: rgba(255,255,255,.82);
+      font-weight: 700;
+    }
+    .menu-panel a:hover{ background: rgba(255,255,255,.06); }
+
+    @media (max-width: 979px){
+      .brand-tagline{ display:none; }
+      .nav-links{ display:none; }
+      .menu-btn{ display:inline-flex; }
+    }
+
+    /* Buttons */
+    .actions{
+      display:flex;
+      gap:.75rem;
+      align-items:center;
+      flex-wrap: wrap;
+      justify-content:center;
+      margin-top: 1.5rem;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.55rem;
+      padding: .85rem 1.1rem;
+      border-radius: var(--pill);
+      font-weight: 900;
+      font-size: .95rem;
+      border: 1px solid transparent;
+      cursor:pointer;
+      user-select:none;
+      transition: transform .2s ease, filter .2s ease, background .2s ease, border-color .2s ease;
+      min-height: 44px;
+      white-space: nowrap;
+    }
+    .btn-primary{
+      background: var(--brand);
+      color: var(--ink);
+      box-shadow: var(--glow);
+    }
+    .btn-primary:hover{ filter: brightness(1.06); transform: translateY(-1px); }
+
+    .btn-ghost{
+      background: rgba(255,255,255,.06);
+      border-color: var(--border);
+      color: rgba(255,255,255,.92);
+      box-shadow: var(--shadow-soft);
+    }
+    .btn-ghost:hover{
+      background: rgba(255,255,255,.1);
+      border-color: rgba(25,179,255,.5);
+      transform: translateY(-1px);
+    }
+
+    /* Hero */
+    .hero{
+      padding: clamp(3rem, 6vw, 6rem) 0;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:.55rem;
+      padding: .55rem .9rem;
+      border-radius: var(--pill);
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      color: rgba(255,255,255,.75);
+      font-weight: 800;
+      letter-spacing: .14em;
+      font-size: .72rem;
+      text-transform: uppercase;
+    }
+    .pill i{
+      width: .5rem;
+      height: .5rem;
+      background: var(--accent);
+      border-radius: 999px;
+      display:inline-block;
+    }
+    .hero h1{
+      margin-top: 1.2rem;
+      font-size: clamp(2.2rem, 5vw, 4.2rem);
+      line-height: 1.05;
+      font-weight: 900;
+    }
+    .t-blue{ color: var(--brand); }
+    .t-orange{ color: var(--accent); }
+    .hero p{
+      margin-top: 1.1rem;
+      font-size: clamp(1rem, 1.2vw, 1.15rem);
+      color: rgba(255,255,255,.78);
+      max-width: 70ch;
+      margin-inline: auto;
+    }
+
+    .hero .stats{
+      margin-top: 2rem;
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: .75rem;
+      max-width: 860px;
+      margin-inline:auto;
+    }
+    @media (min-width: 900px){
+      .hero .stats{ grid-template-columns: repeat(4, minmax(0,1fr)); }
+    }
+    .stat{
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem;
+      box-shadow: var(--shadow-soft);
+      text-align:left;
+    }
+    .stat strong{
+      display:block;
+      font-size: 1.05rem;
+      color:#fff;
+      font-weight: 900;
+    }
+    .stat span{
+      display:block;
+      color: var(--muted2);
+      font-size: .9rem;
+      margin-top: .35rem;
+      font-weight: 700;
+    }
+
+    /* Section headings */
+    .section-head{
+      text-align:center;
+      max-width: 70ch;
+      margin: 0 auto 2rem;
+    }
+    .section-head h2{
+      font-size: clamp(1.7rem, 2.4vw, 2.4rem);
+      font-weight: 900;
+      margin-top: .85rem;
+    }
+    .section-head p{ margin-top: .75rem; }
+
+    /* Cards */
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(1, minmax(0,1fr));
+      gap: 1rem;
+    }
+    @media (min-width: 760px){
+      .cards{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+    @media (min-width: 1100px){
+      .cards{ grid-template-columns: repeat(3, minmax(0,1fr)); }
+    }
+    .card{
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.2rem;
+      box-shadow: var(--shadow-soft);
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+      display:flex;
+      flex-direction:column;
+      gap:.75rem;
+      min-height: 220px;
+    }
+    .card:hover{
+      background: var(--panel2);
+      border-color: rgba(25,179,255,.45);
+      transform: translateY(-2px);
+    }
+    .card h3{
+      font-size: 1.15rem;
+      font-weight: 900;
+      color:#fff;
+    }
+    .tagrow{
+      display:flex;
+      flex-wrap:wrap;
+      gap: .45rem;
+      margin-top: .25rem;
+    }
+    .tag{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: rgba(255,255,255,.75);
+      font-size: .78rem;
+      padding: .25rem .55rem;
+      border-radius: var(--pill);
+      font-weight: 800;
+    }
+
+    /* About + Contact shared layout */
+    .about{
+      display:grid;
+      gap: 1.2rem;
+      align-items: stretch;
+    }
+    @media (min-width: 980px){
+      .about{
+        grid-template-columns: 1.2fr .8fr;
+      }
+    }
+    .panel{
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.4rem;
+      box-shadow: var(--shadow-soft);
+    }
+    .about h3{
+      font-size: 1.35rem;
+      font-weight: 900;
+    }
+
+    /* Lists */
+    ul.list{
+      margin: .9rem 0 0;
+      padding: 0;
+      list-style: none;
+      display:grid;
+      gap: .65rem;
+    }
+    ul.list li{
+      display:flex;
+      gap:.65rem;
+      align-items:flex-start;
+      color: rgba(255,255,255,.78);
+      font-weight: 700;
+    }
+    .check{
+      width: 20px;
+      height: 20px;
+      flex: 0 0 20px;
+      border-radius: 6px;
+      background: rgba(25,179,255,.15);
+      border: 1px solid rgba(25,179,255,.35);
+      display:grid;
+      place-items:center;
+      margin-top: .15rem;
+    }
+    .check svg{ width: 14px; height: 14px; }
+
+    /* Contact form */
+    form{
+      display:grid;
+      gap: .9rem;
+    }
+    label{
+      display:grid;
+      gap:.35rem;
+      font-weight: 900;
+      color: rgba(255,255,255,.92);
+    }
+    input, textarea, select{
+      width: 100%;
+      padding: .85rem .9rem;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color: #fff;
+      font: inherit;
+      min-height: 44px;
+    }
+    select{
+      appearance: none;
+      background-image:
+        linear-gradient(45deg, transparent 50%, rgba(255,255,255,.75) 50%),
+        linear-gradient(135deg, rgba(255,255,255,.75) 50%, transparent 50%);
+      background-position:
+        calc(100% - 22px) calc(50% - 3px),
+        calc(100% - 16px) calc(50% - 3px);
+      background-size: 6px 6px, 6px 6px;
+      background-repeat: no-repeat;
+      padding-right: 2.2rem;
+    }
+    textarea{ min-height: 120px; resize: vertical; }
+    input::placeholder, textarea::placeholder{ color: rgba(255,255,255,.45); }
+    input:focus-visible, textarea:focus-visible, select:focus-visible{
+      border-color: rgba(25,179,255,.6);
+      box-shadow: var(--ring);
+    }
+    .hint{
+      color: rgba(255,255,255,.6);
+      font-size: .9rem;
+      margin-top: .35rem;
+    }
+    .two{
+      display:grid;
+      gap: .9rem;
+    }
+    @media (min-width: 760px){
+      .two{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+    .form-actions{
+      display:flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+      align-items:center;
+      justify-content:flex-start;
+      margin-top: .25rem;
+    }
+    .form-actions .btn{
+      background: var(--brand);
+      color: var(--ink);
+      box-shadow: var(--glow);
+    }
+
+    /* Contact details block (was broken because you were reusing .list styles on divs) */
+    .contact-list{
+      display:grid;
+      gap: .85rem;
+      margin-top: .9rem;
+    }
+    .contact-item{
+      display:flex;
+      gap: .75rem;
+      align-items:flex-start;
+      padding: .75rem;
+      border-radius: 16px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.10);
+    }
+    .contact-icon{
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      display:grid;
+      place-items:center;
+      background: rgba(25,179,255,.15);
+      border: 1px solid rgba(25,179,255,.35);
+      flex: 0 0 38px;
+    }
+    .contact-label{
+      font-weight: 900;
+      color: rgba(255,255,255,.9);
+      font-size: .95rem;
+      line-height: 1.2;
+    }
+    .contact-value{
+      display:block;
+      margin-top: .25rem;
+      color: var(--muted);
+      font-weight: 700;
+      word-break: break-word;
+    }
+    .callout{
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255,156,40,.28);
+      background: rgba(255,156,40,.08);
+    }
+    .callout strong{
+      color:#fff;
+      font-weight: 900;
+    }
+
+    /* ===========================
+       FOOTER (fixed + not broken)
+       =========================== */
+    footer.site-footer{
+      border-top: 1px solid var(--border);
+      background: rgba(7,31,52,.55);
+      padding: 2.5rem 0 2rem;
+    }
+    .footer-grid{
+      display:grid;
+      gap: 1.5rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 900px){
+      .footer-grid{
+        grid-template-columns: 1.4fr 1fr 1fr 1fr;
+        align-items:start;
+      }
+    }
+    .footer-brand{
+      display:flex;
+      align-items:center;
+      gap: .75rem;
+      margin-bottom: .75rem;
+    }
+    .footer-brand img{
+      height: 34px;
+      width: auto;
+      object-fit: contain;
+      display:block;
+    }
+    .footer-brand span{
+      font-weight: 900;
+      letter-spacing: -.02em;
+    }
+    .small{
+      color: var(--muted2);
+      font-size: .92rem;
+      line-height: 1.6;
+    }
+    .footer-col h3{
+      font-size: 1rem;
+      font-weight: 900;
+      margin-bottom: .75rem;
+      color: rgba(255,255,255,.92);
+    }
+    .footer-col ul{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap: .55rem;
+    }
+    .footer-col a{
+      color: rgba(255,255,255,.75);
+      font-weight: 800;
+      padding: .25rem .35rem;
+      border-radius: 10px;
+      display:inline-flex;
+    }
+    .footer-col a:hover{
+      background: rgba(255,255,255,.06);
+      color:#fff;
+    }
+    .mini-links{
+      display:flex;
+      gap:.75rem;
+      flex-wrap:wrap;
+      margin-top: 1rem;
+    }
+    .mini-links a{
+      padding: .45rem .7rem;
+      border-radius: var(--pill);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color: rgba(255,255,255,.8);
+      font-weight: 900;
+    }
+    .mini-links a:hover{
+      border-color: rgba(25,179,255,.45);
+      background: rgba(255,255,255,.07);
+      color:#fff;
+    }
+    .footer-bottom{
+      margin-top: 2rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(255,255,255,.10);
+      display:flex;
+      flex-wrap:wrap;
+      gap: .75rem 1rem;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .footer-bottom a{
+      color: rgba(255,255,255,.8);
+      font-weight: 900;
+      padding: .25rem .35rem;
+      border-radius: 10px;
+    }
+    .footer-bottom a:hover{
+      background: rgba(255,255,255,.06);
+      color:#fff;
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior:auto; }
+      *{ transition:none !important; }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Aaitek",
+    "url":"https://aaitek.com.au/",
+    "description":"Sitecore AI–powered digital transformation with XM Cloud and senior-led full-stack engineering."
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="bg" aria-hidden="true"></div>
+  <div class="dots" aria-hidden="true"></div>
+
+  <header class="site-header" role="banner">
+    <div class="container">
+      <div class="header-grid" role="navigation" aria-label="Primary">
+        <a class="brand" href="#home" aria-label="Aaitek Home">
+          <img class="brand-logo" src="logo.png" alt="Aaitek" width="150" height="40" />
+        </a>
+
+      
+
+        <nav class="header-right" aria-label="Main menu">
+          <ul class="nav-links">
+            <li><a href="#home" class="nav-link">Home</a></li>
+            <li><a href="#services" class="nav-link">Services</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+            <li><a class="btn btn-primary" href="#contact">Get a Quote</a></li>
+          </ul>
+
+          <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobileMenu" id="menuBtn">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+              <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span class="menu-label">Menu</span>
+          </button>
+        </nav>
+      </div>
+
+      <div class="menu-panel" id="mobileMenu" hidden>
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a class="btn btn-primary" href="#contact" style="width:100%; justify-content:center;">Get a Quote</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO / HOME -->
+    <section class="hero" id="home" aria-label="Home">
+      <div class="container" style="text-align:center;">
+        <span class="pill"><i aria-hidden="true"></i> AI-Powered Solutions</span>
+
+        <h1>
+          <span>AI-</span><span class="t-blue">Powered</span>
+          <span class="t-orange"> Digital</span>
+          <span class="t-orange"> Transformation</span>
+          <span> for Modern</span>
+          <span class="t-blue"> Enterprises</span>
+        </h1>
+
+        <p>
+          We design, build, and scale intelligent digital platforms by combining <strong>AI</strong>, <strong>cloud</strong>,
+          and <strong>enterprise-grade engineering</strong>—helping organizations innovate faster, operate smarter,
+          and grow with confidence.
+        </p>
+
+        <div class="actions" role="group" aria-label="Primary actions">
+          <a class="btn btn-primary" href="#contact">
+            Start a Project
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true">
+              <path d="M5 12h12m-5-5 5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="btn btn-ghost" href="#services">View Services</a>
+        </div>
+
+        <div class="stats" aria-label="Highlights">
+          <div class="stat">
+            <strong>Sitecore XM Cloud</strong>
+            <span>Composable DXP delivery</span>
+          </div>
+          <div class="stat">
+            <strong>AI Enablement</strong>
+            <span>Search, copilots, automation</span>
+          </div>
+          <div class="stat">
+            <strong>Full-Stack</strong>
+            <span>Next.js, .NET, Azure</span>
+          </div>
+          <div class="stat">
+            <strong>On-Demand</strong>
+            <span>Senior-led delivery model</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section" id="services" aria-label="Services">
+      <div class="container">
+        <div class="section-head">
+          <span class="pill"><i aria-hidden="true" style="background:var(--brand)"></i> Services</span>
+          <h2>End-to-End Digital & AI Services</h2>
+          <p>
+            Aaitek helps teams modernize platforms, ship faster, and deliver measurable outcomes—across discovery,
+            architecture, build, and optimization.
+          </p>
+        </div>
+
+        <div class="cards" role="list">
+          <article class="card" role="listitem">
+            <h3>Sitecore XM Cloud & Composable DXP</h3>
+            <p>Architecture, builds, migrations, and performance tuning using headless patterns and Experience Edge.</p>
+            <div class="tagrow" aria-label="Service tags">
+              <span class="tag">XM Cloud</span><span class="tag">Content SDK</span><span class="tag">Headless</span><span class="tag">Experience Edge</span>
+            </div>
+          </article>
+
+          <article class="card" role="listitem">
+            <h3>AI-Powered Platform Enhancements</h3>
+            <p>AI search, recommendations, content automation, analytics insights, and governance-led implementations.</p>
+            <div class="tagrow" aria-label="Service tags">
+              <span class="tag">GenAI</span><span class="tag">RAG</span><span class="tag">AI Search</span><span class="tag">Guardrails</span>
+            </div>
+          </article>
+
+          <article class="card" role="listitem">
+            <h3>Full-Stack Engineering</h3>
+            <p>Modern web and API development with scalable integration patterns and clean delivery practices.</p>
+            <div class="tagrow" aria-label="Service tags">
+              <span class="tag">React / Next.js</span><span class="tag">.NET APIs</span><span class="tag">Node.js</span><span class="tag">CI/CD</span>
+            </div>
+          </article>
+
+          <article class="card" role="listitem">
+            <h3>Cloud & Platform Engineering</h3>
+            <p>Azure landing zones, observability, security, edge performance, and platform foundations for scale.</p>
+            <div class="tagrow" aria-label="Service tags">
+              <span class="tag">Azure</span><span class="tag">Security</span><span class="tag">Monitoring</span><span class="tag">Performance</span>
+            </div>
+          </article>
+
+          <article class="card" role="listitem">
+            <h3>On-Demand Senior Delivery</h3>
+            <p>Senior, certified specialists onshore/offshore with direct leadership—ideal for critical modules and timelines.</p>
+            <div class="tagrow" aria-label="Service tags">
+              <span class="tag">Senior-only</span><span class="tag">Onshore/Offshore</span><span class="tag">Critical modules</span>
+            </div>
+          </article>
+
+          <article class="card" role="listitem">
+            <h3>Architecture Reviews & Rescue</h3>
+            <p>Independent audits, performance fixes, delivery acceleration, and practical modernization roadmaps.</p>
+            <div class="tagrow" aria-label="Service tags">
+              <span class="tag">Audit</span><span class="tag">Performance</span><span class="tag">SEO</span><span class="tag">Stability</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about" aria-label="About">
+      <div class="container">
+        <div class="section-head">
+          <span class="pill"><i aria-hidden="true" style="background:var(--accent)"></i> About</span>
+          <h2>Built for Enterprise Outcomes</h2>
+          <p>
+            Aaitek is focused on high-quality, hands-on delivery—helping organizations move to composable,
+            AI-enabled architectures with confidence.
+          </p>
+        </div>
+
+        <div class="about">
+          <div class="panel">
+            <h3>How we work</h3>
+            <p style="margin-top:.65rem;">
+              We combine pragmatic architecture with disciplined engineering. The goal is simple:
+              ship value fast, keep quality high, and make platforms easy to evolve.
+            </p>
+
+            <ul class="list" aria-label="Key differentiators">
+              <li>
+                <span class="check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                Senior-led delivery for critical modules and platform decisions
+              </li>
+              <li>
+                <span class="check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                Modern composable patterns: headless, API-first, edge performance
+              </li>
+              <li>
+                <span class="check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                AI enablement with governance, security, and measurable outcomes
+              </li>
+              <li>
+                <span class="check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                Strong focus on accessibility, performance, and maintainability
+              </li>
+            </ul>
+          </div>
+
+          <aside class="panel" aria-label="Quick capabilities">
+            <h3>Capabilities</h3>
+            <div class="tagrow" style="margin-top:.8rem;">
+              <span class="tag">Sitecore XM Cloud</span>
+              <span class="tag">Composable DXP</span>
+              <span class="tag">AI Search</span>
+              <span class="tag">Next.js</span>
+              <span class="tag">.NET</span>
+              <span class="tag">Azure</span>
+              <span class="tag">Performance</span>
+              <span class="tag">Accessibility</span>
+            </div>
+
+            <div class="panel" style="margin-top:1rem; background: rgba(255,255,255,.04);">
+              <h3 style="font-size:1.05rem;">Ready to modernize?</h3>
+              <p style="margin-top:.45rem;">
+                If you’re planning XM Cloud, headless delivery, or AI enhancements, we can help with a clear plan and fast execution.
+              </p>
+              <div class="actions" style="justify-content:flex-start; margin-top:1rem;">
+                <a class="btn btn-primary" href="#contact">Talk to Aaitek</a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact" aria-label="Contact">
+      <div class="container">
+        <div class="section-head">
+          <span class="pill"><i aria-hidden="true" style="background:var(--brand)"></i> Contact</span>
+          <h2>Let’s build something great</h2>
+          <p>Share a few details and we’ll respond with next steps. (This is a static demo form.)</p>
+        </div>
+
+        <div class="about">
+          <div class="panel">
+            <form aria-label="Contact form" onsubmit="return false;">
+              <div class="two">
+                <div>
+                  <label for="name">Full name</label>
+                  <input id="name" name="name" type="text" autocomplete="name" required placeholder="Your name" />
+                </div>
+                <div>
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@company.com" />
+                </div>
+              </div>
+
+              <div class="two">
+                <div>
+                  <label for="company">Company</label>
+                  <input id="company" name="company" type="text" autocomplete="organization" placeholder="Company name" />
+                </div>
+                <div>
+                  <label for="topic">Topic</label>
+                  <select id="topic" name="topic" required>
+                    <option value="" selected disabled>Select a topic</option>
+                    <option>Sitecore XM Cloud</option>
+                    <option>AI Enablement</option>
+                    <option>Full-Stack Development</option>
+                    <option>Platform & DevOps</option>
+                    <option>Audit / Review</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required placeholder="Tell us what you’re trying to achieve…"></textarea>
+                <p class="hint" id="msg-hint">
+                  Include timeline, current stack, and any constraints. We can usually suggest a clear next step quickly.
+                </p>
+              </div>
+
+              <div class="form-actions">
+                <button class="btn" type="submit">Send message</button>
+                <span class="hint">We typically reply within 1–2 business days.</span>
+              </div>
+            </form>
+          </div>
+
+          <aside class="panel" aria-label="Contact details">
+            <h3 style="margin:0 0 8px">Contact</h3>
+            <p style="margin:0 0 14px;color:var(--muted)">
+              Prefer email? Send your brief and we’ll come back with options.
+            </p>
+
+            <div class="contact-list" role="list">
+              <div class="contact-item" role="listitem">
+                <div class="contact-icon" aria-hidden="true">✉️</div>
+                <div>
+                  <div class="contact-label">Email</div>
+                  <a class="contact-value" href="mailto:info@aaitek.com.au">info@aaitek.com.au</a>
+                </div>
+              </div>
+
+              <div class="contact-item" role="listitem">
+                <div class="contact-icon" aria-hidden="true">📍</div>
+                <div>
+                  <div class="contact-label">Location</div>
+                  <span class="contact-value">Sydney, Australia</span>
+                </div>
+              </div>
+
+              <div class="contact-item" role="listitem">
+                <div class="contact-icon" aria-hidden="true">🧩</div>
+                <div>
+                  <div class="contact-label">Focus</div>
+                  <span class="contact-value">Sitecore XM Cloud • AI • Full-Stack</span>
+                </div>
+              </div>
+
+              <div class="contact-item" role="listitem">
+                <div class="contact-icon" aria-hidden="true">⏱️</div>
+                <div>
+                  <div class="contact-label">Availability</div>
+                  <span class="contact-value">On-demand senior delivery</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="callout" role="note" aria-label="Quick note">
+              <strong>Want a quick review?</strong>
+              <p style="margin:6px 0 0;color:var(--muted)">
+                Share your current setup and we’ll outline risks, quick wins, and an implementation path.
+              </p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer" aria-label="Footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <div class="footer-brand">
+              <img src="./logo.png" alt="Aaitek" />
+              <span>Aaitek</span>
+            </div>
+            <p class="small">
+              Sitecore AI–powered digital transformation with XM Cloud and senior-led full-stack engineering.
+            </p>
+            <!-- <div class="mini-links" aria-label="Social links"> -->
+              <!-- <a href="#" aria-label="LinkedIn (placeholder)">LinkedIn</a> -->
+              <!-- <a href="#" aria-label="YouTube (placeholder)">YouTube</a> -->
+            <!-- </div> -->
+          </div>
+
+          <div class="footer-col">
+            <h3>Pages</h3>
+            <ul>
+              <li><a href="#home">Home</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3>Services</h3>
+            <ul>
+              <li><a href="#services">Sitecore XM Cloud</a></li>
+              <li><a href="#services">AI Enablement</a></li>
+              <li><a href="#services">Full-Stack Engineering</a></li>
+              <li><a href="#services">Platform & DevOps</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3>Contact</h3>
+            <ul>
+              <li><a href="mailto:info@aaitek.com.au">info@aaitek.com.au</a></li>
+              <li><span class="small">Sydney, Australia</span></li>
+              <li><a href="#contact">Get a quote</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="small">© <span id="year"></span> Aaitek. All rights reserved.</p>
+          <p class="small"><a href="#home">Back to top</a></p>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Accessible mobile menu toggle
+    (function () {
+      const btn = document.getElementById('menuBtn');
+      const menu = document.getElementById('mobileMenu');
+      const year = document.getElementById('year');
+
+      if (year) year.textContent = new Date().getFullYear();
+      if (!btn || !menu) return;
+
+      function setOpen(open) {
+        btn.setAttribute('aria-expanded', String(open));
+        menu.hidden = !open;
+      }
+
+      btn.addEventListener('click', () => {
+        const isOpen = btn.getAttribute('aria-expanded') === 'true';
+        setOpen(!isOpen);
+      });
+
+      menu.addEventListener('click', (e) => {
+        const target = e.target;
+        if (target && target.tagName === 'A') setOpen(false);
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') setOpen(false);
+      });
+
+      setOpen(false);
+    })();
+  </script>
+</body>
+</html>
